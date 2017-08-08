@@ -15,7 +15,7 @@ var firstComponent  = Vue.component('login-reg',{
 									</div>
 									<hr>
 								</div> 
-								<div class="panel-body">
+								<div class="panel-body login">
                         <div class="row">
                             <div class="col-lg-12">
                                 <form id="login-form" role="form" class="fadeProj" v-if='view=="login"'>
