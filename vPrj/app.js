@@ -2,23 +2,24 @@
 var firstComponent  = Vue.component('login-reg',{
 	'template':`<div>
 				     <div class="row">
-						<div class="col-md-6 col-md-offset-3">
+						<div class="col-md-6 col-xs-12 col-md-6 col-md-offset-3">
 							<div class="panel panel-login">
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-6">
-										<a href="#/login" class="active" id="login-form-link" v-on:click="toggleView('login')">Login</a>
+										<a href="#/login" :class= activeClassLogin id="login-form-link" v-on:click="toggleView('login')">Login</a>
 										</div>
 										<div class="col-xs-6">
-										<a href="#/login" id="register-form-link" v-on:click="toggleView('register')">Register</a>
+										<a href="#/login" id="register-form-link" :class= activeClassRegister v-on:click="toggleView('register')">Register</a>
 										</div>
 									</div>
 									<hr>
+									<div><alert-comp visibility = "false"></alert-comp></div>
 								</div> 
 								<div class="panel-body login">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="login-form" role="form" class="fadeProj" v-if='view=="login"'>
+                                <form id="login-form" role="form" class="" v-if='view=="login"'>
                                     <div class="form-group">
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
                                     </div>
@@ -87,12 +88,22 @@ var firstComponent  = Vue.component('login-reg',{
 		 
 		data: function () {
 			return {
-				view: 'login'
+				view: 'login',
+				activeClassLogin : 'active',
+				activeClassRegister : ''
 			}
 		},
 			methods : {
 				toggleView : function(userChoice){
 					this.view = userChoice
+					if(this.view === 'login') 
+					{ this.activeClassLogin ="active" ;
+					this.activeClassRegister = ""
+					} 
+					else{ 
+					this.activeClassRegister = "active" ;
+					this.activeClassLogin =""
+					}
 				}
 				
 			}
