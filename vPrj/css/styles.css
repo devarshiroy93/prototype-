@@ -140,14 +140,14 @@
 .navbar.navbar-inverse .nav-collapse.in {
     transform: translate(0px,0px);
 }
-.login{
-   border-radius: 3px;
-   border: 1px solid #ccc;
-   border-radius: 3px;
-   box-shadow: 0px 3px 6px rgba(33, 33, 33, .3);
-  
+.google-btn{
+    background: #d14836;
+    border-color: transparent;
 }
-
+.fb-btn{
+    background: #3b5998;
+    border-color: transparent;
+}
 
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
@@ -173,4 +173,7 @@
     .navbar.navbar-inverse .nav-collapse.in.slide-down {
         transform: translate(0px,0px);
     }
+   .fb-btn{
+      margin:24px 0;
+   }
 }
