@@ -14,7 +14,7 @@ var firstComponent  = Vue.component('login-reg',{
 										</div>
 									</div>
 									<hr>
-									<div><alert-comp visibility = "false"></alert-comp></div>
+									<div><alert-comp :visibility = error></alert-comp></div>
 								</div> 
 								<div class="panel-body login">
                         <div class="row">
@@ -33,7 +33,7 @@ var firstComponent  = Vue.component('login-reg',{
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In" v-on:click="gSignin()">
                                             </div>
                                         </div>
                                     </div>
@@ -90,29 +90,51 @@ var firstComponent  = Vue.component('login-reg',{
 			return {
 				view: 'login',
 				activeClassLogin : 'active',
-				activeClassRegister : ''
+				activeClassRegister : '',
+				error: false
 			}
 		},
 			methods : {
 				toggleView : function(userChoice){
 					this.view = userChoice
-					if(this.view === 'login') 
-					{ this.activeClassLogin ="active" ;
-					this.activeClassRegister = ""
+					if(this.view === 'login'){ 	
+						this.activeClassLogin ="active" ;
+						this.activeClassRegister = ""
 					} 
 					else{ 
-					this.activeClassRegister = "active" ;
-					this.activeClassLogin =""
+						this.activeClassRegister = "active" ;
+						this.activeClassLogin =""
 					}
-				}
+				},
+				gSignin : function(){
+					 
+					var provider = new firebase.auth.GoogleAuthProvider();
+					var self= this;
+					firebase.auth()
+					.signInWithPopup(provider).then(function(result) {
+						var token = result.credential.accessToken;
+						var user = result.user;
+						router.push('dashboard');
+						console.log(token);
+						console.log(user)
+						}).catch(function(error) {
+							self.error = true
+							console.log(self.error)
+							var errorCode = error.code;
+							var errorMessage = error.message;
+							console.log(error.code);
+							console.log(error.message)
+							});
+									}
 				
-			}
+						}
 
 })
 
 
 const routes = [
-    { path: '/login', component: firstComponent	},
+    	{ path: '/login', component: firstComponent  },
+	{path :'/dashboard',component : dashboardComp },
 	{ path: '/', component: firstComponent	}
     
 ]
