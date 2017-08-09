@@ -46,6 +46,11 @@ var firstComponent  = Vue.component('login-reg',{
                                             </div>
                                         </div>
                                     </div>
+				<div class="row"><div class="col-sm-6"><input type="submit" name="login-submit" id="login-submit" tabindex="4" value="Log In with Google" class="form-control btn btn-login btn-success" 
+google-btn"></div>
+
+<div class="col-sm-6"
+"><input type="submit" name="login-submit" id="login-submit" tabindex="4" value="Log In with Facebook" class="form-control btn btn-login btn-success fb-btn" disabled></div></div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>
                                     <!-- <div class="form-group">
