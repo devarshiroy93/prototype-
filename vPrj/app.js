@@ -32,8 +32,8 @@ var firstComponent  = Vue.component('login-reg',{
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In">
+                                            <div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 col-xs-6">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In" v-on:click="gSignin()">
                                             </div>
                                         </div>
                                     </div>
@@ -46,9 +46,10 @@ var firstComponent  = Vue.component('login-reg',{
                                             </div>
                                         </div>
                                     </div>
-				<div class="row"><div class="col-sm-6"><input type="submit" name="login-submit" id="login-submit" tabindex="4" value="Log In with Google" class="form-control btn btn-login btn-success google-btn"  v-on:click="gSignin()"></div>
-
-			<div class="col-sm-6"><input type="submit" name="login-submit" id="login-submit" tabindex="4" value="Log In with Facebook" class="form-control btn btn-login btn-success fb-btn" disabled></div></div>
+				                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6"><img src="asset/Login_WithGoogle.jpg" id="google-img"/></div>
+                                        <div class="col-sm-6 col-xs-6"><img src="asset/Login_WithFacebook.jpg" id="fb-img"/></div>
+                                    </div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>
                                     <!-- <div class="form-group">
