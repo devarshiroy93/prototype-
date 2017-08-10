@@ -33,7 +33,7 @@ var firstComponent  = Vue.component('login-reg',{
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 col-xs-6">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In" v-on:click="gSignin()">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In" >
                                             </div>
                                         </div>
                                     </div>
@@ -47,8 +47,8 @@ var firstComponent  = Vue.component('login-reg',{
                                         </div>
                                     </div>
 				                    <div class="row">
-                                        <div class="col-sm-6 col-xs-6"><img src="asset/Login_WithGoogle.jpg" id="google-img"/></div>
-                                        <div class="col-sm-6 col-xs-6"><img src="asset/Login_WithFacebook.jpg" id="fb-img"/></div>
+                                        <div class="col-sm-6 col-xs-6"><img src="asset/Login_WithGoogle.jpg" v-on:click="gSignin()" id="google-img"/></div>
+                                        <div class="col-sm-6 col-xs-6 disabledOpacity "><img src="asset/Login_WithFacebook.jpg" id="fb-img"/></div>
                                     </div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>
@@ -118,7 +118,7 @@ var firstComponent  = Vue.component('login-reg',{
 					.signInWithPopup(provider).then(function(result) {
 						var token = result.credential.accessToken;
 						var user = result.user;
-						router.push('dashboard');
+						router.push({ name: 'dashboard', params: {user: user }});
 						console.log(token);
 						console.log(user)
 						}).catch(function(error) {
@@ -138,8 +138,8 @@ var firstComponent  = Vue.component('login-reg',{
 
 const routes = [
     	{ path: '/login', component: firstComponent  },
-	{path :'/dashboard',component : dashboardComp },
-	{ path: '/', component: firstComponent	}
+		{path :'/dashboard',name:'dashboard',component : dashboardComp,props:true },
+		{ path: '/', component: firstComponent	}
     
 ]
 const router = new VueRouter({
