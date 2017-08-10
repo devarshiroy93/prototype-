@@ -1,4 +1,4 @@
-///transition classes start///
+/*///transition classes start///*/
 
 .fadeProj {
    opacity: 1;
@@ -7,7 +7,7 @@
    -webkit-transition: opacity .25s ease-in-out;
    }
    
-///transition classes end///
+/*///transition classes end///*/
 
 
 .panel-login {
@@ -25,6 +25,7 @@
 .panel-login>.panel-heading a{
  text-decoration: none;
  color: #666;
+ padding: 12px;
  font-weight: bold;
  font-size: 15px;
  -webkit-transition: all 0.1s linear;
@@ -33,7 +34,7 @@
 }
 .panel-login>.panel-heading a.active{
  color: #029f5b;
- font-size: 18px;
+ border-bottom: 3px solid;
 }
 .panel-login>.panel-heading hr{
  margin-top: 10px;
@@ -140,13 +141,18 @@
 .navbar.navbar-inverse .nav-collapse.in {
     transform: translate(0px,0px);
 }
-.google-btn{
-    background: #d14836;
-    border-color: transparent;
+#fb-img{
+    float: right;
+    cursor: pointer;
 }
-.fb-btn{
-    background: #3b5998;
-    border-color: transparent;
+#google-img{
+    cursor: pointer;
+}
+input[disabled]{
+	pointer-events:none;
+}
+.login{
+    box-shadow: 0px 3px 6px rgba(33, 33, 33, .3);
 }
 
 @media screen and (max-width: 767px) {
