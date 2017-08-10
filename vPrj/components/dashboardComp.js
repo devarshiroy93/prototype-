@@ -1,7 +1,8 @@
 var dashboardComp = Vue.component('dash-comp',{
+props : ['user'],
 template : `<div>
 				<div>
-				<h1>Welcome to Dashboard</h1>
+				<h3>Welcome to Dashboard</h3><h1>{{user.providerData[0].displayName}}</h1>
 				</div>
 				<div class="row">
                      <div class="col-sm-6 col-sm-offset-3">
@@ -10,7 +11,6 @@ template : `<div>
                 </div>
 			</div>`,
 										
-props :[],
 methods :{
 	
 	gSignOut : function(){
