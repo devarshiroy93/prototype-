@@ -194,3 +194,6 @@ input[disabled]{
       margin:24px 0;
    }
 }
+.disabledOpacity{
+	opacity : 0.3
+}
