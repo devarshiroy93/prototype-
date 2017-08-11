@@ -23,11 +23,12 @@ methods :{
       console.log('Signout Failed')  
    });
 	}
-}
-//    created:function(){
-//        if(user===undefined){
-//            router.push('login')
-//        }
-//    }
-//										
+},
+    created:function(){
+        debugger
+        if(this.$route.params.user === undefined){
+            router.push('login')
+        }
+    }
+										
 })
