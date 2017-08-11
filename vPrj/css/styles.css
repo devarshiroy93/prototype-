@@ -197,3 +197,7 @@ input[disabled]{
 .disabledOpacity{
 	opacity : 0.3
 }
+.sideBarImgClass {
+    max-width: 100px;
+    border-radius : 50%
+}
