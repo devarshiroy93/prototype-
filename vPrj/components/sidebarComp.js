@@ -4,9 +4,11 @@ template : `<div>
                     <div class="">
                         <img class="card-img-top sideBarImgClass" :src="userData.photoURL" alt="Card image cap">
                             <div class="card-block">
-                            <h4 class="card-title">{{userData.displayName}}</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <ul class="sidebar-comp subheader">
+                                    <li><i class="material-icons" aria-hidden="true">create</i>Edit Profile</li>
+                                    <li><i class="material-icons" aria-hidden="true">local_post_office</i>Your Posts</li>
+                                    <li><i class="material-icons" aria-hidden="true">supervisor_account</i>Friends</li>
+                                </ul>
                             </div>
                     </div>
 				

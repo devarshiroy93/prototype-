@@ -2,12 +2,16 @@
 <html lang="en">
     <head>
         <title>Prototype</title>
-        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-		<script src="config/fbaseConnect.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		<script src = "https://unpkg.com/vue"></script>
-		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+		    <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+        <script src="config/fbaseConnect.js"></script>
+		    <script src = "https://unpkg.com/vue"></script>
+		    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
 
     </head>
     <body>
@@ -24,12 +28,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#"> {{brandName}}</a>
+          <a class="navbar-brand" href="#"><i class="material-icons">home</i></a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-3">
           <ul class="nav navbar-nav navbar-right"> 
-            <router-link to='/login'>Login..</router-link>
+            <!-- <router-link to='/login'>Login..</router-link> -->
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
             <form class="navbar-form navbar-right" role="search">
@@ -43,7 +48,7 @@
       </div><!-- /.container -->
     </nav>
         </header>
-        <div class="container"><router-view></router-view></div>
+        <div class="container" id="main-content"><router-view></router-view></div>
         <footer></footer>
 		
     </body>

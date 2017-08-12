@@ -1,6 +1,6 @@
 
 var firstComponent  = Vue.component('login-reg',{
-	'template':`<div class="main-content">
+	'template':`<div>
 				     <div class="row">
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
 							<div class="panel panel-login">
@@ -33,7 +33,7 @@ var firstComponent  = Vue.component('login-reg',{
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 col-xs-6">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success" value="Log In" >
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success interactive-text" value="Log In" >
                                             </div>
                                         </div>
                                     </div>
@@ -47,8 +47,8 @@ var firstComponent  = Vue.component('login-reg',{
                                         </div>
                                     </div>
 				                    <div class="row">
-                                        <div class="col-sm-6 col-xs-6"><img src="asset/Login_WithGoogle.jpg" v-on:click="gSignin()" id="google-img"/></div>
-                                        <div class="col-sm-6 col-xs-6 disabledOpacity "><img src="asset/Login_WithFacebook.jpg" id="fb-img"/></div>
+                                        <div class="col-sm-6 col-xs-12"><img src="asset/Login_WithGoogle.jpg" v-on:click="gSignin()" id="google-img"/></div>
+                                        <div class="col-sm-6 col-xs-12 disabledOpacity"><img src="asset/Login_WithFacebook.jpg" id="fb-img"/></div>
                                     </div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>
@@ -76,7 +76,7 @@ var firstComponent  = Vue.component('login-reg',{
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register btn-primary" value="Register Now">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register btn-primary interactive-text" value="Register Now">
                                             </div>
                                         </div>
                                     </div>
