@@ -144,6 +144,7 @@
 #fb-img{
     float: right;
     cursor: pointer;
+    pointer-events:none;
 }
 #fb-img:hover{
     box-shadow: 0px 3px 6px #3b5998;
@@ -159,11 +160,24 @@
 input[disabled]{
 	pointer-events:none;
 }
-.login{
-    box-shadow: 0px 3px 6px rgba(33, 33, 33, .3);
-}
 #alert{
     margin: 20px 0 0 0;
+}
+.main-content{
+    margin-top: 6em;
+}
+html, body {
+     height:100%;
+     padding:0;
+     margin:0;
+}
+body{
+    height: 100%;
+    background: rgb(238,238,238); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgb(238,238,238) 0%, rgb(204,204,204) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgb(238,238,238) 0%,rgb(204,204,204) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgb(238,238,238) 0%,rgb(204,204,204) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=1 );
 }
 
 @media screen and (max-width: 767px) {

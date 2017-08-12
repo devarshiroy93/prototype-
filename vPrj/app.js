@@ -1,6 +1,6 @@
 
 var firstComponent  = Vue.component('login-reg',{
-	'template':`<div>
+	'template':`<div class="main-content">
 				     <div class="row">
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
 							<div class="panel panel-login">
