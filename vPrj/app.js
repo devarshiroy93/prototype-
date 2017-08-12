@@ -111,24 +111,7 @@ var firstComponent  = Vue.component('login-reg',{
 					}
 				},
 				gSignin : function(){
-					 
-					var provider = new firebase.auth.GoogleAuthProvider();
-					var self= this;
-					firebase.auth()
-					.signInWithPopup(provider).then(function(result) {
-						var token = result.credential.accessToken;
-						var user = result.user;
-						router.push({ name: 'dashboard', params: {user: user }});
-						console.log(token);
-						console.log(user)
-						}).catch(function(error) {
-							self.error = true
-							console.log(self.error)
-							var errorCode = error.code;
-							var errorMessage = error.message;
-							console.log(error.code);
-							console.log(error.message)
-							});
+                     signingInService(router);
 									}
 				
 						}

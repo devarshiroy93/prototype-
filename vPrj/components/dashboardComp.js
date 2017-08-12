@@ -15,17 +15,10 @@ template : `<div>
 methods :{
 	
 	gSignOut : function(){
-		firebase.auth().signOut()
-   .then(function() {
-      console.log('Signout Succesfull')
-	  router.push('login')
-   }, function(error) {
-      console.log('Signout Failed')  
-   });
+		singingOutService(router)
 	}
 },
     created:function(){
-        debugger
         if(this.$route.params.user === undefined){
             router.push('login')
         }
