@@ -265,6 +265,11 @@ ul.sidebar-comp li:hover{
     border-radius: 3px;
     cursor:pointer;
 }
+.sidebar-content{
+    border: 1px solid #212121;
+    padding: 15px;
+    border-radius: 3px;
+}
 
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
