@@ -1,5 +1,6 @@
 
 var firstComponent  = Vue.component('login-reg',{
+	props : ['message'],
 	'template':`<div>
 				     <div class="row">
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
@@ -14,7 +15,7 @@ var firstComponent  = Vue.component('login-reg',{
 										</div>
 									</div>
 									<hr>
-									<div><alert-comp :visibility = error></alert-comp></div>
+									<div v-if ="message"><alert-comp :visibility = message></alert-comp></div>
 								</div> 
 								<div class="panel-body login">
                         <div class="row">
@@ -114,13 +115,18 @@ var firstComponent  = Vue.component('login-reg',{
                      signingInService(router);
 									}
 				
-						}
+						},
+				created : function(){
+					if(this.$route.params.message){
+						this.error = false
+					}
+				}
 
 })
 
 
 const routes = [
-    	{ path: '/login', component: firstComponent  },
+    	{ path: '/login', name:'login', component: firstComponent,props:true  },
 		{path :'/dashboard',name:'dashboard',component : dashboardComp,props:true },
 		{ path: '/', component: firstComponent	}
     
