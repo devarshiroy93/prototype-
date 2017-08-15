@@ -16,6 +16,9 @@ function signingInService(router,fn){
 							var errorMessage = error.message;
 							console.log(error.code);
 							console.log(error.message)
+							
+							debugger
+							router.push({ name: 'login', params: {message: true }})
 							});
 }
 
