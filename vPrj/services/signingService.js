@@ -9,17 +9,21 @@ function signingInService(router,fn){
 						console.log(token);
 						console.log(user)
                         router.push({ name: 'dashboard', params: {user: user }})//redirects to login page on successfull login
-						}).catch(function(error) {
-							self.error = true
-							console.log(self.error)
-							var errorCode = error.code;
-							var errorMessage = error.message;
-							console.log(error.code);
-							console.log(error.message)
-							
+						})
+						.catch(function(error) {
 							debugger
+						
+						var errorCode = error.code;
+						if(router.currentRoute.path === "/"){
 							router.push({ name: 'login', params: {message: true }})
-							});
+						}
+						else{
+							router.push({ name: 'index', params: {message: true }})
+						}
+						var errorMessage = error.message;
+						console.log(error.code);
+						console.log(error.message)
+						});
 }
 
 function singingOutService(){
