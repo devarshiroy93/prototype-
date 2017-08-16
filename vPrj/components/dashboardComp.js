@@ -22,6 +22,7 @@ methods :{
         if(this.$route.params.user === undefined){
             router.push('login')
         }
+	pushUserData(this.$route.params.user);//function pushes user data obtained from various service providers into database.Passwords are not available in database
     }
 										
 })
