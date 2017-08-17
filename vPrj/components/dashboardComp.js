@@ -23,17 +23,12 @@ template : `<div>
                 </div>
             </div>`,
 										
-methods :{
-	
-	gSignOut : function(){
-		singingOutService(router);
-	}
-},
+
     created:function(){
         if(this.$route.params.user === undefined){
             router.push('login')
         }
-        pushUserData(this.$route.params.user);//function pushes user data obtained from various service providers into database.Passwords are not available in database
+		checkIfUserExists(this.$route.params.user.uid, this.$route.params.user);//this function checks if user exits in database or not .If not then pushes user data into database.
     }
 										
 })
