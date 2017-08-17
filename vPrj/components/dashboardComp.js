@@ -15,7 +15,7 @@ template : `<div>
         if(this.$route.params.user === undefined){
             router.push('login')
         }
-		//checkIfUserExists(this.$route.params.user.uid, this.$route.params.user);//this function checks if user exits in database or not .If not then pushes user data into database.
+		checkIfUserExists(this.$route.params.user.uid, this.$route.params.user);//this function checks if user exits in database or not .If not then pushes user data into database.
     }
 										
 })
