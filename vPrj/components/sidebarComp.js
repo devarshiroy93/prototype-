@@ -4,14 +4,17 @@ template : `<div>
                     <div class="">
                         <img class="card-img-top sideBarImgClass" :src="userData.photoURL" alt="Card image cap">
                             <div class="card-block">
-                                <ul class="sidebar-comp subheader">
+                                <ul class="sidebar-comp interactive-text">
                                     <li><i class="material-icons" aria-hidden="true">create</i>Edit Profile</li>
                                     <li><i class="material-icons" aria-hidden="true">local_post_office</i>Your Posts</li>
                                     <li><i class="material-icons" aria-hidden="true">supervisor_account</i>Friends</li>
+                                     <li><i class="material-icons">message</i>Messages</li>
                                 </ul>
                             </div>
                     </div>
-				
+				<div class ="col-md-12 col-sm-12 col-xs-12"> 
+                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-danger interactive-text" value="Log Out" v-on:click="gSignOut()">
+                </div>
 			</div>`
 
 })
