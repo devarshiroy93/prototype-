@@ -27,18 +27,12 @@ Vue.component('post-card',{
 				   }; 
 		},
 		methods:{
-			reverseArray : function(){
-				this.postData.reverse();
-			}
+			
 		},
 		created :function(){ 
-		    
-			debugger
 			firebase.database().ref('posts/').on('value', function(snapshot) {
 			//console.log(snapshot.val());
 			this.postData = snapshot.val()
-			this.reverseArray()
-			console.log(this.postData)
 			}.bind(this));
 			
 		}
