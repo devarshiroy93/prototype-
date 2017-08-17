@@ -26,7 +26,7 @@
 
 .subheader {
     font-family: Roboto-Medium;
-    font-size: 1.125em;
+    font-size: 1.25em;
 }
 
 .body1 {
@@ -73,6 +73,7 @@
 
 
 .panel-login {
+margin-top: 32px;
  border-color: #ccc;
  -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
  -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -226,7 +227,9 @@ input[disabled]{
     margin: 20px 0 0 0;
 }
 #main-content{
-    margin-top: 6em;
+    margin-top: 3.6em;
+    margin-left: 0;
+    padding: 0;
 }
 body{
     background: rgb(238,238,238); 
@@ -235,8 +238,10 @@ body{
     opacity : 0.3
 }
 .sideBarImgClass {
-    max-width: 4em;
-    border-radius : 50%
+    max-width: 6em;
+    border-radius : 50%;
+    margin: 0 auto;
+    display: table;
 }
 ul.sidebar-comp{
     list-style-type: none;
@@ -257,9 +262,39 @@ ul.sidebar-comp li:hover{
     color: #d9534f;
 }
 .sidebar-content{
-    border: 1px solid #212121;
     padding: 15px 15px 0 15px;
-    border-radius: 3px;
+    background: #fff;
+    height: 92vh;
+    
+}
+.material-icons{
+    vertical-align: middle;
+}
+.dashboard-card-block{
+    background: #fff;
+    padding: 15px;
+    margin-top: 24px;
+    border-radius: 4px;
+}
+.dashboard-card-title{
+    color: #029f5b;
+    padding: 0;
+}
+.dashboard-card-text{
+    padding: 0;
+}
+.dashboard-card-img{
+    padding: 0;
+    width: 4em;
+}
+.dashboard-card-img img{
+    border-radius: 50%;
+}
+.dashboard-card-block a i{
+    margin-right: 5px;
+}
+.post-time{
+    float: right;
 }
 
 @media screen and (max-width: 767px) {
