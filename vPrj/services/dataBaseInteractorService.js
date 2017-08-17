@@ -24,5 +24,16 @@ function pushUserData(userData){
 														}
 						
 													  )
+};
+function pustPostIntoDatabase(postTitle,postBody,userUid) {
+	var postObj = {
+					title : postTitle,
+					body : postBody ,
+					createdby : userUid,
+					timeStamp : Date.now(),
+				  }
+	var postId = generateUniquePostId();
+	firebase.database().ref("posts/").push(postObj)
+	
 }
 
