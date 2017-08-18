@@ -300,6 +300,7 @@ ul.sidebar-comp li:hover{
 }
 .create-btn{
     float: right;
+    margin-bottom: 15px;
 }
 .post-form{
     display: none;
@@ -389,4 +390,3 @@ ul.sidebar-comp li:hover{
         float: none;
     }
 }
-
