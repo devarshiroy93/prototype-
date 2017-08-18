@@ -1,28 +1,80 @@
-Vue.component('create-post',{
-	props : ['userUid'],
-	template  :`<div>
-	<button type="button" class="btn btn-sm btn-success subheader create-btn"><i class="material-icons">add_circle_outline</i>Create</button>
-					<div class="post-form">
-						<div class="form-group">
-							<label for="title">Title</label>
-							<input type="text" class="form-control input-sm" id="title" v-model ="titleContent">
-							<label for="PostBody"></label>
-							<textarea class="form-control" rows="3" id="PostBody" v-model ="bodyContent"></textarea>
-						</div>
-					<button type="button" class="btn btn-default" v-on:click = createPost()>Post</button>
-					</div>
-				</div>`,
-	data: function () {
-			return {
-				titleContent : '',
-				bodyContent : ''	
-			}
-		},
-	methods : {
-		createPost: function(){
-			debugger
-			pustPostIntoDatabase(this.titleContent,this.bodyContent,this.userUid);
-			this.titleContent = '',this.bodyContent = '';
-		}
-	}
-})
+function checkIfUserExists(uid,userData){
+	var userUid = uid;
+	var ref = firebase.database().ref("users/");
+	ref.once("value").then(function(snapshot) {
+				snapshot.hasChild(userUid) ? '': pushUserData(userData) ;
+					
+  });
+	
+};
+
+function pushUserData(userData){
+	var userDataObj = userData.providerData[0];
+	var userIdentifier = userDataObj.uid.toString();
+	
+	firebase.database().ref("users/"+userData.uid).set(
+	
+														{
+														'displayName' : userDataObj.displayName !==null? userDataObj.displayName : '' ,
+														'email':userDataObj.email !==null? userDataObj.email : '',
+														'providerId' : userDataObj.providerId !==null? userDataObj.providerId : '',
+														'phoneNumber' : userDataObj.phoneNumber !==null? userDataObj.displayName : '',
+														'uid' : userDataObj.uid !==null? userDataObj.uid : ''
+														}
+						
+													  )
+};
+function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
+	var postObj = {
+					title : postTitle,
+					body : postBody ,
+					createdby : userUid,
+					authorPic : photoURL,
+					timeStamp : Date.now(),
+				  }
+	var postId = generateUniquePostId();
+	firebase.database().ref("posts/").push(postObj)
+	
+};
+
+
+function checkIfUserExists(uid,userData){
+	var userUid = uid;
+	var ref = firebase.database().ref("users/");
+	ref.once("value").then(function(snapshot) {
+				snapshot.hasChild(userUid) ? '': pushUserData(userData) ;
+					
+  });
+	
+};
+
+function pushUserData(userData){
+	var userDataObj = userData.providerData[0];
+	var userIdentifier = userDataObj.uid.toString();
+	
+	firebase.database().ref("users/"+userData.uid).set(
+	
+														{
+														'displayName' : userDataObj.displayName !==null? userDataObj.displayName : '' ,
+														'email':userDataObj.email !==null? userDataObj.email : '',
+														'providerId' : userDataObj.providerId !==null? userDataObj.providerId : '',
+														'phoneNumber' : userDataObj.phoneNumber !==null? userDataObj.displayName : '',
+														'uid' : userDataObj.uid !==null? userDataObj.uid : ''
+														}
+						
+													  )
+};
+function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
+	var postObj = {
+					title : postTitle,
+					body : postBody ,
+					createdby : userUid,
+					authorPic : photoURL,
+					timeStamp : Date.now(),
+				  }
+	var postId = generateUniquePostId();
+	firebase.database().ref("posts/").push(postObj)
+	
+};
+
+
