@@ -1,80 +1,36 @@
-function checkIfUserExists(uid,userData){
-	var userUid = uid;
-	var ref = firebase.database().ref("users/");
-	ref.once("value").then(function(snapshot) {
-				snapshot.hasChild(userUid) ? '': pushUserData(userData) ;
-					
-  });
-	
-};
-
-function pushUserData(userData){
-	var userDataObj = userData.providerData[0];
-	var userIdentifier = userDataObj.uid.toString();
-	
-	firebase.database().ref("users/"+userData.uid).set(
-	
-														{
-														'displayName' : userDataObj.displayName !==null? userDataObj.displayName : '' ,
-														'email':userDataObj.email !==null? userDataObj.email : '',
-														'providerId' : userDataObj.providerId !==null? userDataObj.providerId : '',
-														'phoneNumber' : userDataObj.phoneNumber !==null? userDataObj.displayName : '',
-														'uid' : userDataObj.uid !==null? userDataObj.uid : ''
-														}
-						
-													  )
-};
-function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
-	var postObj = {
-					title : postTitle,
-					body : postBody ,
-					createdby : userUid,
-					authorPic : photoURL,
-					timeStamp : Date.now(),
-				  }
-	var postId = generateUniquePostId();
-	firebase.database().ref("posts/").push(postObj)
-	
-};
-
-
-function checkIfUserExists(uid,userData){
-	var userUid = uid;
-	var ref = firebase.database().ref("users/");
-	ref.once("value").then(function(snapshot) {
-				snapshot.hasChild(userUid) ? '': pushUserData(userData) ;
-					
-  });
-	
-};
-
-function pushUserData(userData){
-	var userDataObj = userData.providerData[0];
-	var userIdentifier = userDataObj.uid.toString();
-	
-	firebase.database().ref("users/"+userData.uid).set(
-	
-														{
-														'displayName' : userDataObj.displayName !==null? userDataObj.displayName : '' ,
-														'email':userDataObj.email !==null? userDataObj.email : '',
-														'providerId' : userDataObj.providerId !==null? userDataObj.providerId : '',
-														'phoneNumber' : userDataObj.phoneNumber !==null? userDataObj.displayName : '',
-														'uid' : userDataObj.uid !==null? userDataObj.uid : ''
-														}
-						
-													  )
-};
-function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
-	var postObj = {
-					title : postTitle,
-					body : postBody ,
-					createdby : userUid,
-					authorPic : photoURL,
-					timeStamp : Date.now(),
-				  }
-	var postId = generateUniquePostId();
-	firebase.database().ref("posts/").push(postObj)
-	
-};
-
-
+Vue.component('create-post',{
+	props : ['userinfo'],
+	template  :`<div>
+					<div><button type="button" class="btn btn-xs btn-success subheader create-btn"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
+					<div v-if  = 'createdClicked'>
+						<div class="form-group">
+							<label for="title"></label>
+							<input type="text" class="form-control input-sm" id="title" v-model ="titleContent"  placeholder="Title of Post...">
+							<label for="PostBody"></label>
+							<textarea class="form-control" rows="3" id="PostBody" v-model ="bodyContent" placeholder="Body of Post..."></textarea>
+						</div>
+					<button type="button" class="btn btn-default" v-on:click = createPost()>Post</button>
+					<button type="button" class="btn btn-default" v-on:click = cancelPost()>cancel</button>
+					</div>
+				</div>`,
+	data: function () {
+			return {
+				titleContent : '',
+				bodyContent : '',
+				createdClicked : false
+			}
+		},
+	methods : {
+		createClick : function(){
+			this.createdClicked = true;
+		},
+		cancelPost : function(){
+			this.createdClicked = false;
+		},
+		createPost: function(){
+			debugger
+			pustPostIntoDatabase(this.titleContent,this.bodyContent,this.userinfo.uid,this.userinfo.providerData[0].photoURL);
+			this.titleContent = '',this.bodyContent = '';
+		}
+	}
+})
