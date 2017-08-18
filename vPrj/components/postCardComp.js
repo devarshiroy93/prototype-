@@ -30,10 +30,15 @@ Vue.component('post-card',{
 			
 		},
 		created :function(){ 
-			firebase.database().ref('posts/').on('value', function(snapshot) {
-			//console.log(snapshot.val());
-			this.postData = snapshot.val()
-			}.bind(this));
+		var readableDate = '';
+		var formattedObj ={} ;
+			firebase.database().ref('posts/').orderByChild('timeStamp').on('child_added',function(snapshot){
+				formattedObj = snapshot.val()
+				readableDate = convertToReadableDate(formattedObj.timeStamp);
+				formattedObj.timeStamp = readableDate
+				this.postData.push(formattedObj);
+				this.postData = this.postData.reverse();
+			}.bind(this))
 			
 		}
                      
