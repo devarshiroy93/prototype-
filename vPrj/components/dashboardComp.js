@@ -2,7 +2,7 @@ var dashboardComp = Vue.component('dash-comp',{
 props : ['user'],
 template : `<div>
                 <div class ="col-md-3 col-sm-3 col-xs-12 sidebar-content"><sidebar-comp :userData = user.providerData[0]></sidebar-comp></div>
-                <div class="col-md-7 col-sm-7 col-xs-12">
+                <div class="col-md-7 col-sm-7 col-xs-12 user-posts">
                     <div v-if="user.providerData[0] !== undefined" >
 						<create-post :userinfo=user></create-post>
 						<post-card :userUid=user.uid></post-card>
