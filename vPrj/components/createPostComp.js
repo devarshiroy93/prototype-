@@ -1,8 +1,9 @@
 Vue.component('create-post',{
 	props : ['userUid'],
 	template  :`<div>
-					<div >
-					<div class="form-group">
+					<div>
+					<button type="button" class="btn btn-sm btn-success subheader create-btn"><i class="material-icons">add_circle_outline</i>CREATE</button>
+					<div class="form-group post-form">
 						<label for="title">Title</label>
 						<input type="text" class="form-control input-sm" id="title" v-model ="titleContent">
 						<label for="PostBody"></label>
