@@ -6,7 +6,7 @@ Vue.component('post-card',{
 				
 				<div class="dashboard-card-block col-md-12 col-sm-12 col-xs-12" v-for='post in postData'>
                      <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 dashboard-card-img">
-                        <img src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg" alt="Card image cap" class="img-responsive">
+                        <img :src="post.authorPic" alt="Card image cap" class="img-responsive">
                      </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
                              <h4 class="dashboard-card-title col-md-12 col-sm-12 col-xs-12 subheader">{{post.title}}<span class="post-time caption">{{post.timeStamp}}</span></h4>
