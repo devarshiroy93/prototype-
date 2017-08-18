@@ -228,7 +228,6 @@ input[disabled]{
 }
 #main-content{
     margin-top: 3.6em;
-    margin-left: 0;
     padding: 0;
 }
 body{
@@ -264,8 +263,8 @@ ul.sidebar-comp li:hover{
 .sidebar-content{
     padding: 15px 15px 0 15px;
     background: #fff;
-    height: 92vh;
-    
+    height: 100vh;
+    left: -3em;    
 }
 .material-icons{
     vertical-align: middle;
@@ -296,7 +295,15 @@ ul.sidebar-comp li:hover{
 .post-time{
     float: right;
 }
-
+.user-posts{
+    margin:  24px 0;
+}
+.create-btn{
+    float: right;
+}
+.post-form{
+    display: none;
+}
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
     
