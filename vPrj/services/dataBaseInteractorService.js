@@ -17,7 +17,6 @@ function pushUserData(userData){
 														{
 														'displayName' : userDataObj.displayName !==null? userDataObj.displayName : '' ,
 														'email':userDataObj.email !==null? userDataObj.email : '',
-														'photoURL' : userDataObj.photoURL !==null? userDataObj.photoURL : '',
 														'providerId' : userDataObj.providerId !==null? userDataObj.providerId : '',
 														'phoneNumber' : userDataObj.phoneNumber !==null? userDataObj.displayName : '',
 														'uid' : userDataObj.uid !==null? userDataObj.uid : ''
@@ -25,15 +24,17 @@ function pushUserData(userData){
 						
 													  )
 };
-function pustPostIntoDatabase(postTitle,postBody,userUid) {
+function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
 	var postObj = {
 					title : postTitle,
 					body : postBody ,
 					createdby : userUid,
+					authorPic : photoURL,
 					timeStamp : Date.now(),
 				  }
 	var postId = generateUniquePostId();
 	firebase.database().ref("posts/").push(postObj)
 	
-}
+};
+
 
