@@ -3,7 +3,7 @@ props: ['userData'],
 template : `<div>
                     <div class="">
                         <img class="card-img-top sideBarImgClass" :src="userData.photoURL" alt="Card image cap">
-					<div>
+					<div class="userInfo interactive-text">
 						<p>{{userData.displayName}}</p>
 						<p>{{userData.email}}</p>
 					</div>		
@@ -16,7 +16,7 @@ template : `<div>
                                 </ul>
                             </div>
                     </div>
-				<div class ="col-md-12 col-sm-12 col-xs-12"> 
+				<div class ="col-md-12 col-sm-12 col-xs-6"> 
                 <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-danger interactive-text" value="Log Out" v-on:click="gSignOut()">
                 </div>
 			</div>`,

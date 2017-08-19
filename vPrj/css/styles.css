@@ -264,7 +264,6 @@ ul.sidebar-comp li:hover{
     padding: 15px 15px 0 15px;
     background: #fff;
     height: 100vh;
-    left: -3em;    
 }
 .material-icons{
     vertical-align: middle;
@@ -305,9 +304,13 @@ ul.sidebar-comp li:hover{
 .post-form{
     display: none;
 }
-.user-info{
+.userInfo{
     margin-top: 16px;
     text-align: center;
+}
+.createPost{
+    background: rgba(33,33,33,.1);
+    padding: 10px;
 }
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
