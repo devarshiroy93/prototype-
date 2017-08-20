@@ -1,7 +1,7 @@
 Vue.component('create-post',{
 	props : ['userinfo'],
 	template  :`<div>
-					<div><button type="button" class="btn btn-xs btn-success subheader create-btn"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
+					<div v-if  = '!createdClicked'><button type="button" class="btn btn-xs btn-success subheader create-btn"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
 					<div v-if  = 'createdClicked' class="createPost">
 						<div class="form-group body2">
 							<label for="title"></label>
