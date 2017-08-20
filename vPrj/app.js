@@ -126,9 +126,10 @@ var firstComponent  = Vue.component('login-reg',{
 
 
 const routes = [
-    	{ path: '/login', name:'login', component: firstComponent,props:true  },
+        {path: '/login', name:'login', component: firstComponent,props:true  },
 		{path :'/dashboard',name:'dashboard',component : dashboardComp,props:true },
-		{ path: '/', name:'index',component: firstComponent,props :true	}
+		{path: '/', name:'index',component: firstComponent,props :true	},
+        {path :'/post' ,name:'singularpage',component :individualPostcomp,props:true }
     
 ]
 const router = new VueRouter({
