@@ -73,7 +73,7 @@
 
 
 .panel-login {
-margin-top: 32px;
+ margin: 32px;
  border-color: #ccc;
  -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
  -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -277,6 +277,11 @@ ul.sidebar-comp li:hover{
 .dashboard-card-title{
     color: #029f5b;
     padding: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+.dashboard-card-title:hover{
+    text-decoration: underline;
 }
 .dashboard-card-text{
     padding: 0;
@@ -293,6 +298,7 @@ ul.sidebar-comp li:hover{
 }
 .post-time{
     float: right;
+    margin-top: 10px;
 }
 .user-posts{
     margin:  24px 0;
@@ -311,6 +317,21 @@ ul.sidebar-comp li:hover{
 .createPost{
     background: rgba(33,33,33,.1);
     padding: 10px;
+    border-radius: 4px;
+}
+.PostBody{
+    resize:none;
+}
+.postTitle{
+    padding: 0;
+}
+.comments{
+    padding: 0;
+}
+.dashboard{
+    margin-right: inherit !important;
+    margin-left: inherit !important;
+    padding: 0;
 }
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
@@ -391,5 +412,22 @@ ul.sidebar-comp li:hover{
         margin: 0 auto;
         display: table;
         float: none;
+    }
+    .dashboard-card-img{
+        width: 3em;
+    }
+    .dashboard-card-block{
+        padding: 5px;
+    }
+    .panel-login {
+        margin: 16px;
+    }
+}
+
+
+@media only screen and (min-width: 1400px) {
+    #app{
+        margin: 0 auto;
+        display: table;
     }
 }

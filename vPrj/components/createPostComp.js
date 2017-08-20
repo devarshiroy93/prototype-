@@ -7,10 +7,10 @@ Vue.component('create-post',{
 							<label for="title"></label>
 							<input type="text" class="form-control input-sm" id="title" v-model ="titleContent"  placeholder="Title of Post...">
 							<label for="PostBody"></label>
-							<textarea class="form-control" rows="3" id="PostBody" v-model ="bodyContent" placeholder="Body of Post..."></textarea>
+							<textarea class="form-control PostBody" rows="3" id="PostBody" v-model ="bodyContent" placeholder="Body of Post..."></textarea>
 						</div>
 					<button type="button" class="btn btn-sm btn-success interactive-text" v-on:click = createPost()>Post</button>
-					<button type="button" class="btn btn-sm btn-danger interactive-text" v-on:click = cancelPost()>Cancel</button>
+					<button type="button" class="btn btn-sm btn-default interactive-text" v-on:click = cancelPost()>Cancel</button>
 					</div>
 				</div>`,
 	data: function () {

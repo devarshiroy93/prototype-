@@ -17,7 +17,7 @@ template : `<div>
                             </div>
                     </div>
 				<div class ="col-md-12 col-sm-12 col-xs-6"> 
-                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-danger interactive-text" value="Log Out" v-on:click="gSignOut()">
+                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-default interactive-text" value="Log Out" v-on:click="gSignOut()">
                 </div>
 			</div>`,
 methods :{

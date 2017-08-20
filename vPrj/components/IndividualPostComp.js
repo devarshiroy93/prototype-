@@ -17,7 +17,7 @@ var individualPostcomp = Vue.component('singular-page',{
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{data.body}}</p>
                            <div class="row caption">
                             <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">chat_bubble_outline</i>Comments</a>
+                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
                             <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">share</i>Share</a></div>
                            </div>
                         </div>
