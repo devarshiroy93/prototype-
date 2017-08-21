@@ -24,7 +24,7 @@ function pushUserData(userData){
 						
 													  )
 };
-function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
+function pushPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
 	var postObj = {
 					title : postTitle,
 					body : postBody ,
@@ -33,8 +33,10 @@ function pustPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
 					timeStamp : Date.now(),
 				  }
 	var postId = generateUniquePostId();
-	firebase.database().ref("posts/").push(postObj)
+	 return firebase.database().ref("posts/").push(postObj).then(function(result){
+		return result;
+	}).catch(function(error){
+		return error;
+	})
 	
 };
-
-
