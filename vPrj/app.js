@@ -15,7 +15,7 @@ var firstComponent  = Vue.component('login-reg',{
 										</div>
 									</div>
 									<hr>
-									<div v-if ="message"><alert-comp :visibility = message></alert-comp></div>
+									<div v-if ="message"><alert-comp :visibility = message :state = "state"></alert-comp></div>
 								</div> 
 								<div class="panel-body login">
                         <div class="row">
@@ -96,7 +96,7 @@ var firstComponent  = Vue.component('login-reg',{
 				view: 'login',
 				activeClassLogin : 'active',
 				activeClassRegister : '',
-				error: false
+				state: 'error'
 			}
 		},
 			methods : {
@@ -132,7 +132,7 @@ var firstComponent  = Vue.component('login-reg',{
 			},
 				created : function(){
 					if(this.$route.params.message){
-						this.error = false
+						//this.error = false
 					}
 				}
 
