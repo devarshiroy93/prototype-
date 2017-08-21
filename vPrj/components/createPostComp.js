@@ -28,8 +28,10 @@ Vue.component('create-post',{
 			this.createdClicked = false;
 		},
 		createPost: function(){
-			debugger
-			pustPostIntoDatabase(this.titleContent,this.bodyContent,this.userinfo.uid,this.userinfo.providerData[0].photoURL);
+			var promise = pushPostIntoDatabase(this.titleContent,this.bodyContent,this.userinfo.uid,this.userinfo.providerData[0].photoURL);
+			promise.then(function(result){
+				result.database ? alert('posted') : alert('not posted')
+			}.bind(this))
 			this.titleContent = '',this.bodyContent = '';
 		}
 	}
