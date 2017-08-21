@@ -127,9 +127,9 @@ var firstComponent  = Vue.component('login-reg',{
 					 }
 					 
 				 }.bind(this))
-									}
+				}
 				
-						},
+			},
 				created : function(){
 					if(this.$route.params.message){
 						this.error = false
