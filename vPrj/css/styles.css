@@ -333,6 +333,15 @@ ul.sidebar-comp li:hover{
     margin-left: inherit !important;
     padding: 0;
 }
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('../asset/loader.svg') 50% 50% no-repeat rgba(33, 33, 33, .7);
+}
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
     
