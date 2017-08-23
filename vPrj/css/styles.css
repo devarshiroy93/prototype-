@@ -222,10 +222,7 @@
 }
 input[disabled]{
 	pointer-events:none;
-}
-#alert{
-    margin: 20px 0 0 0;
-}
+}   
 #main-content{
     margin-top: 3.6em;
     padding: 0;
@@ -298,7 +295,6 @@ ul.sidebar-comp li:hover{
 }
 .post-time{
     float: right;
-    margin-top: 10px;
 }
 .user-posts{
     margin:  24px 0;
@@ -341,6 +337,12 @@ ul.sidebar-comp li:hover{
 	height: 100%;
 	z-index: 9999;
 	background: url('../asset/loader.svg') 50% 50% no-repeat rgba(33, 33, 33, .7);
+}
+.alertFont{
+    padding: 0.3em;
+}
+.cardUserName{
+    padding: 0;
 }
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
