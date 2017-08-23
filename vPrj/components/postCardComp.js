@@ -9,6 +9,7 @@ Vue.component('post-card',{
                         <img :src="post.authorPic" alt="Card image cap" class="img-responsive">
                      </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
+						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="body2 userName">Username</span><span class="post-time caption">{{post.timeStamp}}</span></div>
                              <div class="col-md-12 col-sm-12 col-xs-12 postTitle"><h4 class="dashboard-card-title subheader" v-on:click = goToIndividualPage(post)>{{post.title}}</h4></div>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}</p>
                            <div class="row caption">
@@ -16,7 +17,7 @@ Vue.component('post-card',{
                             <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
                             <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">share</i>Share</a></div>
                            </div>
-                           <div class="col-md-12 col-sm-12 col-xs-12"><span class="post-time caption">{{post.timeStamp}}</span></div>
+
                         </div>
                         <!-- Card Ends-->
 						</div>
