@@ -4,13 +4,12 @@ Vue.component('post-card',{
 				<!-- Card Starts-->
 				<div v-if='postData' >
 				
-				<div class="dashboard-card-block col-md-12 col-sm-12 col-xs-12" v-for='post in postData'>
+				<div class="dashboard-card-block col-md-12 col-sm-12 col-xs-12" v-for='post in postData'  v-on:click = goToIndividualPage(post)>
                      <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 dashboard-card-img">
                         <img :src="post.authorPic" alt="Card image cap" class="img-responsive">
                      </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
-						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="body2 userName">Username</span><span class="post-time caption">{{post.timeStamp}}</span></div>
-                             <div class="col-md-12 col-sm-12 col-xs-12 postTitle"><h4 class="dashboard-card-title subheader" v-on:click = goToIndividualPage(post)>{{post.title}}</h4></div>
+						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="body2 userName dashboard-card-title">{{post.authorName}}</span><span class="post-time caption">{{post.timeStamp}}</span></div>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}</p>
                            <div class="row caption">
                             <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
