@@ -2,6 +2,7 @@
 var firstComponent  = Vue.component('login-reg',{
 	props : ['message'],
 	'template':`<div>
+                    <div><loader-comp :state = "loaderState"></loader-comp></div>
 				     <div class="row">
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
 							<div class="panel panel-login">
@@ -99,7 +100,8 @@ var firstComponent  = Vue.component('login-reg',{
 				view: 'login',
 				activeClassLogin : 'active',
 				activeClassRegister : '',
-				state: 'error'
+				state: 'error',
+                loaderState : ''
 			}
 		},
 			methods : {
@@ -115,16 +117,20 @@ var firstComponent  = Vue.component('login-reg',{
 					}
 				},
 				gSignin : function(){
+                    this.loaderState = 'loading'
                  var  promise =  signingInService(router);
 				 promise.then(function(result){
 					 console.log(result);
 					 if(result.credential){
+                         this.loaderState = ''
 						  router.push({ name: 'dashboard', params: {user: result.user }})//redirects to login page on successfull login
 					 }else{ 
 						if(router.currentRoute.path === "/"){
+                            this.loaderState = ''
 							router.push({ name: 'login', params: {message: true }})
 						}
 						else{
+                            this.loaderState = ''
 							router.push({ name: 'index', params: {message: true }})
 						}
 					 }
