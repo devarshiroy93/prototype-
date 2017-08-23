@@ -1,11 +1,9 @@
 Vue.component('create-post',{
 	props : ['userinfo'],
 	template  :`<div>
-					<div v-if  = '!createdClicked'><button type="button" class="btn btn-xs btn-success subheader create-btn"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
+					<div v-if  = '!createdClicked'><button type="button" class="btn btn-xs btn-success subheader create-btn inEffect"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
 					<div v-if  = 'createdClicked' class="createPost">
 						<div class="form-group body2">
-							<label for="title"></label>
-							<input type="text" class="form-control input-sm" id="title" v-model ="titleContent"  placeholder="Title of Post...">
 							<label for="PostBody"></label>
 							<textarea class="form-control PostBody" rows="3" id="PostBody" v-model ="bodyContent" placeholder="Body of Post..."></textarea>
 						</div>
@@ -15,7 +13,6 @@ Vue.component('create-post',{
 				</div>`,
 	data: function () {
 			return {
-				titleContent : '',
 				bodyContent : '',
 				createdClicked : false
 			}
@@ -28,11 +25,11 @@ Vue.component('create-post',{
 			this.createdClicked = false;
 		},
 		createPost: function(){
-			var promise = pushPostIntoDatabase(this.titleContent,this.bodyContent,this.userinfo.uid,this.userinfo.providerData[0].photoURL);
+			var promise = pushPostIntoDatabase(this.bodyContent,this.userinfo.providerData[0],this.userinfo.providerData[0].photoURL);
 			promise.then(function(result){
 				result.database ? alert('posted') : alert('not posted')
 			}.bind(this))
-			this.titleContent = '',this.bodyContent = '';
+			this.bodyContent = '';
 		}
 	}
 })
