@@ -24,12 +24,12 @@ function pushUserData(userData){
 						
 													  )
 };
-function pushPostIntoDatabase(postTitle,postBody,userUid,photoURL) {
+function pushPostIntoDatabase(postBody,user,photoURL) {
 	var postObj = {
-					title : postTitle,
 					body : postBody ,
-					createdby : userUid,
+					createdby : user.uid,
 					authorPic : photoURL,
+					authorName : user.displayName,
 					timeStamp : Date.now(),
 				  }
 	var postId = generateUniquePostId();
