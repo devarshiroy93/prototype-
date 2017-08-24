@@ -12,9 +12,9 @@ Vue.component('post-card',{
 						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="body2 userName dashboard-card-title">{{post.authorName}}</span><span class="post-time caption">{{post.timeStamp}}</span></div>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}</p>
                            <div class="row caption">
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">share</i>Share</a></div>
+                            <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
+                            <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4 comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i>Comments</a>
+                            <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">share</i>Share</a></div>
                            </div>
 
                         </div>
@@ -29,7 +29,8 @@ Vue.component('post-card',{
 		},
 		methods:{
 			goToIndividualPage : function(post){
-                 router.push({ name: 'singularpage', params: {data: post}})
+				post.currentUser = this.userUid;
+                router.push({ name: 'singularpage', params: {data: post}});
             }
 		},
 		created :function(){ 
@@ -37,6 +38,7 @@ Vue.component('post-card',{
 		var formattedObj ={} ;
 			firebase.database().ref('posts/').orderByChild('timeStamp').on('child_added',function(snapshot){
 				formattedObj = snapshot.val()
+				formattedObj.key = snapshot.key;
 				readableDate = convertToReadableDate(formattedObj.timeStamp);
 				formattedObj.timeStamp = readableDate
 				this.postData.push(formattedObj);
