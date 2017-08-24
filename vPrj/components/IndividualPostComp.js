@@ -30,8 +30,16 @@ var individualPostcomp = Vue.component('singular-page',{
                 </div>`,
 	methods : {
 		postComment : function(commentData){
-			console.log(commentData);
-			console.log('parent listening')
+			var filteredCommentData = {
+			body : commentData.commentbody,
+			author : commentData.currentUser,
+			timeStamp : Date.now(),
+			
+			};
+			var promise = pushCommentsIntoDataBase(filteredCommentData,commentData.key)
+			promise.then(function(result){
+				result ? alert('comment posted') : alert('comment not posted');
+			});
 		}
 	}
 })
