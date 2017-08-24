@@ -2,8 +2,7 @@ var individualPostcomp = Vue.component('singular-page',{
     props:['data'],
     template :`<div>
                     <div class= "col-md-2"></div>
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-                                                        
+                    <div class="col-md-8 col-sm-12 col-xs-12">                                
                     <div>
 				<!-- Card Starts-->
 				<div  >
@@ -16,15 +15,23 @@ var individualPostcomp = Vue.component('singular-page',{
                              <h4 class="dashboard-card-title col-md-12 col-sm-12 col-xs-12 subheader">{{data.title}}<span class="post-time caption">{{data.timeStamp}}</span></h4>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{data.body}}</p>
                            <div class="row caption">
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
-                            <a href="#" class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">share</i>Share</a></div>
+                            <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
+                            <a class="col-md-4 col-xs-4 col-sm-4 col-lg-4 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
+                            <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">share</i>Share</a></div>
                            </div>
-                        </div>
+                 </div>
+				 
                         <!-- Card Ends-->
-						</div>
+				</div>
+				<comment-comp v-on:do-comment ="postComment($event)" :data = data ></comment-comp>
 				
 				    </div>
                 </div><div class="col-md-2"></div>
-                </div>`
+                </div>`,
+	methods : {
+		postComment : function(commentData){
+			console.log(commentData);
+			console.log('parent listening')
+		}
+	}
 })
