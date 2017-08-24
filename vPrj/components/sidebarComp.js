@@ -23,7 +23,11 @@ template : `<div>
 methods :{
 	
 	gSignOut : function(){
-		singingOutService(router);
+		var promise = singingOutService();
+		promise.then(function(result){
+			result? router.push('login') : alert('signout not successful')
+		}.bind(this));
+		
 	}
 },
 })
