@@ -16,8 +16,11 @@ var firstComponent  = Vue.component('login-reg',{
 										</div>
 									</div>
 									<hr>
-									<div v-if ="message"><alert-comp :visibility = message :state = "state"></alert-comp></div>
+									
 								</div> 
+								<div>
+								<div v-if ="message"><alert-comp :visibility = message :state = "state"></alert-comp></div>
+								</div>
 								<div class="panel-body login">
                         <div class="row">
                             <div class="col-lg-12">
@@ -117,13 +120,13 @@ var firstComponent  = Vue.component('login-reg',{
 					}
 				},
 				gSignin : function(){
-                    this.loaderState = 'loading'
-                 var  promise =  signingInService(router);
+                 this.loaderState = 'loading'
+			     var  promise =  signingInService(router);
 				 promise.then(function(result){
-					 console.log(result);
 					 if(result.credential){
                          this.loaderState = ''
-						  router.push({ name: 'dashboard', params: {user: result.user }})//redirects to login page on successfull login
+						  router.push({ name: 'dashboard'})//redirects to login page on successfull login
+						  store.commit('assignCurrentUser', result.user);
 					 }else{ 
 						if(router.currentRoute.path === "/"){
                             this.loaderState = ''
@@ -149,13 +152,15 @@ var firstComponent  = Vue.component('login-reg',{
 
 
 const routes = [
-    	{ path: '/login', name:'login', component: firstComponent,props:true  },
+    		{path: '/login', name:'login', component: firstComponent,props:true  },
 		{path :'/dashboard',name:'dashboard',component : dashboardComp,props:true },
-		{ path: '/', name:'index',component: firstComponent,props :true	}
+		{path: '/', name:'index',component: firstComponent,props :true	},
+		{path:'/post',name:'singularpage',component:individualPostcomp,props:true}
     
 ]
 const router = new VueRouter({
-    routes
+    routes,
+	store
 })
 
 var app = new Vue({
