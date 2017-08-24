@@ -10,12 +10,13 @@ function signingInService(){
 						});
 };
 
-function singingOutService(){
-    firebase.auth().signOut()
+function singingOutService(){ 
+    return firebase.auth().signOut()
    .then(function() {
       console.log('Signout Succesfull')
-	  router.push('login')
+	  return true
    }, function(error) {
-      console.log('Signout Failed')  
+      console.log('Signout Failed') 
+	  return false 	  
    });
 }
