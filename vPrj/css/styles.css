@@ -276,6 +276,7 @@ ul.sidebar-comp li:hover{
     padding: 0;
     cursor: pointer;
     display: inline-block;
+    margin-top: 0;
 }
 .dashboard-card-title:hover{
     text-decoration: underline;
@@ -354,6 +355,32 @@ ul.sidebar-comp li:hover{
 }
 .commentButton{
     margin:16px 0;
+}
+.commentImage{
+    width: 3em;
+    padding: 0;
+}
+.commentImage img{
+    border-radius: 25%;
+}
+.otherUserComment{
+    margin: 10px 0 10px 10px;
+    background: rgba(255, 255, 255, .5);
+    padding: 8px;
+    border-radius: 4px;
+}
+.otherUserComment a i{
+    margin-right: 5px;
+}
+.commentTitle{
+    padding: 0;
+    margin: 0;
+}
+.commentText{
+    padding: 0;
+}
+.createComment textarea{
+    resize: none;
 }
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
