@@ -3,7 +3,7 @@ var firstComponent  = Vue.component('login-reg',{
 	props : ['message'],
 	'template':`<div>
                     <div><loader-comp :state = "loaderState"></loader-comp></div>
-				     <div>
+				     <div class="row">
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
 							<div class="panel panel-login">
 								<div class="panel-heading">
@@ -104,7 +104,8 @@ var firstComponent  = Vue.component('login-reg',{
 				activeClassLogin : 'active',
 				activeClassRegister : '',
 				state: 'error',
-                loaderState : ''
+                loaderState : '',
+				isMobile : false
 			}
 		},
 			methods : {
@@ -168,5 +169,10 @@ var app = new Vue({
   router,
   data: {
     brandName: 'Proto'
+  },
+  created: function () {
+   if(window.innerWidth <= 767){
+	   store.commit('assignView',true);
+   } 
   }
 }).$mount('#app')
