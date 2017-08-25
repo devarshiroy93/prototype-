@@ -344,6 +344,15 @@ ul.sidebar-comp li:hover{
 .cardUserName{
     padding: 0;
 }
+.createComment{
+    background: rgba(33, 33, 33, .1);
+    margin-top: 24px;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+.commentButton{
+    margin:16px 0;
+}
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
     
