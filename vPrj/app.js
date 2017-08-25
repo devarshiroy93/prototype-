@@ -56,7 +56,7 @@ var firstComponent  = Vue.component('login-reg',{
                                     </div>
 				                    <div class="row">
                                         <div class="col-sm-6 col-xs-12"><img src="asset/Login_WithGoogle.jpg" v-on:click="gSignin()" id="google-img"/></div>
-                                        <div class="col-sm-6 col-xs-12 disabledOpacity"><img src="asset/Login_WithFacebook.jpg" id="fb-img"/></div>
+                                        <div class="col-sm-6 col-xs-12 disabledOpacity"><img src="asset/Login_WithFacebook.png" id="fb-img"/></div>
                                     </div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>
