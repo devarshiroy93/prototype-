@@ -1,6 +1,6 @@
-var dashboardComp = Vue.component('dash-comp',{
+var dashboardComp = Vue.component('dash-comp', {
 
-template : `<div class="container dashboard">
+    template: `<div class="container dashboard">
                 <div class ="col-md-3 col-sm-3 col-xs-12 col-lg-3  sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0]></sidebar-comp></div>
                 <div class="col-md-7 col-sm-8 col-xs-12 user-posts">
                     <div v-if="data.providerData[0] !== undefined" >
@@ -11,20 +11,20 @@ template : `<div class="container dashboard">
                 </div>
             </div>`,
     data: function () {
-			return {
-                state : 'info',
-                data : store.getters.getCurrentUser,
-				isMobileView : store.getters.getCurrentView,
-				mobile :''
-			}
-		},
+        return {
+            state: 'info',
+            data: store.getters.getCurrentUser,
+            isMobileView: store.getters.getCurrentView,
+            mobile: ''
+        }
+    },
 
-    created:function(){
-        if(this.data.uid === undefined){
+    created: function () {
+        if (this.data.uid === undefined) {
             router.push('login')
         }
-		checkIfUserExists(this.data.uid, this.data.user);//this function checks if user exits in database or not .If not then pushes user data into database.
-		this.isMobileView ? this.mobile = 'hidden-xs' :  this.mobile = '';
+        checkIfUserExists(this.data.uid, this.data.user); //this function checks if user exits in database or not .If not then pushes user data into database.
+        this.isMobileView ? this.mobile = 'hidden-xs' : this.mobile = '';
     }
-										
+
 })

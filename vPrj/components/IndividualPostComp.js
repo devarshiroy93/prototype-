@@ -1,6 +1,6 @@
-var individualPostcomp = Vue.component('singular-page',{
-    props:['data'],
-    template :`<div>
+var individualPostcomp = Vue.component('singular-page', {
+    props: ['data'],
+    template: `<div>
                     <div class= "col-md-2"></div>
                     <div class="col-md-8 col-sm-12 col-xs-12">                                
                     <div>
@@ -28,18 +28,18 @@ var individualPostcomp = Vue.component('singular-page',{
 				    </div>
                 </div><div class="col-md-2"></div>
                 </div>`,
-	methods : {
-		postComment : function(commentData){
-			var filteredCommentData = {
-			body : commentData.commentbody,
-			author : commentData.currentUser,
-			timeStamp : Date.now(),
-			
-			};
-			var promise = pushCommentsIntoDataBase(filteredCommentData,commentData.key)
-			promise.then(function(result){
-				result ? alert('comment posted') : alert('comment not posted');
-			});
-		}
-	}
+    methods: {
+        postComment: function (commentData) {
+            var filteredCommentData = {
+                body: commentData.commentbody,
+                author: commentData.currentUser,
+                timeStamp: Date.now(),
+
+            };
+            var promise = pushCommentsIntoDataBase(filteredCommentData, commentData.key)
+            promise.then(function (result) {
+                result ? alert('comment posted') : alert('comment not posted');
+            });
+        }
+    }
 })

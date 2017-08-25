@@ -1,79 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Prototype</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-        <script src="config/fbaseConnect.js"></script>
-        <script src = "https://unpkg.com/vue"></script>
-        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-		<script src="https://unpkg.com/vuex@2.3.1"></script>
+
+<head>
+    <title>Prototype</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="config/fbaseConnect.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/vuex@2.3.1"></script>
 
 
-    </head>
-    <body>
-	<div id="app">
+</head>
+
+<body>
+    <div id="app">
         <header>
             <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"> {{brandName}}</a>
-          <a class="navbar-brand" href="#"><i class="material-icons">home</i></a>
-        </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse-3">
-          <ul class="nav navbar-nav navbar-right"> 
-            <!-- <router-link to='/login'>Login..</router-link> -->
-          </ul>
-          <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
-            <form class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </form>
-          </div>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav>
+                        <a class="navbar-brand" href="#"> {{brandName}}</a>
+                        <a class="navbar-brand" href="#"><i class="material-icons">home</i></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-collapse-3">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- <router-link to='/login'>Login..</router-link> -->
+                        </ul>
+                        <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
+                            <form class="navbar-form navbar-right" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </div>
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
         </header>
-        <div class="" id="main-content"><router-view></router-view></div>
+        <div class="" id="main-content">
+            <router-view></router-view>
+        </div>
         <footer></footer>
-		
-    </body>
-	
-	</div>
-    <!-- components scripts add here-->
-	<script src='components/dashboardComp.js'></script>
-	<script src='components/alertComp.js'></script>
-    <script src='components/sidebarComp.js'></script>
-	<script src='components/postCardComp.js'></script>
-    <script src='components/createPostComp.js'></script>
-    <script src='components/IndividualPostComp.js'></script>
-	<script src='components/createCommentComp.js'></script>
-    <script src='components/loaderComp.js'></script>
-	<script src='components/commentListComp.js'></script>
-    <script src='services/signingService.js'></script>
-    <script src='services/signingService.js'></script>
-	<script src='services/dataBaseInteractorService.js'></script>
-	<script src='services/idGeneratorService.js'></script>
-	<script src='services/utilService.js'></script>
-	<!-- service js scripts ends here-->
-	<script src='store.js'></script>
-	<script src='app.js'></script>
-    
-	
-	
+
+</body>
+
+</div>
+<!-- components scripts add here-->
+<script src='components/dashboardComp.js'></script>
+<script src='components/alertComp.js'></script>
+<script src='components/sidebarComp.js'></script>
+<script src='components/postCardComp.js'></script>
+<script src='components/createPostComp.js'></script>
+<script src='components/IndividualPostComp.js'></script>
+<script src='components/createCommentComp.js'></script>
+<script src='components/loaderComp.js'></script>
+<script src='components/commentListComp.js'></script>
+<script src='services/signingService.js'></script>
+<script src='services/signingService.js'></script>
+<script src='services/dataBaseInteractorService.js'></script>
+<script src='services/idGeneratorService.js'></script>
+<script src='services/utilService.js'></script>
+<!-- service js scripts ends here-->
+<script src='store.js'></script>
+<script src='app.js'></script>
+
+
+
 </html>

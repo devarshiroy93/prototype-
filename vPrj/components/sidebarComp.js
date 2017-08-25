@@ -1,6 +1,6 @@
-Vue.component('sidebar-comp',{
-props: ['userData'],
-template : `<div>
+Vue.component('sidebar-comp', {
+    props: ['userData'],
+    template: `<div>
                     <div class="">
                         <img class="card-img-top sideBarImgClass" :src="userData.photoURL" alt="Card image cap">
 					<div class="userInfo interactive-text">
@@ -20,15 +20,15 @@ template : `<div>
                 <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-default interactive-text" value="Log Out" v-on:click="gSignOut()">
                 </div>
 			</div>`,
-methods :{
-	
-	gSignOut : function(){
-		var promise = singingOutService();
-		promise.then(function(result){
-			result? router.push('login') : alert('signout not successful')
-			store.commit('assignCurrentUser',{})
-		}.bind(this));
-		
-	}
-},
+    methods: {
+
+        gSignOut: function () {
+            var promise = singingOutService();
+            promise.then(function (result) {
+                result ? router.push('login') : alert('signout not successful')
+                store.commit('assignCurrentUser', {})
+            }.bind(this));
+
+        }
+    },
 })

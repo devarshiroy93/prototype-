@@ -1,6 +1,6 @@
-Vue.component('comment-list',{
-	props : [],
-	template : `<div>
+Vue.component('comment-list', {
+    props: [],
+    template: `<div>
 					<div>
 						<div class = "col-md-10 col-sm-10 col-xs-10 col-lg-8 otherUserComment">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
