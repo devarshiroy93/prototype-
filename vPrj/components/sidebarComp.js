@@ -26,6 +26,7 @@ methods :{
 		var promise = singingOutService();
 		promise.then(function(result){
 			result? router.push('login') : alert('signout not successful')
+			store.commit('assignCurrentUser',{})
 		}.bind(this));
 		
 	}
