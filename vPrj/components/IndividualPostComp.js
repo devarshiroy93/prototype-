@@ -12,7 +12,7 @@ var individualPostcomp = Vue.component('singular-page',{
                         <img :src=data.authorPic alt="Card image cap" class="img-responsive">
                         </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
-                             <h4 class="dashboard-card-title col-md-12 col-sm-12 col-xs-12 subheader">{{data.title}}<span class="post-time caption">{{data.timeStamp}}</span></h4>
+                             <h4 class="dashboard-card-title col-md-12 col-sm-12 col-xs-12 subheader">{{data.authorName}}<span class="post-time caption">{{data.timeStamp}}</span></h4>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{data.body}}</p>
                            <div class="row caption">
                             <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
