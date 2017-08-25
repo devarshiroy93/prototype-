@@ -282,13 +282,14 @@ ul.sidebar-comp li:hover{
 }
 .dashboard-card-text{
     padding: 0;
+    margin-bottom: 16px;
 }
 .dashboard-card-img{
     padding: 0;
     width: 4em;
 }
 .dashboard-card-img img{
-    border-radius: 50%;
+    border-radius: 25%;
 }
 .dashboard-card-block a i,.create-btn i{
     margin-right: 5px;
@@ -343,6 +344,7 @@ ul.sidebar-comp li:hover{
 }
 .cardUserName{
     padding: 0;
+    margin-bottom: 10px;
 }
 .createComment{
     background: rgba(33, 33, 33, .1);
