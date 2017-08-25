@@ -17,7 +17,7 @@ template : `<div class="container dashboard">
 		},
 
     created:function(){
-        if(this.data === undefined){
+        if(this.data.uid === undefined){
             router.push('login')
         }
 		checkIfUserExists(this.data.uid, this.data.user);//this function checks if user exits in database or not .If not then pushes user data into database.
