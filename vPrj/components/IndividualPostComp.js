@@ -23,6 +23,7 @@ var individualPostcomp = Vue.component('singular-page', {
 				 
                         <!-- Card Ends-->
 				</div>
+                <comment-list></comment-list>
 				<comment-comp v-on:do-comment ="postComment($event)" :data = data ></comment-comp>
 				
 				    </div>

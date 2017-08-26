@@ -10,7 +10,7 @@ Vue.component('sidebar-comp', {
 						 <div class="card-block">
                                 <ul class="sidebar-comp interactive-text">
                                     <li><i class="material-icons" aria-hidden="true">create</i>Edit Profile</li>
-                                    <li><i class="material-icons" aria-hidden="true">local_post_office</i>Your Posts</li>
+                                    <li><i class="material-icons" aria-hidden="true">local_post_office</i>Posts</li>
                                     <li><i class="material-icons" aria-hidden="true">supervisor_account</i>Friends</li>
                                      <li><i class="material-icons">message</i>Messages</li>
                                 </ul>

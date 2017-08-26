@@ -9,7 +9,7 @@ Vue.component('post-card',{
                         <img :src="post.authorPic" alt="Card image cap" class="img-responsive">
                      </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
-						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="body2 userName dashboard-card-title">{{post.authorName}}</span><span class="post-time caption">{{post.timeStamp}}</span></div>
+						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="subheader userName dashboard-card-title">{{post.authorName}}</span><span class="post-time caption">{{post.timeStamp}}</span></div>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}</p>
                            <div class="row caption">
                             <a  class="col-md-4 col-xs-4 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
