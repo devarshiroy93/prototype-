@@ -1,7 +1,8 @@
 const store = new Vuex.Store({
     state: {
         user: {},
-        isMobile: false
+        isMobile: false,
+        toggleView : false 
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -9,6 +10,9 @@ const store = new Vuex.Store({
         },
         assignView(state, view) {
             state.isMobile = view;
+        },
+        assignToggleForMobile (state,view){
+            state.toggleView = view
         }
     },
     getters: {
@@ -17,6 +21,9 @@ const store = new Vuex.Store({
         },
         getCurrentView(state) {
             return state.isMobile;
+        },
+        getToggledState(state,view) {
+            return state.toggleView
         }
     }
 

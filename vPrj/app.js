@@ -1,7 +1,6 @@
-
-var firstComponent  = Vue.component('login-reg',{
-	props : ['message'],
-	'template':`<div>
+var firstComponent = Vue.component('login-reg', {
+    props: ['message'],
+    'template': `<div>
                     <div><loader-comp :state = "loaderState"></loader-comp></div>
 				     <div>
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
@@ -97,82 +96,120 @@ var firstComponent  = Vue.component('login-reg',{
 					</div>
 				</div>
 				`,
-		 
-		data: function () {
-			return {
-				view: 'login',
-				activeClassLogin : 'active',
-				activeClassRegister : '',
-				state: 'error',
-                loaderState : '',
-				isMobile : false
-			}
-		},
-			methods : {
-				toggleView : function(userChoice){
-					this.view = userChoice
-					if(this.view === 'login'){ 	
-						this.activeClassLogin ="active" ;
-						this.activeClassRegister = ""
-					} 
-					else{ 
-						this.activeClassRegister = "active" ;
-						this.activeClassLogin =""
-					}
-				},
-				gSignin : function(){
-                 this.loaderState = 'loading'
-			     var  promise =  signingInService(router);
-				 promise.then(function(result){
-					 if(result.credential){
-                         this.loaderState = ''
-						  router.push({ name: 'dashboard'})//redirects to login page on successfull login
-						  store.commit('assignCurrentUser', result.user);
-					 }else{ 
-						if(router.currentRoute.path === "/"){
-                            this.loaderState = ''
-							router.push({ name: 'login', params: {message: true }})
-						}
-						else{
-                            this.loaderState = ''
-							router.push({ name: 'index', params: {message: true }})
-						}
-					 }
-					 
-				 }.bind(this))
-				}
-				
-			},
-				created : function(){
-					if(this.$route.params.message){
-						//this.error = false
-					}
-				}
+
+    data: function () {
+        return {
+            view: 'login',
+            activeClassLogin: 'active',
+            activeClassRegister: '',
+            state: 'error',
+            loaderState: '',
+            isMobile: false
+        }
+    },
+    methods: {
+        toggleView: function (userChoice) {
+            this.view = userChoice
+            if (this.view === 'login') {
+                this.activeClassLogin = "active";
+                this.activeClassRegister = ""
+            } else {
+                this.activeClassRegister = "active";
+                this.activeClassLogin = ""
+            }
+        },
+        gSignin: function () {
+            this.loaderState = 'loading'
+            var promise = signingInService(router);
+            promise.then(function (result) {
+                if (result.credential) {
+                    this.loaderState = ''
+                    router.push({
+                        name: 'dashboard'
+                    }) //redirects to login page on successfull login
+                    store.commit('assignCurrentUser', result.user);
+                } else {
+                    if (router.currentRoute.path === "/") {
+                        this.loaderState = ''
+                        router.push({
+                            name: 'login',
+                            params: {
+                                message: true
+                            }
+                        })
+                    } else {
+                        this.loaderState = ''
+                        router.push({
+                            name: 'index',
+                            params: {
+                                message: true
+                            }
+                        })
+                    }
+                }
+
+            }.bind(this))
+        }
+
+    },
+    created: function () {
+        if (this.$route.params.message) {
+            //this.error = false
+        }
+    }
 
 })
 
 
 const routes = [
-    		{path: '/login', name:'login', component: firstComponent,props:true  },
-		{path :'/dashboard',name:'dashboard',component : dashboardComp,props:true },
-		{path: '/', name:'index',component: firstComponent,props :true	},
-		{path:'/post',name:'singularpage',component:individualPostcomp,props:true}
-    
+    {
+        path: '/login',
+        name: 'login',
+        component: firstComponent,
+        props: true
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: dashboardComp,
+        props: true
+    },
+    {
+        path: '/',
+        name: 'index',
+        component: firstComponent,
+        props: true
+    },
+    {
+        path: '/post',
+        name: 'singularpage',
+        component: individualPostcomp,
+        props: true
+    }
+
 ]
 const router = new VueRouter({
     routes,
-	store
+    store
 })
 
 var app = new Vue({
-  el: '#app',
-  router,
-  data: {
-    brandName: 'Proto'
-  },
-  created: function () {
-   if(window.innerWidth <= 767){
-	   store.commit('assignView',true);
-   } 
-  }
+    el: '#app',
+    router,
+    data: {
+        brandName: 'Proto',
+        toggleSideBarVar: false
+    },
+    created: function () {
+        if (window.innerWidth <= 767) {
+            store.commit('assignView', true);
+        }
+    },
+    methods: {
+        toggleSideBar: function () {
+
+            store.commit('assignToggleForMobile', !this.toggleSideBarVar)
+            this.toggleSideBarVar = !this.toggleSideBarVar
+        }
+    }
 }).$mount('#app')
