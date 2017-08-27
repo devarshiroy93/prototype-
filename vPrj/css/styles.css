@@ -385,7 +385,6 @@ ul.sidebar-comp li:hover {
 
 .create-btn {
     float: right;
-    margin-bottom: 15px;
 }
 
 .post-form {
@@ -499,7 +498,9 @@ a{
 .alert-danger{
     margin: 15px;
 }
-
+.dashboard-card-text .more-text{
+        display: none;
+    }
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right>li:last-child {
         padding-left: 15px;
