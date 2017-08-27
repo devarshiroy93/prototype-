@@ -30,7 +30,7 @@ Vue.component('post-card',{
 		methods:{
 			goToIndividualPage : function(post){
 				post.currentUser = this.userUid;
-                router.push({ name: 'singularpage', params: {data: post}});
+                router.push({ name: 'singularpage', params: {postData: post}});
             }
 		},
 		created :function(){ 

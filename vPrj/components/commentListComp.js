@@ -1,5 +1,5 @@
 Vue.component('comment-list', {
-    props: [],
+    props: ['comments'],
     template: `<div>
 					<div>
 						<div class = "col-md-10 col-sm-10 col-xs-11 col-lg-10 otherUserComment">
@@ -16,5 +16,20 @@ Vue.component('comment-list', {
 							</div>
 						</div>
 					</div>
-				</div>`
+				</div>`,
+    methods : {
+        getAuthorsfromComments : function(commentObj){
+            return commentObj.author
+        }
+    },
+    created : function(){
+        var commentAuthor ;
+        var idsArr = Object.keys(this.comments);
+        for(var i = 0 ;i<idsArr.length; i++){
+            commentAuthor = getAuthorsfromComments(this.comments[idsArr[i]]);
+            firebase.database().ref('users'+commentAuthor ).once('value',function(snap){
+                snap.val();
+            })
+        }
+    }
 })
