@@ -1,14 +1,14 @@
 Vue.component('comment-list', {
-    props: ['comments'],
+	props : ['postKey'],
     template: `<div>
-					<div>
+					<div v-for = 'com in comments'>
 						<div class = "col-md-10 col-sm-10 col-xs-11 col-lg-10 otherUserComment">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
-								<img src="https://lh3.googleusercontent.com/-hU5QCbUp_lU/AAAAAAAAAAI/AAAAAAAAAb8/-XvzN_1BBVU/photo.jpg" alt="Comment Image" class="img-responsive">
+								
 							</div>
 							<div class="col-md-8 col-sm-8 col-xs-10 col-lg-10">
-								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">Devarshi Roy<span class="post-time caption">25 Aug 2017 14:32</span></h5>
-								<p class="commentText col-md-12 col-sm-12 col-xs-12 body3">Test post for comment testing</p>
+								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.authorName}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
+								<p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{com.body}}</p>
 								<div class="row caption col-md-12 col-sm-12 col-xs-12">
 									<a class="col-md-4 col-xs-6 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
 									<a class="col-md-4 col-xs-6 col-sm-4 col-lg-4 comments"><i class="material-icons">reply</i>Reply</a>
@@ -17,19 +17,38 @@ Vue.component('comment-list', {
 						</div>
 					</div>
 				</div>`,
+	data : function(){
+		return {
+			commentList : [],
+			comments : [],
+			authors : []
+		}
+	},
     methods : {
-        getAuthorsfromComments : function(commentObj){
-            return commentObj.author
-        }
+       mergeAuthorsAndComments : function(comments,authors){
+		   for(var i=0;i<comments.length;i++ ){
+			   for(var x=0;x<authors.length;x++ ){
+			   if(comments[i] = authors[x]){
+				   comments[i].author = authors[x];
+			   }
+			}
+		   }
+		   console.log(comments);
+	   }
     },
     created : function(){
-        var commentAuthor ;
-        var idsArr = Object.keys(this.comments);
-        for(var i = 0 ;i<idsArr.length; i++){
-            commentAuthor = getAuthorsfromComments(this.comments[idsArr[i]]);
-            firebase.database().ref('users'+commentAuthor ).once('value',function(snap){
-                snap.val();
-            })
-        }
+        console.log(this.postKey);
+		var users = firebase.database().ref().child('users')
+		var commentRef = firebase.database().ref().child('comments/'+this.postKey);
+		commentRef.on('child_added',function(snap){
+			console.log(snap.val());
+			this.commentList.push(snap.val());
+			users.child(snap.val().author).once('value',function(author){
+				this.authors.push(author.val());
+				this.commentList.length === this.authors.length ? this.mergeAuthorsAndComments(this.commentList,this.authors) :'';
+				console.log(author.val());
+			}.bind(this))
+		}.bind(this))
+        
     }
 })
