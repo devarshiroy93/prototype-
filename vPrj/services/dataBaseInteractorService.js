@@ -1,4 +1,5 @@
 function checkIfUserExists(uid, userData) {
+	debugger
     var userUid = uid;
     var ref = firebase.database().ref("users/");
     ref.once("value").then(function (snapshot) {
@@ -19,7 +20,7 @@ function pushUserData(userData) {
             'email': userDataObj.email !== null ? userDataObj.email : '',
             'providerId': userDataObj.providerId !== null ? userDataObj.providerId : '',
             'phoneNumber': userDataObj.phoneNumber !== null ? userDataObj.displayName : '',
-            'uid': userDataObj.uid !== null ? userDataObj.uid : ''
+            'uid': userData.uid !== null ? userData.uid : ''
         }
 
     )
