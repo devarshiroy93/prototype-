@@ -1,13 +1,13 @@
 Vue.component('comment-list', {
 	props : ['postKey'],
     template: `<div>
-					<div v-for = 'com in comments'>
+					<div v-for = 'com in commentList'>
 						<div class = "col-md-10 col-sm-10 col-xs-11 col-lg-10 otherUserComment">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
 								
 							</div>
 							<div class="col-md-8 col-sm-8 col-xs-10 col-lg-10">
-								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.authorName}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
+								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.author}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
 								<p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{com.body}}</p>
 								<div class="row caption col-md-12 col-sm-12 col-xs-12">
 									<a class="col-md-4 col-xs-6 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
@@ -28,12 +28,13 @@ Vue.component('comment-list', {
        mergeAuthorsAndComments : function(comments,authors){
 		   for(var i=0;i<comments.length;i++ ){
 			   for(var x=0;x<authors.length;x++ ){
-			   if(comments[i] = authors[x]){
-				   comments[i].author = authors[x];
+			   if(comments[i].author === authors[x].uid){
+				   comments[i].author = authors[x].displayName;
 			   }
 			}
 		   }
 		   console.log(comments);
+           this.commentList = comments;
 	   }
     },
     created : function(){
