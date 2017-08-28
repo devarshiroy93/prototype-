@@ -23,7 +23,7 @@ var individualPostcomp = Vue.component('singular-page', {
 				 
                         <!-- Card Ends-->
 				</div>
-                <comment-list :comments = comments></comment-list>
+                <comment-list :postKey = postData.key></comment-list>
 				<comment-comp v-on:do-comment ="postComment($event)" :data = postData ></comment-comp>
 				
 				    </div>
@@ -50,12 +50,6 @@ var individualPostcomp = Vue.component('singular-page', {
             });
         }
 
-    },
-    created: function () {;
-        firebase.database().ref('comments/' + this.postData.key).once('value', function (snapshot) {
-            console.log(snapshot.val());
-            this.comments = snapshot.val();
-
-        }.bind(this))
     }
+ 
 })
