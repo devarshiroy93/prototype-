@@ -328,7 +328,7 @@ ul.sidebar-comp li:hover {
 
 .sidebar-content {
     padding: 15px 15px 0 15px;
-    background: #286090;
+    background: #31708f;
     height: 100vh;
     color: #fff;
 }
@@ -441,7 +441,7 @@ ul.sidebar-comp li:hover {
 
 .createComment {
     background: rgba(33, 33, 33, .1);
-    margin-top: 24px;
+    margin: 24px 0;
     padding: 0 16px;
     border-radius: 4px;
 }
@@ -464,13 +464,9 @@ ul.sidebar-comp li:hover {
     background: rgba(255, 255, 255, .5);
     padding: 8px;
     border-radius: 4px;
-    background: #286090;
-    color: #fff;
+    background: #fff;
+    color: #212121;
 }
-.otherUserComment a{
-    color: #fff;
-}
-
 .otherUserComment a i {
     margin-right: 5px;
 }
@@ -500,7 +496,16 @@ a{
 }
 .dashboard-card-text .more-text{
         display: none;
-    }
+}
+.likeSection{
+    padding: 0;
+}
+.otherUserComment .commentTitle{
+    color: #23527c;
+}
+.otherUserComment .material-icons{
+    font-size: 16px;
+}
 @media screen and (max-width: 767px) {
     .navbar .navbar-collapse .navbar-right>li:last-child {
         padding-left: 15px;
