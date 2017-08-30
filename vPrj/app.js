@@ -1,7 +1,7 @@
 var firstComponent = Vue.component('login-reg', {
     props: ['message'],
     'template': `<div>
-                    <div><loader-comp :state = "loaderState"></loader-comp></div>
+                    <div><loader-comp :state = "loaderState" size = "big"></loader-comp></div>
 				     <div>
 						<div class="col-md-6 col-xs-12  col-md-offset-3">
 							<div class="panel panel-login">
