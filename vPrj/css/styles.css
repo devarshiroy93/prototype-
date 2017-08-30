@@ -419,6 +419,15 @@ ul.sidebar-comp li:hover {
     z-index: 9999;
     background: url('../asset/loader.gif') 50% 50% no-repeat rgba(33, 33, 33, .7);
 }
+.loaderSmall {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../asset/spinner.gif') 50% 50% no-repeat rgba(33, 33, 33, .7);
+}
 
 .alertFont {
     padding: 0.3em;
