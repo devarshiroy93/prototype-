@@ -26,16 +26,16 @@ var firstComponent = Vue.component('login-reg', {
                                 <form id="login-form" role="form" class="" v-if='view=="login"'>
                                    <div class="input-group my-input form-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" required>
+                                        <input id="login-username" type="text" class="form-control body1" name="username" value="" placeholder="username or email" required>
                                 </div>
 
                                 <div class="input-group my-input form-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="login-password" type="password" class="form-control" name="password" placeholder="password" required>
+                                    <input id="login-password" type="password" class="form-control body1" name="password" placeholder="password" required>
                                 </div>
                                     <div class="form-group text-center">
                                         <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                        <label for="remember"> Remember Me</label>
+                                        <label for="remember" class="body2"> Remember Me</label>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -48,37 +48,37 @@ var firstComponent = Vue.component('login-reg', {
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                    <a href="#" tabindex="5" class="forgot-password body3">Forgot Password?</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 				                    <div class="row">
-                                        <div class="col-sm-6 col-xs-12"><img src="asset/Login_WithGoogle.jpg" v-on:click="gSignin()" id="google-img"/></div>
+                                        <div class="col-sm-6 col-xs-12"><img src="asset/google.png" v-on:click="gSignin()" id="google-img"/></div>
                                         <div class="col-sm-6 col-xs-12 disabledOpacity"><img src="asset/Login_WithFacebook.png" id="fb-img"/></div>
                                     </div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>
                                     <!-- <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control body1" placeholder="Username" value="">
                                     </div> -->
                                      <div class="form-group">
-                                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Firstname" value="" required >
+                                        <input type="text" name="firstname" id="firstname" class="form-control body1" placeholder="Firstname" value="" required >
                                     </div>
                                      <div class="form-group">
-                                        <input type="text" name="lastname" id="lastname" tabindex="1" class="form-control" placeholder="Lastname" value="" required>
+                                        <input type="text" name="lastname" id="lastname" tabindex="1" class="form-control body1" placeholder="Lastname" value="" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required>
+                                        <input type="email" name="email" id="email" tabindex="1" class="form-control body1" placeholder="Email Address" value="" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="dob" id="dob" tabindex="1" class="form-control date-picker" placeholder="Birth Date" value="" required>
+                                        <input type="text" name="dob" id="dob" tabindex="1" class="form-control date-picker body1" placeholder="Birth Date" value="" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control body1" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+                                        <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control body1" placeholder="Confirm Password" required>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
