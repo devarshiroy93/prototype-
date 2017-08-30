@@ -18,6 +18,7 @@ Vue.component('comment-comp', {
             commentData = this.data;
             commentData.commentbody = commentText;
             commentText === "" ? alert('blank comment not posted') : this.$emit('do-comment', commentData);
+			this.commentText = '';
         }
     }
 
