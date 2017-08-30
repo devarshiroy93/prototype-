@@ -46,7 +46,7 @@ var individualPostcomp = Vue.component('singular-page', {
             };
             var promise = pushCommentsIntoDataBase(filteredCommentData, commentData.key)
             promise.then(function (result) {
-                result ? alert('comment posted') : alert('comment not posted');
+                //result ? alert('comment posted') : alert('comment not posted');
             });
         }
 
