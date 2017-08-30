@@ -34,6 +34,7 @@ Vue.component('comment-list', {
 			   for(var x=0;x<authors.length;x++ ){
 			   if(comments[i].author === authors[x].uid){
 				   comments[i].authorName = authors[x].displayName;
+				   comments[i].timeStamp = convertToReadableDate(comments[i].timeStamp)
 			   }
 			}
 		   }
