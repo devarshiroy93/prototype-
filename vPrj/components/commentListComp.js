@@ -2,7 +2,7 @@ Vue.component('comment-list', {
 	props : ['postKey'],
     template: `<div>
 					<div v-for = 'com in commentList'>
-					<loader-comp v-if="!showComments" state = 'loading' size='small'></loader-comp>
+					<div v-if ='!showComments'><loader-comp  state = 'loading' size='small'></loader-comp></div>
 					<div  v-if="showComments">
 						<div class = "col-md-10 col-sm-10 col-xs-11 col-lg-10 otherUserComment">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
