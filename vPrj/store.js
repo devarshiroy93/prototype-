@@ -2,7 +2,9 @@ const store = new Vuex.Store({
     state: {
         user: {},
         isMobile: false,
-        toggleView : false 
+        toggleView: false,
+        commentList: [],
+        currentPostKey : ''
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -11,9 +13,16 @@ const store = new Vuex.Store({
         assignView(state, view) {
             state.isMobile = view;
         },
-        assignToggleForMobile (state,view){
-            state.toggleView = view
+        assignToggleForMobile(state, view) {
+            state.toggleView = view;
+        },
+        assignCommentList(state,commentList) {
+            state.commentList = commentList;
+        },
+        assignCurrentPostKey(state,key){
+            state.currentPostKey = key;
         }
+
     },
     getters: {
         getCurrentUser(state) {
@@ -22,9 +31,15 @@ const store = new Vuex.Store({
         getCurrentView(state) {
             return state.isMobile;
         },
-        getToggledState(state,view) {
+        getToggledState(state, view) {
             return state.toggleView
-        }
+        },
+        getCommentlistofPost(state) {
+            return state.commentList
+        },
+        getCurrentPostKey(state){
+            return state.currentPostKey
+        } 
     }
 
 })

@@ -1,5 +1,5 @@
 Vue.component('comment-list', {
-	props : ['postKey'],
+    props: ['postKey'],
     template: `<div>
 					<div v-for = 'com in commentList'>
 					<div v-if ='!showComments'><loader-comp  state = 'loading' size='small'></loader-comp></div>
@@ -20,43 +20,54 @@ Vue.component('comment-list', {
 						</div>
 					</div>
 				</div>`,
-	data : function(){
-		return {
-			commentList : [],
-			comments : [],
-			authors : [],
-			showComments : false
-		}
-	},
-    methods : {
-       mergeAuthorsAndComments : function(comments,authors){
-		   for(var i=0;i<comments.length;i++ ){
-			   for(var x=0;x<authors.length;x++ ){
-			   if(comments[i].author === authors[x].uid){
-				   comments[i].authorName = authors[x].displayName;
-                   comments[i].authorPic = authors[x].photoURL
-				   comments[i].timeStamp = convertToReadableDate(comments[i].timeStamp)
-			   }
-			}
-		   }
-		   console.log(comments);
-           this.commentList = comments;
-		   this.showComments = true;
-	   }
+    data: function () {
+        return {
+            commentList: [],
+            comments: [],
+            authors: [],
+            showComments: false
+        }
     },
-    created : function(){
+    methods: {
+        mergeAuthorsAndComments: function (comments, authors) {
+            for (var i = 0; i < comments.length; i++) {
+                for (var x = 0; x < authors.length; x++) {
+                    if (comments[i].author === authors[x].uid) {
+                        comments[i].authorName = authors[x].displayName;
+                        comments[i].authorPic = authors[x].photoURL
+                        comments[i].timeStamp = convertToReadableDate(comments[i].timeStamp)
+                    }
+                }
+            }
+            console.log(comments);
+            this.commentList = comments;
+            this.showComments = true;
+            store.commit('assignCommentList', this.commentList);
+            store.commit('assignCurrentPostKey', this.postKey);
+        }
+    },
+    created: function () {
+        var users = firebase.database().ref().child('users')
+        var commentRef = firebase.database().ref().child('comments/' + this.postKey);
         console.log(this.postKey);
-		var users = firebase.database().ref().child('users')
-		var commentRef = firebase.database().ref().child('comments/'+this.postKey);
-		commentRef.on('child_added',function(snap){
-			console.log(snap.val());
-			this.commentList.push(snap.val());
-			users.child(snap.val().author).once('value',function(author){
-				this.authors.push(author.val());
-				this.commentList.length === this.authors.length ? this.mergeAuthorsAndComments(this.commentList,this.authors) :'';
-				console.log(author.val());
-			}.bind(this))
-		}.bind(this))
-        
+        if (this.postKey !== store.getters.getCurrentPostKey) {
+            users = firebase.database().ref().child('users')
+            commentRef = firebase.database().ref().child('comments/' + this.postKey);
+            commentRef.on('child_added', function (snap) {
+                console.log(snap.val());
+                this.commentList.push(snap.val());
+                users.child(snap.val().author).once('value', function (author) {
+                    this.authors.push(author.val());
+                    this.commentList.length === this.authors.length ? this.mergeAuthorsAndComments(this.commentList, this.authors) : '';
+                    console.log(author.val());
+                }.bind(this))
+            }.bind(this))
+        } else {
+            this.commentList = store.getters.getCommentlistofPost;
+            this.showComments = true;
+        }
+
+
+
     }
 })

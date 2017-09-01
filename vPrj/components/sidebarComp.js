@@ -26,7 +26,11 @@ Vue.component('sidebar-comp', {
             var promise = singingOutService();
             promise.then(function (result) {
                 result ? router.push('login') : alert('signout not successful')
-                store.commit('assignCurrentUser', {})
+                store.commit('assignCurrentUser', {});
+                store.commit('assignView', false);
+                store.commit('assignToggleForMobile', false);
+                store.commit('assignCommentList', []);
+                store.commit('assignCurrentPostKey', '');
             }.bind(this));
 
         }
