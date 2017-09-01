@@ -4,8 +4,8 @@ Vue.component('loader-comp', {
                     <div v-if='state === "loading" && size === "big"'>
                         <div class ="loader"></div>
                     </div>
-					<div v-if='state === "loaderSmall" && size === "small"'>
-                        <div class ="loader"></div>
+					<div v-if='state === "loading" && size === "small"'>
+                        <div class ="loaderSmall"></div>
                     </div>
 					
                 </div>`
