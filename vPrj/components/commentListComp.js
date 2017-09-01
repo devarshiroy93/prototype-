@@ -6,7 +6,7 @@ Vue.component('comment-list', {
 					<div  v-if="showComments">
 						<div class = "col-md-10 col-sm-10 col-xs-11 col-lg-10 otherUserComment">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
-								
+								 <img :src="com.authorPic" alt="Card image cap" class="img-responsive">
 							</div>
 							<div class="col-md-8 col-sm-8 col-xs-10 col-lg-10">
 								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.authorName}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
@@ -34,6 +34,7 @@ Vue.component('comment-list', {
 			   for(var x=0;x<authors.length;x++ ){
 			   if(comments[i].author === authors[x].uid){
 				   comments[i].authorName = authors[x].displayName;
+                   comments[i].authorPic = authors[x].photoURL
 				   comments[i].timeStamp = convertToReadableDate(comments[i].timeStamp)
 			   }
 			}

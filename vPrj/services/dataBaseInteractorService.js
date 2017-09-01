@@ -20,6 +20,7 @@ function pushUserData(userData) {
             'email': userDataObj.email !== null ? userDataObj.email : '',
             'providerId': userDataObj.providerId !== null ? userDataObj.providerId : '',
             'phoneNumber': userDataObj.phoneNumber !== null ? userDataObj.displayName : '',
+            'photoURL' : userDataObj.photoURL !== null ? userDataObj.photoURL : '',
             'uid': userData.uid !== null ? userData.uid : ''
         }
 
