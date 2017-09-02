@@ -16,7 +16,7 @@ Vue.component('sidebar-comp', {
                                 </ul>
                             </div>
                     </div>
-				<div class ="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6">
+				<div class ="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-3 col-xs-6 logOutBtn">
                 <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-default interactive-text logOut" value="Log Out" v-on:click="gSignOut()">
                 </div>
 			</div>`,

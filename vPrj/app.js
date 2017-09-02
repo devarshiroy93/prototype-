@@ -3,7 +3,7 @@ var firstComponent = Vue.component('login-reg', {
     'template': `<div>
                     <div><loader-comp :state = "loaderState" size = "big"></loader-comp></div>
 				     <div>
-						<div class="col-md-6 col-xs-12  col-md-offset-3">
+						<div class="col-md-6 col-xs-12 col-lg-offset-3 col-lg-6 col-md-offset-3">
 							<div class="panel panel-login">
 								<div class="panel-heading">
 									<div class="row">
@@ -39,7 +39,7 @@ var firstComponent = Vue.component('login-reg', {
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3 col-xs-offset-3 col-xs-6">
+                                            <div class="col-sm-4 col-sm-offset-4 col-lg-6 col-lg-offset-3 col-xs-offset-3 col-xs-6">
                                                 <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success disabled interactive-text" value="Log In" >
                                             </div>
                                         </div>
@@ -54,8 +54,8 @@ var firstComponent = Vue.component('login-reg', {
                                         </div>
                                     </div>
 				                    <div class="row">
-                                        <div class="col-sm-6 col-xs-12"><img src="asset/google.png" v-on:click="gSignin()" id="google-img"/></div>
-                                        <div class="col-sm-6 col-xs-12 disabledOpacity"><img src="asset/Login_WithFacebook.png" id="fb-img"/></div>
+                                        <div class="col-sm-6 col-xs-12"><img src="asset/google.png" class="img-responsive" v-on:click="gSignin()" id="google-img"/></div>
+                                        <div class="col-sm-6 col-xs-12 disabledOpacity"><img src="asset/Login_WithFacebook.png" class="img-responsive" id="fb-img"/></div>
                                     </div>
                                 </form>
                                 <form id="register-form" role="form" v-if='view=="register"'>

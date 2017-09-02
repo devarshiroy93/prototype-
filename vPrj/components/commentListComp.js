@@ -3,7 +3,7 @@ Vue.component('comment-list', {
     template: `<div>
 					<div v-for = 'com in commentList'>
 					<div v-if ='!showComments'><loader-comp  state = 'loading' size='small'></loader-comp></div>
-					<div  v-if="showComments">
+					<div v-if ='showComments'>
 						<div class = "col-md-10 col-sm-10 col-xs-11 col-lg-10 otherUserComment">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
 								 <img :src="com.authorPic" alt="Card image cap" class="img-responsive">
@@ -12,8 +12,8 @@ Vue.component('comment-list', {
 								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.authorName}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
 								<p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{com.body}}</p>
 								<div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
-									<a class="col-md-4 col-xs-6 col-sm-4 col-lg-4"><i class="material-icons">thumb_up</i>Likes</a>
-									<a class="col-md-4 col-xs-6 col-sm-4 col-lg-4 comments"><i class="material-icons">reply</i>Reply</a>
+									<a class="col-md-3 col-xs-6 col-sm-3 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>
+									<a class="col-md-3 col-xs-6 col-sm-3 col-lg-3 comments"><i class="material-icons">reply</i>Reply</a>
 								</div>
 						</div>		
 							</div>

@@ -15,9 +15,9 @@ var individualPostcomp = Vue.component('singular-page', {
                              <h4 class="dashboard-card-title col-md-12 col-sm-12 col-xs-12 subheader">{{postData.authorName}}<span class="post-time caption">{{postData.timeStamp}}</span></h4>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{postData.body}}</p>
                            <div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
-                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>
-                            <a class="col-md-3 col-xs-4 col-sm-4 col-lg-3 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
-                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3  "><i class="material-icons">share</i>Share</a></div>
+                            <a  class="col-md-3 col-xs-4 col-sm-3 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>
+                            <a class="col-md-3 col-xs-4 col-sm-3 col-lg-3 comments"><i class="material-icons">chat_bubble_outline</i>Comments</a>
+                            <a  class="col-md-3 col-xs-4 col-sm-3 col-lg-3  "><i class="material-icons">share</i>Share</a></div>
                          </div>
                      </div>
 				 
