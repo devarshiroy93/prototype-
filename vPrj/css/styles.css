@@ -328,14 +328,16 @@ ul.sidebar-comp li:hover {
 }
 
 .dashboard-card-block {
-    background: #fff;
+    /*background: #fff;*/
+    background: #f8f8ff;
     padding: 15px;
     margin-top: 24px;
     border-radius: 4px;
 }
 
 .dashboard-card-title {
-    color: #029f5b;
+    /*color: #029f5b;*/
+    color: #212121;
     padding: 0;
     cursor: pointer;
     display: inline-block;
@@ -394,6 +396,7 @@ ul.sidebar-comp li:hover {
 
 .PostBody {
     resize: none;
+    height: 5em;
 }
 
 .postTitle {
@@ -482,9 +485,11 @@ ul.sidebar-comp li:hover {
 
 .createComment textarea {
     resize: none;
+    height: 5em;
 }
 a{
     cursor: pointer;
+    color: #31708f;
 }
 .logOut:hover{
     background-color: #c9302c;
@@ -501,7 +506,7 @@ a{
     padding: 0;
 }
 .otherUserComment .commentTitle{
-    color: #23527c;
+    color: #31708f;
 }
 .otherUserComment .material-icons{
     font-size: 16px;
@@ -509,7 +514,15 @@ a{
 label{
     font-weight: normal;
 }
-
+.primary-btn{
+    background: #31708f;
+    color: #fff;
+}
+.primary-btn:hover{
+    background: #fff;
+    color:  #31708f;
+    border-color: #31708f;
+}
 /*CSS for customised Snackbar starts*/
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
@@ -574,7 +587,7 @@ However, delay the fade out process for 2.5 seconds */
 .scrollbar-customised::-webkit-scrollbar-thumb{
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color:  rgba(63, 81, 181, 0.46);
+    background-color:  #31708f;
 }
 
 

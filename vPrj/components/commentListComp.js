@@ -8,7 +8,7 @@ Vue.component('comment-list', {
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage">
 								 <img :src="com.authorPic" alt="Card image cap" class="img-responsive">
 							</div>
-							<div class="col-md-8 col-sm-8 col-xs-10 col-lg-10">
+							<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
 								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.authorName}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
 								<p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{com.body}}</p>
 								<div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">

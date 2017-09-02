@@ -9,7 +9,7 @@ Vue.component('comment-comp', {
 						<div class="col-md-12 col-sm-12 col-xs-12 createComment">
 							<label for="inputsm"></label>
 							<textarea class="form-control input-sm body1" id="inputsm" type="text" placeholder="Enter your comment" v-model ="commentText"></textarea>
-							<div class="commentButton"><button type="button" class="btn btn-sm btn-success interactive-text" v-on:click =doComment(commentText)>Comment</button></div>
+							<div class="commentButton"><button type="button" class="btn btn-sm primary-btn interactive-text" v-on:click =doComment(commentText)>Comment</button></div>
 						</div>
 				 </div>`,
     'methods': {
