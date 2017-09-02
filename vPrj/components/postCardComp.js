@@ -13,7 +13,7 @@ Vue.component('post-card',{
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}</p>
                            <div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
                             <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>
-                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3 comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i>Comments</a>
+                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3 comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i><span v-if="post.commentCount>0"><b>{{post.commentCount}} </b></span>Comment<span v-if ="post.commentCount>1">s</span></a>
                             <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">share</i>Share</a></div>
                            </div>
 

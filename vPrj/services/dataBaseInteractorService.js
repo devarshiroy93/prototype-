@@ -33,6 +33,7 @@ function pushPostIntoDatabase(postBody, user, photoURL) {
         createdby: user.uid,
         authorPic: photoURL,
         authorName: user.displayName,
+        commentCount : 0,
         timeStamp: Date.now(),
     }
     var postId = generateUniquePostId();

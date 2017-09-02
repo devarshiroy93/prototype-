@@ -48,6 +48,7 @@ var individualPostcomp = Vue.component('singular-page', {
             promise.then(function (result) {
                 //result ? alert('comment posted') : alert('comment not posted');
             });
+            commentCountTransaction(commentData.key);
         }
 
     }
