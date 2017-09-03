@@ -99,7 +99,7 @@
 }
 
 .panel-login>.panel-heading a.active {
-    color: #029f5b;
+    color: #31708f;
     border-bottom: 3px solid;
 }
 
@@ -132,7 +132,6 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    border-color: #ccc;
 }
 
 .btn-login {
@@ -157,7 +156,7 @@
 }
 
 .btn-register {
-    background-color: #1CB94E;
+    background-color: #31708f;
     outline: none;
     color: #fff;
     font-size: 14px;
@@ -336,8 +335,7 @@ ul.sidebar-comp li:hover {
 }
 
 .dashboard-card-title {
-    /*color: #029f5b;*/
-    color: #212121;
+    color: #31708f;
     padding: 0;
     cursor: pointer;
     display: inline-block;
@@ -519,9 +517,9 @@ label{
     color: #fff;
 }
 .primary-btn:hover{
-    background: #fff;
-    color:  #31708f;
-    border-color: #31708f;
+    background: #3170a8;
+    color:  #fff;
+    border-color: #3170a8;
 }
 .commentBody{
     padding-right: 0;

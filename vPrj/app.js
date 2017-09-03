@@ -40,7 +40,7 @@ var firstComponent = Vue.component('login-reg', {
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-4 col-sm-offset-4 col-lg-6 col-lg-offset-3 col-xs-offset-3 col-xs-6">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login btn-success disabled interactive-text" value="Log In" >
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login primary-btn disabled interactive-text" value="Log In" >
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@ var firstComponent = Vue.component('login-reg', {
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register btn-primary interactive-text" value="Register Now">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn primary-btn interactive-text" value="Register Now">
                                             </div>
                                         </div>
                                     </div>
