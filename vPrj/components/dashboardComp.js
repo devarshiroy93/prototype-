@@ -24,6 +24,7 @@ var dashboardComp = Vue.component('dash-comp', {
             router.push('login')
         }
        this.data.uid ? checkIfUserExists(this.data.uid, this.data):''; //this function checks if user exits in database or not .If not then pushes user data into database.
+        console.log(this.isMobileView);
         this.isMobileView ? this.mobile = 'hidden-xs' : this.mobile = '';
 
         store.watch(function (state) {
