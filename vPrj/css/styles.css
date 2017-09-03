@@ -523,6 +523,12 @@ label{
     color:  #31708f;
     border-color: #31708f;
 }
+.commentBody{
+    padding-right: 0;
+}
+.commentCount{
+    color: #212121;
+}
 /*CSS for customised Snackbar starts*/
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
