@@ -527,6 +527,21 @@ label{
 .commentCount{
     color: #212121;
 }
+.readMore{
+    display: inline-block;
+    text-decoration: underline;
+    color: #31708f;
+    cursor: pointer;
+}
+.postSetting{
+    position: absolute;
+    right: 0;
+    top: 12px;
+    cursor: pointer;
+}
+.postSettingOptions{
+    display:none;
+}
 /*CSS for customised Snackbar starts*/
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
