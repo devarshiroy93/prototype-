@@ -26,14 +26,16 @@ function pushUserData(userData) {
     )
 };
 
-function pushPostIntoDatabase(postBody, user, photoURL) {
+function pushPostIntoDatabase(postBody,isChopped, user, photoURL) {
     var postObj = {
         body: postBody,
         createdby: user.uid,
         authorPic: photoURL,
         authorName: user.displayName,
         commentCount : 0,
+		isChopped :isChopped,
         timeStamp: Date.now(),
+		
     }
     var postId = generateUniquePostId();
     return firebase.database().ref("posts/").push(postObj).then(function (result) {
@@ -42,6 +44,10 @@ function pushPostIntoDatabase(postBody, user, photoURL) {
         return error;
     })
 
+};
+ function pushLongTextBodyintoDatabase(commentLongBody,postKey){
+	 var postContentObj ={'body' : commentLongBody }
+	  firebase.database().ref("longPostTexts/"+postKey).set(postContentObj);
 };
 
 function pushCommentsIntoDataBase(commentData, id) {
