@@ -56,12 +56,12 @@ var individualPostcomp = Vue.component('singular-page', {
         }
 
     },
-	created :function(){
-		if(this.postData.isChopped){
-			firebase.database().ref('longPostTexts/'+this.postData.key).once('value').then(function(response){
-				this.postData.body += response.val().body;
-			}.bind(this))
-		}
-	}
+    created: function () {
+        if (this.postData.isChopped) {
+            firebase.database().ref('longPostTexts/' + this.postData.key).once('value').then(function (response) {
+                this.postData.body += response.val().body;
+            }.bind(this))
+        }
+    }
 
 })
