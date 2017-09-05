@@ -3,8 +3,16 @@ Vue.component('post-card',{
 	template : `<div>
 				<!-- Card Starts-->
 				<div v-if='postData' >
-				
 				<div class="dashboard-card-block col-md-12 col-sm-12 col-xs-12 col-lg-12" v-for='post in postData' >
+				<div class="postSetting" title="Edit Post">
+					<i class="material-icons">more_vert</i>
+					<div class="postSettingOptions">
+						<ul>
+							<li>Edit</li>
+							<li>Delete</li>
+						</ul>	
+					</div>
+				</div>
                      <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 dashboard-card-img">
                         <img :src="post.authorPic" alt="Card image cap" class="img-responsive">
                      </div>
