@@ -185,6 +185,12 @@ const routes = [
         name: 'singularpage',
         component: individualPostcomp,
         props: true
+    },
+	{
+        path: '/editProfile',
+        name: 'editProfilepage',
+        component: newComp,
+        props: true
     }
 
 ]
