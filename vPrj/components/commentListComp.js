@@ -35,7 +35,7 @@ Vue.component('comment-list', {
                     if (comments[i].author === authors[x].uid) {
                         comments[i].authorName = authors[x].displayName;
                         comments[i].authorPic = authors[x].photoURL
-                        comments[i].timeStamp = convertToReadableDate(comments[i].timeStamp)
+                        comments[i].timeStamp = processTimeStamp(comments[i].timeStamp)
                     }
                 }
             }
