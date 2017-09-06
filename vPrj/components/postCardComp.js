@@ -47,7 +47,7 @@ Vue.component('post-card',{
 			firebase.database().ref('posts/').orderByChild('timeStamp').on('child_added',function(snapshot){
 				formattedObj = snapshot.val()
 				formattedObj.key = snapshot.key;
-				readableDate = convertToReadableDate(formattedObj.timeStamp);
+				readableDate = processTimeStamp(formattedObj.timeStamp);
 				formattedObj.timeStamp = readableDate
 				this.postData.push(formattedObj);
 				this.postData = this.postData.reverse();
