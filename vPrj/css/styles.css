@@ -310,12 +310,19 @@ ul.sidebar-comp li i {
     margin-right: 5px;
 }
 
-ul.sidebar-comp li:hover {
+ul.sidebar-comp li a{
+	color:#fff;
+}
+ul.sidebar-comp li a:hover {
+	color:#fff;
     cursor: pointer;
     text-decoration: underline;
 }
 
 .sidebar-content {
+	width:20%;
+	position:fixed;
+	left:0;
     padding: 15px 15px 0 15px;
     background: #31708f;
     height: 100vh;
@@ -370,7 +377,7 @@ ul.sidebar-comp li:hover {
 }
 
 .user-posts {
-    margin: 24px 0;
+    margin: 24px 0 24px 20em;
 }
 
 .create-btn {
@@ -427,7 +434,7 @@ ul.sidebar-comp li:hover {
     width: 20%;
     height: 20%;
     z-index: 9999;
-    background: url('../asset/Spinner.gif') 50% 50% no-repeat rgba(33,33,33,.1) ;
+    background: url('../asset/small-Loader.gif') 50% 50% no-repeat rgba(33,33,33,.1) ;
 }
 
 .alertFont {
