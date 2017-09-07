@@ -31,16 +31,19 @@ Vue.component('comment-list', {
     methods: {
         mergeAuthorsAndComments: function (comments, authors) {
             for (var i = 0; i < comments.length; i++) {
-				comments[i].timeStamp = processTimeStamp(comments[i].timeStamp)
+				typeof comments[i].timeStamp === 'number' ?comments[i].timeStamp = processTimeStamp(comments[i].timeStamp) : '';
                 for (var x = 0; x < authors.length; x++) {
                     if (comments[i].author === authors[x].uid) {
                         comments[i].authorName = authors[x].displayName;
                         comments[i].authorPic = authors[x].photoURL;
+						
                     }
                 }
             }
             console.log(comments);
             this.commentList = comments;
+			comments =[];
+			this.comments = [];
             this.showComments = true;
             store.commit('assignCommentList', this.commentList);
             store.commit('assignCurrentPostKey', this.postKey);
