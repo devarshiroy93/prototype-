@@ -50,7 +50,7 @@ function calculateMinutesAndHours(date){
 	if(difference >60) {
 		difference = (difference/60).toString().charAt(0) 
 		if(difference > 1){
-			difference += 'hours ago'
+			difference += ' hours ago'
 		}
 		else{
 			difference += ' hour ago'
@@ -59,8 +59,11 @@ function calculateMinutesAndHours(date){
 	}else if(difference === 0){
 		difference  = 'Just now'
 	}
-	else {
+	else if(difference === 1){
 		
+		difference += " minute ago"
+	}
+	else{
 		difference += " minutes ago"
 	}
 	
