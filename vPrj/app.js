@@ -210,8 +210,31 @@ var app = new Vue({
         if (window.innerWidth <= 767) {
             store.commit('assignView', true);
         }
+		
     },
+	mounted : function(){
+		this.loadScriptsAsync("https://www.gstatic.com/firebasejs/4.2.0/firebase.js");
+		this.loadScriptsAsync("config/fbaseConnect.js");
+		this.loadCssAsync('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+		this.loadCssAsync('css/styles.css');
+		this.loadCssAsync('https://fonts.googleapis.com/icon?family=Material+Icons');
+	},
     methods: {
+		loadScriptsAsync : function(url){
+			var s = document.createElement('script');
+			s.type = 'text/javascript';
+			s.async = true;
+			s.src = url;
+			var x = document.getElementsByTagName('head')[0];
+			x.appendChild(s);
+		},
+		loadCssAsync : function(url) {
+			var l = document.createElement('link');
+			l.rel = 'stylesheet';
+			l.href = url
+			var h = document.getElementsByTagName('head')[0];
+			h.parentNode.insertBefore(l, h);
+    },
         toggleSideBar: function () {
 
             store.commit('assignToggleForMobile', !this.toggleSideBarVar)
