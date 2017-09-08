@@ -320,13 +320,15 @@ ul.sidebar-comp li a:hover {
 }
 
 .sidebar-content {
-	width:20%;
+	width:270px;
 	position:fixed;
-	left:0;
+	/* left:0; */
     padding: 15px 15px 0 15px;
     background: #31708f;
     height: 100vh;
     color: #fff;
+	z-index:99;
+	overflow:auto;
 }
 
 .material-icons {
@@ -549,6 +551,18 @@ label{
 .postSettingOptions{
     display:none;
 }
+.postSettingOptions ul{
+	padding:0;
+	list-style-type:none;
+}
+.postSettingOptions ul li{
+	padding:5px 10px;
+	background:#31708f;
+	color:#fff;
+}
+.postSettingOptions ul li:hover{
+	background:#3170a8;
+}
 /*CSS for customised Snackbar starts*/
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
@@ -669,6 +683,38 @@ However, delay the fade out process for 2.5 seconds */
         display: table;
         float: none;
     }
+	.user-posts{
+		margin:16px 0 0 0;
+		padding:5px;
+	}
+	.dashboard-card-block{
+		margin-top:16px;
+	}
+	.dashboard-card-img {
+        width: 3em;
+    }
+    .dashboard-card-block {
+        padding: 5px;
+    }
+    .panel-login {
+        margin: 16px;
+    }
+	.postSetting{
+		top:3px;
+	}
+	.post-time{
+		margin-right:8px;
+	}
+	.hamburgerMenuOpen{
+		display:block;
+		left:0;
+		transition:all .5s ease;
+	}
+	.hamburgerMenuClose{
+		display:none;
+		left:-300px;
+		transition:all .5s ease;
+	}
 }
 
 @media only screen and (max-width:568px) {
@@ -713,15 +759,7 @@ However, delay the fade out process for 2.5 seconds */
         font-size: .875em;
         transition: all .5s ease;
     }
-    .dashboard-card-img {
-        width: 3em;
-    }
-    .dashboard-card-block {
-        padding: 5px;
-    }
-    .panel-login {
-        margin: 16px;
-    }
+    
 }
 
 @media only screen and (min-width: 1400px) {
