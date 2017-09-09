@@ -37,7 +37,6 @@ function pushPostIntoDatabase(postBody,isChopped, user, photoURL) {
         timeStamp: Date.now(),
 		
     }
-    var postId = generateUniquePostId();
     return firebase.database().ref("posts/").push(postObj).then(function (result) {
         return result;
     }).catch(function (error) {
