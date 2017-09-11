@@ -11,7 +11,7 @@ Vue.component('sidebar-comp', {
                                 <ul class="sidebar-comp interactive-text">
                                     <li><router-link to="/editProfile"><i class="material-icons" aria-hidden="true">create</i>Edit Profile</router-link></li>
                                     <li><i class="material-icons" aria-hidden="true">local_post_office</i>Posts</li>
-                                    <li><i class="material-icons" aria-hidden="true">supervisor_account</i>Friends</li>
+                                    <li><router-link to="/friends"><i class="material-icons" aria-hidden="true">create</i>Friends</router-link></li>
                                      <li><i class="material-icons">message</i>Messages</li>
                                 </ul>
                             </div>

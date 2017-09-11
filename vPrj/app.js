@@ -191,6 +191,12 @@ const routes = [
         name: 'editProfilepage',
         component: newComp,
         props: true
+    },
+	{
+        path: '/friends',
+        name: 'friendList',
+        component: friendListComp,
+        props: true
     }
 
 ]
