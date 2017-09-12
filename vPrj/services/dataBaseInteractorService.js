@@ -30,8 +30,8 @@ function pushPostIntoDatabase(postBody,isChopped, user, photoURL) {
     var postObj = {
         body: postBody,
         createdby: user.uid,
-        authorPic: photoURL,
-        authorName: user.displayName,
+        authorPic: user.providerData[0].photoURL,
+        authorName: user.providerData[0].displayName,
         commentCount : 0,
 		isChopped :isChopped,
         timeStamp: Date.now(),

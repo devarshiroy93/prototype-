@@ -17,7 +17,7 @@ Vue.component('post-card',{
                         <img :src="post.authorPic" alt="Card image cap" class="img-responsive">
                      </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10 commentBody">
-						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="subheader userName dashboard-card-title">{{post.authorName}}</span><span><easy-friend></easy-friend></span><span class="post-time caption">{{post.timeStamp}}</span></div>
+						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="subheader userName dashboard-card-title">{{post.authorName}}</span><span><easy-friend :userId = userUid :postAuthor = post.createdby></easy-friend></span><span class="post-time caption">{{post.timeStamp}}</span></div>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}<span v-if="post.isChopped">...<readmore-comp v-on:redirect="goToIndividualPage($event)":postData = post></readmore-comp></span></p>
                            <div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
                             <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>

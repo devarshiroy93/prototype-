@@ -15,6 +15,7 @@ Vue.component('create-post', {
         return {
             bodyContent: '',
             createdClicked: false,
+			remainingContent :''
         }
     },
     methods: {
@@ -27,23 +28,25 @@ Vue.component('create-post', {
         createPost: function () {
             var promise
             var choppedContent;
-            var remContent;
             var internalPromise;
             var isChopped
             isChopped = false;
             if (this.bodyContent.length > 250) {
                 choppedContent = this.bodyContent.slice(0, 250);
-                remContent = this.bodyContent.slice(251, this.bodyContent.length);
+                this.remContent = this.bodyContent.slice(251, this.bodyContent.length);
                 isChopped = true
                 console.log(choppedContent);
             } else {
                 choppedContent = this.bodyContent
             }
-            promise = pushPostIntoDatabase(choppedContent, isChopped, this.userinfo.providerData[0], this.userinfo.providerData[0].photoURL);
-            promise.then(function (result) {
-                result.database ? pushLongTextBodyintoDatabase(remContent, result.key) : '';
+            promise = pushPostIntoDatabase(choppedContent, isChopped, this.userinfo, this.userinfo.providerData[0].photoURL);
+			if(this.remContent !== "" && this.remContent !== undefined ){
+				promise.then(function (result) {
+                result.database ? pushLongTextBodyintoDatabase(this.remContent, result.key) : '';
                 result.database ? alert('posted') : alert('error');
             }.bind(this))
+			}
+            
             this.bodyContent = '';
         }
     }
