@@ -563,7 +563,20 @@ label{
 .postSettingOptions ul li:hover{
 	background:#3170a8;
 }
-
+.addFriend{
+	display:inline-block;
+	color:#31708f;
+	cursor:pointer;
+	margin: 0 0 0 5px;
+	vertical-align:super;
+}
+.addFriend button{
+	background:transparent;
+	border:none;
+}
+.addFriend button:active{
+	color:#3170a8;
+}
 /*CSS for Edit Profile starts*/
 .full-width{
     float:left;width:100%;min-height:100px;position:relative;
