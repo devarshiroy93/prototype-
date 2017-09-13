@@ -577,6 +577,9 @@ label{
 .addFriend button:active{
 	color:#3170a8;
 }
+.editProfileButton{
+	text-align:right;
+}
 /*CSS for Edit Profile starts*/
 .full-width{
     float:left;width:100%;min-height:100px;position:relative;
@@ -584,7 +587,13 @@ label{
 .form-style-fake{position:absolute;top:0px;}
 .form-style-base{position:absolute;top:0px;z-index: 999;opacity: 0;}
 .imgCircle{border-radius: 50%;}
-.form-control{padding: 10px 50px;}
+.editProfile{
+	bottom:15px;
+}
+.editProfile input{
+	margin:16px 0 !important;
+}
+.editProfile .form-control{padding: 10px 50px;}
 .form-input{height:50px;margin-top: 16px;}
 .Profile-input-file{
     height:180px;width:180px;left:33%;
@@ -603,7 +612,7 @@ label{
 }
 #main-input{width:250px;}
 .input-place{
-    position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
+    position: absolute;top:30px;left: 20px;font-size:24px;color:gray;}
 .margin{margin-top:10px;margin-bottom:10px;}
 .truncate {
     width: 250px;
@@ -716,9 +725,9 @@ background: #eee;
 .recentPostBody{
     margin-top: 0;
 }
-.editFormFistChild,.userIcon{
+/* .editFormFistChild,.userIcon{
     margin-top: 0;
-}
+} */
 /*CSS for Edit Profile ends*/
 
 /*CSS for customised Snackbar starts*/
@@ -739,9 +748,9 @@ background: #eee;
 .logOutBtn{
     padding: 0;
 }
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
+/ Show the snackbar when clicking on a button (class added with JavaScript) /
 #snackbar.show {
-    visibility: visible; /* Show the snackbar */
+    visibility: visible; / Show the snackbar /
 
 /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
 However, delay the fade out process for 2.5 seconds */
