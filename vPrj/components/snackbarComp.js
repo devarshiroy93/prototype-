@@ -2,7 +2,7 @@ Vue.component('snackbar-comp',{
     props:['triggered','action'],
     'template':`
         <div>
-            <div id="snackbar" v-if = "triggered" :class="{ show: triggered }"><div>{{messages[action]}}</div><a  >&times;</a></div>
+            <div id="snackbar" v-if = "triggered" :class="{ show: triggered }"><div><span><i class="material-icons">check</i></span>{{messages[action]}}</div></div>
         </div>
     `,
 	 data: function () {

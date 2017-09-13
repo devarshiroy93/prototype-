@@ -748,9 +748,9 @@ background: #eee;
 .logOutBtn{
     padding: 0;
 }
-/ Show the snackbar when clicking on a button (class added with JavaScript) /
+/* Show the snackbar when clicking on a button (class added with JavaScript)  */
 #snackbar.show {
-    visibility: visible; / Show the snackbar /
+    
 
 /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
 However, delay the fade out process for 2.5 seconds */
