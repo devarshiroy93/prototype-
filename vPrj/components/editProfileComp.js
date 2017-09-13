@@ -15,7 +15,7 @@ var newComp = Vue.component('edit-profile',{
                     </div>
                 </div>
                 <div class="editSection col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                	<div class="col-md-6 col-sm-12 col-xs-12 col-lg-6 recentPost">
+                	<div class="col-md-6 col-sm-6 hidden-xs col-lg-6 recentPost">
                         <div>
                             <div class="recentPostHeading col-lg-12 col-md-12 col-sm-12 col-xs-12 subheader"><span class="recentPostHeadingText">Your Recent Posts</span><span><i class="material-icons">keyboard_arrow_down</i></span></div>
                             <div class="dashboard-card-block recentPostBody col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -32,7 +32,7 @@ var newComp = Vue.component('edit-profile',{
                            </div>
                         </div>
                     </div>
-                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 editProfile">
 	                <div class="col-lg-12 col-md-12">
 	                    <input type="text" class="form-control form-group form-input editFormFistChild" value="Abhinit Roy" placeholder="Name" disabled id="name">
 	                    <span class="glyphicon glyphicon-user input-place"></span>
@@ -49,7 +49,7 @@ var newComp = Vue.component('edit-profile',{
 	                    <input type="text" class="form-control form-group form-input" value="Chandigarh, India" placeholder="Address" disabled id="place">
 	                    <span class="glyphicon glyphicon-map-marker input-place"></span>
 	                </div>
-	                <div class="col-lg-12 col-md-12 text-center">
+	                <div class="col-lg-12 col-md-12 editProfileButton">
 	                    <button type="button" class="btn btn-sm primary-btn interactive-text">Save</button>
 	                    <button type="button" class="btn btn-sm btn-default interactive-text">Cancel</button>
 	                </div>
