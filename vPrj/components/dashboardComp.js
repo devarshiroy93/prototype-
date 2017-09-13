@@ -3,10 +3,11 @@ var dashboardComp = Vue.component('dash-comp', {
     template: `<div class="container dashboard">
                 <div class ="col-md-3 col-sm-3 col-xs-12 col-lg-3  sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0]></sidebar-comp></div>
                 <div class="col-md-7 col-sm-8 col-xs-12 user-posts">
+				<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
                     <div v-if="data.providerData[0] !== undefined" >
                         <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<create-post :userinfo=data></create-post>
-						<post-card :userUid=data.uid></post-card>
+						<post-card :userUid=data.uid  v-on:add-friend = "addFriend($event)"></post-card>
 				    </div>
                 </div>
             </div>`,
@@ -15,9 +16,17 @@ var dashboardComp = Vue.component('dash-comp', {
             state: 'info',
             data: store.getters.getCurrentUser,
             isMobileView: store.getters.getCurrentView,
-            mobile: ''
+            mobile: '',
+			snackbarTriggered : false,
+			snackBarAction : ''
         }
     },
+	methods :{
+		addFriend : function($event){
+			this.snackBarAction = 'addFriend';
+			this.snackbarTriggered = true 
+		}
+	},
 
     created: function () {
         if (this.data.uid === undefined) {
