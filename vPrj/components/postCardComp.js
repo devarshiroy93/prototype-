@@ -41,7 +41,7 @@ Vue.component('post-card',{
                 router.push({ name: 'singularpage', params: {postData: post}});
             },
             addFriend : function($event){
-            	alert($event)
+            	this.$emit('add-friend',$event);
             }
 		},
 		created :function(){ 
