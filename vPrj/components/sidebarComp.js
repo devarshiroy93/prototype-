@@ -1,5 +1,5 @@
 Vue.component('sidebar-comp', {
-    props: ['userData'],
+    props: ['userData','userUid'],
     template: `<div>
                     <div class="">
                         <img class="card-img-top sideBarImgClass" :src="userData.photoURL" alt="Card image cap">
@@ -11,7 +11,7 @@ Vue.component('sidebar-comp', {
                                 <ul class="sidebar-comp interactive-text">
                                     <li><router-link to="/editProfile"><i class="material-icons" aria-hidden="true">create</i>Edit Profile</router-link></li>
                                     <li><i class="material-icons" aria-hidden="true">local_post_office</i>Posts</li>
-                                    <li><router-link to="/friends"><i class="material-icons" aria-hidden="true">group</i>Friends</router-link></li>
+                                    <li><router-link :to='"/friends/"+userUid' ><i class="material-icons" aria-hidden="true">group</i>Friends</router-link></li>
                                      <li><i class="material-icons">message</i>Messages</li>
                                 </ul>
                             </div>
@@ -37,7 +37,3 @@ Vue.component('sidebar-comp', {
     },
 })
 
-Vue.component('edit-comp',{
-    props :[''],
-    template : `<div>hi</div>`,
-})

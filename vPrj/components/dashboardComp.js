@@ -1,7 +1,7 @@
 var dashboardComp = Vue.component('dash-comp', {
 
     template: `<div class="container dashboard">
-                <div class ="col-md-3 col-sm-3 col-xs-12 col-lg-3  sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0]></sidebar-comp></div>
+                <div class ="col-md-3 col-sm-3 col-xs-12 col-lg-3  sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0] :userUid = data.uid></sidebar-comp></div>
                 <div class="col-md-7 col-sm-8 col-xs-12 user-posts">
 				<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
                     <div v-if="data.providerData[0] !== undefined" >
@@ -23,8 +23,14 @@ var dashboardComp = Vue.component('dash-comp', {
     },
 	methods :{
 		addFriend : function($event){
-			this.snackBarAction = 'addFriend';
-			this.snackbarTriggered = true 
+			
+			var freindRequestSatus = sendFriendRequest($event);
+			freindRequestSatus.then(function(status){
+				if (status.database){
+					this.snackBarAction = 'addFriend';
+					this.snackbarTriggered = true ;
+				}
+			}.bind(this))
 		}
 	},
 

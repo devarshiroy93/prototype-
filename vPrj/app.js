@@ -193,7 +193,7 @@ const routes = [
         props: true
     },
 	{
-        path: '/friends',
+        path: '/friends/:id',
         name: 'friendList',
         component: friendListComp,
         props: true

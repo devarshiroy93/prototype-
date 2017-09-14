@@ -62,3 +62,18 @@ function pushCommentsIntoDataBase(commentData, id) {
         return false
     })
 }
+
+
+
+function sendFriendRequest(concernedPeople){
+	var fromUser = concernedPeople.userId
+	return firebase.database().ref('friendRequests/'+concernedPeople.postAuthor).push({
+		from: fromUser
+	}).then(function(result){
+		return result
+	}).catch(function(error){
+		return error;
+	})
+		
+	
+}
