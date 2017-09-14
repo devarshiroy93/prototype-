@@ -580,6 +580,17 @@ label{
 .editProfileButton{
 	text-align:right;
 }
+.checkIcon{
+	margin-right:7px;
+	vertical-align:bottom;
+}
+.frClose{
+	font-size: 14px !important;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    cursor: pointer;
+}
 /*CSS for Edit Profile starts*/
 .full-width{
     float:left;width:100%;min-height:100px;position:relative;
@@ -733,13 +744,13 @@ background: #eee;
 /*CSS for customised Snackbar starts*/
 #snackbar {
     
-    min-width: 250px;
-    margin-left: -125px; 
+    min-width: 200px;
+    margin-left: -100px; 
     background-color: #333;
     color: #fff;
-    text-align: center;
-    border-radius: 2px; 
-    padding: 16px;
+    text-align: left;
+    border-radius: 4px; 
+    padding: 5px 10px;
     position: fixed;
     z-index: 1;
     left: 50%;
