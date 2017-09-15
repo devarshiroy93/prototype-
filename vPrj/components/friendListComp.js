@@ -29,7 +29,6 @@ var friendListComp = Vue.component('friend-list',{
 	methods : {
 		fetchUsersInfo : function(from){
 			firebase.database().ref('users').child(from).once('value').then(function(snapshot){
-				console.log(snapshot.val());
 				this.showRequestSection = true
 				this.friendRequests.push(snapshot.val())
 			}.bind(this))
@@ -38,7 +37,6 @@ var friendListComp = Vue.component('friend-list',{
 	created : function(){
 		this.$route.params.id
 		firebase.database().ref('friendRequests/'+this.$route.params.id).on('child_added',function(snapshot){
-			console.log(snapshot.val());
 			this.fetchUsersInfo(snapshot.val().from);
 			}.bind(this))
 	}

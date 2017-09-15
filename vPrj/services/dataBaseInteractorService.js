@@ -77,3 +77,8 @@ function sendFriendRequest(concernedPeople){
 		
 	
 }
+function checkForExistingFriendRequest(userId){
+    return firebase.database().ref('friendRequests/' + userId).once('value').then(function(snapshot) {
+            return snapshot.val();
+});
+}
