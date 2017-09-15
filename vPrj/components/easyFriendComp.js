@@ -1,7 +1,7 @@
 //Component to send contact request from posts
 Vue.component('easy-friend',{
 	'props' : ['userId','postAuthor'],
-	'template' : `<div class="addFriend" v-if="userId!==postAuthor"><button v-on:click = "addFriend" title="Add as Friend"><i class="material-icons">person_add</i></button></div>`,
+	'template' : `<div class="addFriend" v-if="userId!==postAuthor"><button disabled = "friendButtonDisable" v-on:click = "addFriend" title="Add as Friend"><i class="material-icons">person_add</i></button></div>`,
 	'methods' : {
 		addFriend : function(){
 			var details = {
@@ -10,5 +10,13 @@ Vue.component('easy-friend',{
 			}
 			this.$emit('add-friend',details)
 		}
+	},
+	data :function(){
+		return{
+			friendButtonDisable : false
+		}
+	},
+	created: function(){
+		console.log(this.postAuthor)
 	}
 })
