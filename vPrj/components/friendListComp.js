@@ -5,7 +5,7 @@ var friendListComp = Vue.component('friend-list',{
 				<div class="col-md-8 col-sm-12 col-xs-12" ><span class="friendRequestText subheader">Friend Requests</span>
 					<ul class = "list-group">
 					<div v-if="showRequestSection">
-						<div v-for = "request in friendRequests" class="col-md-4 col-lg-4 col-sm-4 col-xs-12 otherUserComment" >
+						<div v-for = "request in friendRequests" class="col-md-6 col-lg-6 col-sm-6 col-xs-12 otherUserComment" >
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage"><img :src="request.photoURL" alt="Card image cap" class="img-responsive">
 							</div>
 							<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">

@@ -716,12 +716,38 @@ background: #eee;
     margin-top: 0;
     padding: 0;
     border-radius: 4px;
+    width: 48%;
 }
 .recentPostHeadingText{
     float: left;
 }
 .recentPostBody{
     margin-top: 0;
+}
+.editInfo{
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    cursor:pointer;
+}
+.editInfoPanel{
+    background: #f8f8ff;
+    padding: 10px 0;
+    margin-left: 12px;
+    border-radius: 4px;
+}
+.editInfoPanel .material-icons{
+    font-size: 20px;
+}
+.personalInfoPanel{
+    border-left: 1px solid #ccc;
+}
+.editButton{
+    margin-top: 16px;
+    text-align: center;
+}
+.personalInfoInput{
+    padding: 0;
 }
 /*CSS for Edit Profile ends*/
 
@@ -877,7 +903,9 @@ However, delay the fade out process for 2.5 seconds */
 		display:none;
 		left:-300px;
 		transition:all .5s ease;
-	}
+	}    .personalInfoPanel{
+        border-left: none; 
+    }
 }
 
 @media only screen and (max-width:568px) {
