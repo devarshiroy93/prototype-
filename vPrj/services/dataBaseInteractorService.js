@@ -82,3 +82,10 @@ function checkForExistingFriendRequest(userId){
             return snapshot.val();
 });
 }
+function addFriend(friendId,userId){
+    return firebase.database().ref('friends').child(userId).push({'friendId' : friendId }).then(function(result){
+        return result
+    }).catch(function(error){
+        return error
+    })
+}
