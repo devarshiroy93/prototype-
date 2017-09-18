@@ -89,3 +89,6 @@ function addFriend(friendId,userId){
         return error
     })
 }
+function deletefromDatabase(table,ref){
+	firebase.database().ref('friendRequests').child(table +'/' + ref).remove()
+}
