@@ -21,8 +21,6 @@ Vue.component('easy-friend',{
 			console.log(snapshot.val());
 			if(snapshot.val().from === this.userId){
 				this.friendButtonDisable = false
-			}else{
-				this.friendButtonDisable = true;
 			}
 			firebase.database().ref('friendRequests/'+this.postAuthor).off()
 		}.bind(this))
@@ -31,8 +29,6 @@ Vue.component('easy-friend',{
 			console.log(snapshot.val());
 			if(snapshot.val().friendId === this.postAuthor){
 				this.friendButtonDisable = false
-			}else{
-				this.friendButtonDisable = true;
 			}
 			firebase.database().ref('friends/'+this.userId).off()
 		}.bind(this))
