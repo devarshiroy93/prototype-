@@ -10,60 +10,80 @@ var friendListComp = Vue.component('friend-list',{
 							<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
 								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{request.displayName}}</h5>
 							    <p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{request.email}}</p>
-								<button type="button" class="btn btn-xs primary-btn interactive-text" v-on:click=acceptRequest(request.uid,request.key)>Accept</button>
+								<button type="button" class="btn btn-xs primary-btn interactive-text" v-on:click=acceptRequest(request.uid,request.key,request)>Accept</button>
 								<button type="button" class="btn btn-xs btn-default interactive-text">Reject</button></div>
 							</div>
 						</div>
 				</ul>
 				</div>
-				<div class="col-md-6 col-lg-5 col-sm-6 col-xs-12 friendsPanel" ><span class="friendRequestText subheader">Friend</span>
+				<div class="col-md-6 col-lg-5 col-sm-6 col-xs-12 friendsPanel" ><span class="friendRequestText subheader">Friends</span>
 					<ul class = "list-group">
-					<div v-if="showRequestSection">
-						<div v-for = "request in friendRequests" class="col-md-8 col-lg-8 col-sm-12 col-xs-12 otherUserComment friendRequest" >
-							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage"><img :src="request.photoURL" alt="Card image cap" class="img-responsive">
+					<div v-if="showFriendsSection">
+						<div v-for = "friend in friends" class="col-md-8 col-lg-8 col-sm-12 col-xs-12 otherUserComment friendRequest" >
+							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage"><img :src="friend.photoURL" alt="Card image cap" class="img-responsive">
 							</div>
 							<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
-								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{request.displayName}}</h5>
-							    <p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{request.email}}</p>
+								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{friend.displayName}}</h5>
+							    <p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{friend.email}}</p>
 							</div>
 						</div>
+					</div>	
 				</ul>
 				</div>
 			</div>`,
  data: function () {
         return {
 			showRequestSection : false,
-			friendRequests : []
+			friendRequests : [],
+			showFriendsSection : false,
+			friends : []
         }
     },
 	methods : {
-		fetchUsersInfo : function(from,key){
+		fetchUsersInfo : function(from,key,purpose){
 			var friendLister = {};
 			firebase.database().ref('users').child(from).once('value').then(function(snapshot){
 				this.showRequestSection = true;
 				friendLister = snapshot.val();
 				friendLister.key = key;
-				this.friendRequests.push(friendLister)
+				if(purpose === "friendRequests")
+					{ this.friendRequests.push(friendLister) ; 
+					  this.showRequestSection = true}
+				else{ 
+					this.friends.push(friendLister);
+					this.showFriendsSection = true;
+				}
+				
 			}.bind(this))
 		},
-		acceptRequest : function(uid,key){
+		acceptRequest : function(uid,key,obj){
 			var promise = addFriend(uid,this.$route.params.id);
 			promise.then(function(result){
 				if(result.database){
-					this.removeFriendRequest(key)
+					addFriend(this.$route.params.id,uid).then(function(result){
+						if(result.database){
+							this.removeFriendRequest(key,obj);
+						}
+					}.bind(this))
+					
 				}		
 			}.bind(this))
 		},
-		removeFriendRequest : function(key){
+		removeFriendRequest : function(key,obj){
 			var tableName = this.$route.params.id;
 			var ref = key ;
 			deletefromDatabase(tableName,ref);
+			this.friendRequests.splice(this.friendRequests.indexOf(obj),1);
 		}
 	},
 	created : function(){
 		this.$route.params.id
 		firebase.database().ref('friendRequests/'+this.$route.params.id).on('child_added',function(snapshot){
-			this.fetchUsersInfo(snapshot.val().from,snapshot.key);
+			this.fetchUsersInfo(snapshot.val().from,snapshot.key,"friendRequests");
+			}.bind(this))
+			
+		firebase.database().ref('friends/'+this.$route.params.id).on('child_added',function(snapshot){
+			this.fetchUsersInfo(snapshot.val().friendId,snapshot.key,"friends");
 			}.bind(this))
 	}
 }
