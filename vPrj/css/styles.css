@@ -591,6 +591,9 @@ label{
     top: 3px;
     cursor: pointer;
 }
+.friendRequest{
+    margin:10px 0 0 0;
+}
 /*CSS for Edit Profile starts*/
 .full-width{
     float:left;width:100%;min-height:100px;position:relative;
@@ -749,7 +752,20 @@ background: #eee;
 .personalInfoInput{
     padding: 0;
 }
+
 /*CSS for Edit Profile ends*/
+.friendRequestPanel,.friendsPanel{
+    margin: 12px;
+    padding: 0 0 12px 0;
+    border-radius: 4px;
+}
+.friendRequestText{
+    background: #31708f;
+    color: #fff;
+    display: block;
+    border-radius: 4px;
+    padding: 8px;
+}
 
 /*CSS for customised Snackbar starts*/
 #snackbar {
@@ -952,10 +968,10 @@ However, delay the fade out process for 2.5 seconds */
     }
     
 }
-
+/*
 @media only screen and (min-width: 1400px) {
     #app {
         margin: 0 auto;
         display: table;
     }
-}
+}*/
