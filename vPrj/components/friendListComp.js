@@ -3,6 +3,7 @@ var friendListComp = Vue.component('friend-list',{
 'template' : `<div>
 				<div class="col-md-1"></div>
 				<div class="col-md-5 col-lg-5 col-sm-6 col-xs-12 friendRequestPanel" v-if ="showRequestSection"><span class="friendRequestText subheader">Friend Requests</span>
+				<hr class="divider">
 					<ul class = "list-group">
 					<div v-if="showRequestSection">
 						<div v-for = "request in friendRequests" class="col-md-8 col-lg-8 col-sm-12 col-xs-12 otherUserComment friendRequest" >
@@ -18,6 +19,7 @@ var friendListComp = Vue.component('friend-list',{
 				</ul>
 				</div>
 				<div class="col-md-5 col-lg-5 col-sm-6 col-xs-12 friendsPanel" v-if ="showFriendsSection"><span class="friendRequestText subheader">Friends</span>
+				<hr class="divider">
 					<ul class = "list-group">
 					<div v-if="showFriendsSection">
 						<div v-for = "friend in friends" class="col-md-8 col-lg-8 col-sm-12 col-xs-12 otherUserComment friendRequest" >
