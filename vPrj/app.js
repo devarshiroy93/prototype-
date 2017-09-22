@@ -219,8 +219,8 @@ var app = new Vue({
 		
     },
 	mounted : function(){
-		this.loadScriptsAsync("https://www.gstatic.com/firebasejs/4.2.0/firebase.js");
-		this.loadScriptsAsync("config/fbaseConnect.js");
+		//this.loadScriptsAsync("https://www.gstatic.com/firebasejs/4.2.0/firebase.js");
+		//this.loadScriptsAsync("config/fbaseConnect.js");
 		this.loadCssAsync('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 		this.loadCssAsync('css/styles.css');
 		this.loadCssAsync('https://fonts.googleapis.com/icon?family=Material+Icons');
