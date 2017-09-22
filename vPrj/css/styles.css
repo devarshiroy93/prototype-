@@ -755,9 +755,9 @@ background: #eee;
 
 /*CSS for Edit Profile ends*/
 .friendRequestPanel,.friendsPanel{
-    margin: 12px;
     padding: 0 0 12px 0;
     border-radius: 4px;
+    margin: 12px;
 }
 .friendRequestText {
     color: #31708f;
@@ -765,8 +765,8 @@ background: #eee;
 }
 hr.divider{
     height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(49, 112, 143, .2), #31708f, rgba(49, 112, 143, .2));
-     margin: 5px 0;
+    background-image: -webkit-linear-gradient(left, rgba(49, 112, 143,1), rgba(49, 112, 143,1), rgba(49, 112, 143, .2));
+    margin: 5px 0;
 }
 
 /*CSS for customised Snackbar starts*/
