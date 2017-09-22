@@ -759,12 +759,14 @@ background: #eee;
     padding: 0 0 12px 0;
     border-radius: 4px;
 }
-.friendRequestText{
-    background: #31708f;
-    color: #fff;
+.friendRequestText {
+    color: #31708f;
     display: block;
-    border-radius: 4px;
-    padding: 8px;
+}
+hr.divider{
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(49, 112, 143, .2), #31708f, rgba(49, 112, 143, .2));
+     margin: 5px 0;
 }
 
 /*CSS for customised Snackbar starts*/
@@ -919,9 +921,15 @@ However, delay the fade out process for 2.5 seconds */
 		display:none;
 		left:-300px;
 		transition:all .5s ease;
-	}    .personalInfoPanel{
+	}
+    .personalInfoPanel{
         border-left: none; 
     }
+	.friendRequestPanel, .friendsPanel {
+		margin: 0;
+		padding: 12px;
+		border-radius: 4px;
+}
 }
 
 @media only screen and (max-width:568px) {
