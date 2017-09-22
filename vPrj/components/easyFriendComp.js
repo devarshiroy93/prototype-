@@ -25,12 +25,22 @@ Vue.component('easy-friend',{
 			firebase.database().ref('friendRequests/'+this.postAuthor).off()
 		}.bind(this))
 		
-		firebase.database().ref('friends/'+this.userId).on('child_added',function(snapshot){
+		
+			firebase.database().ref('friends/'+this.userId).on('child_added',function(snapshot){
 			console.log(snapshot.val());
 			if(snapshot.val().friendId === this.postAuthor){
 				this.friendButtonDisable = false
 			}
 			firebase.database().ref('friends/'+this.userId).off()
-		}.bind(this))
+			}.bind(this))
+			
+			firebase.database().ref('friendRequests/'+this.userId).on('child_added',function(snapshot){
+				if(snapshot.val().from === this.postAuthor){
+					this.friendButtonDisable = false
+				}
+				firebase.database().ref('friendRequests/'+this.userId).off()
+			}.bind(this))
+		
+		
 	}
 })
