@@ -7,7 +7,7 @@ var dashboardComp = Vue.component('dash-comp', {
                     <div v-if="data!== undefined" >
                         <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<create-post :userinfo=data></create-post>
-						<post-card :userUid=data.uid :friends = friendList  v-on:add-friend = "addFriend($event)"></post-card>
+						<post-card :userUid=data.uid   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData"></post-card>
 				    </div>
                 </div>
             </div>`,
@@ -32,7 +32,10 @@ var dashboardComp = Vue.component('dash-comp', {
 					this.snackbarTriggered = true ;
 				}
 			}.bind(this))
-		}
+		},
+        passData : function(){
+            console.log('caught')
+        }
 	},
 
     created: function () {
@@ -46,7 +49,7 @@ var dashboardComp = Vue.component('dash-comp', {
 		//code for loading friends
 		
 		firebase.database().ref('friends/'+this.data.uid).on('child_added',function(snapshot){
-			this.friendList.push(snapshot);
+			this.friendList.push(snapshot.val());
 			store.commit('assignFriends', this.friendList)
 			}.bind(this))
 		

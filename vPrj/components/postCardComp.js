@@ -1,5 +1,5 @@
 Vue.component('post-card',{
-	props :['userUid','friends'],
+	props :['userUid'],
 	template : `<div>
 				<!-- Card Starts-->
 				<div v-if='postData' >
@@ -32,7 +32,8 @@ Vue.component('post-card',{
 				</div>`,
 		data : function(){
 			return {
-					postData : []
+					postData : [],
+					friendList :[]
 				   }; 
 		},
 		methods:{
@@ -56,7 +57,25 @@ Vue.component('post-card',{
 				this.postData.push(formattedObj);
 				this.postData = this.postData.reverse();
 			}.bind(this))
-		//adding handle to own posts ends		
-		}
+		//adding handle to own posts end
+
+		//this.$emit('postcard-created');	// to incidate to parent that child component has been created
+
+		firebase.database().ref('friends/').child(this.userUid).once('value').then(function(snapshot){
+			var localDatakeys = Object.keys(snapshot.val());
+			for(var  i= 0;i<localDatakeys.length;i++){
+				this.friendList.push(snapshot.val()[localDatakeys[i]]);
+			}
+			if(localDatakeys.length === this.friendList.length){
+				for(var x =0 ;x<this.friendList.length;x++){
+					firebase.database().ref('posts/').child(this.friendList[x].friendId).on('child_added',function(snap){
+						this.postData.push(snap.val())
+					}.bind(this))
+				}
+			}
+		}.bind(this))
+	}
+		
+
                      
 })
