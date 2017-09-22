@@ -18,7 +18,8 @@ var dashboardComp = Vue.component('dash-comp', {
             isMobileView: store.getters.getCurrentView,
             mobile: '',
 			snackbarTriggered : false,
-			snackBarAction : ''
+			snackBarAction : '',
+			friendList : [],
         }
     },
 	methods :{
@@ -42,6 +43,14 @@ var dashboardComp = Vue.component('dash-comp', {
         console.log(this.isMobileView);
         this.isMobileView ? this.mobile = 'hidden-xs' : this.mobile = '';
 
+		//code for loading friends
+		
+		firebase.database().ref('friends/'+this.data.uid).on('child_added',function(snapshot){
+			this.friendList.push(snapshot);
+			store.commit('assignFriends', this.friendList)
+			}.bind(this))
+		
+		//code for loading friends ends
         store.watch(function (state) {
             return state.toggleView
         }, function (data) {

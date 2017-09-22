@@ -4,7 +4,8 @@ const store = new Vuex.Store({
         isMobile: false,
         toggleView: false,
         commentList: [],
-        currentPostKey: ''
+        currentPostKey: '',
+		friendList : []
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -21,7 +22,10 @@ const store = new Vuex.Store({
         },
         assignCurrentPostKey(state, key) {
             state.currentPostKey = key;
-        }
+        },
+		assignFriends(state,friendList){
+			state.friendList = friendList;
+		}
 
     },
     getters: {
@@ -39,7 +43,11 @@ const store = new Vuex.Store({
         },
         getCurrentPostKey(state) {
             return state.currentPostKey
-        }
+        },
+		getFriends (state){
+			return state.friendList;
+		}
+		
     }
 
 })
