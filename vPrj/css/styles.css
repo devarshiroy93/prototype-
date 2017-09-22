@@ -755,9 +755,10 @@ background: #eee;
 
 /*CSS for Edit Profile ends*/
 .friendRequestPanel,.friendsPanel{
-    padding: 0 0 12px 0;
+    padding: 12px;
     border-radius: 4px;
     margin: 12px;
+    background: #f5f5f5;
 }
 .friendRequestText {
     color: #31708f;
@@ -841,6 +842,9 @@ However, delay the fade out process for 2.5 seconds */
 /*CSS for customised Scrollbar ends*/
 
 @media screen and (max-width: 767px) {
+    body{
+        padding: 8px;
+    }
     .navbar .navbar-collapse .navbar-right>li:last-child {
         padding-left: 15px;
         padding-right: 15px;
@@ -926,7 +930,7 @@ However, delay the fade out process for 2.5 seconds */
         border-left: none; 
     }
 	.friendRequestPanel, .friendsPanel {
-		margin: 0;
+		margin: 8px;
 		padding: 12px;
 		border-radius: 4px;
 }
