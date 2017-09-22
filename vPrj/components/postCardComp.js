@@ -1,5 +1,5 @@
 Vue.component('post-card',{
-	props :['userUid'],
+	props :['userUid','friends'],
 	template : `<div>
 				<!-- Card Starts-->
 				<div v-if='postData' >
@@ -47,7 +47,8 @@ Vue.component('post-card',{
 		created :function(){ 
 		var readableDate = '';
 		var formattedObj ={} ;
-			firebase.database().ref('posts/').orderByChild('timeStamp').on('child_added',function(snapshot){
+		//adding handle to own posts
+			firebase.database().ref('posts/'+this.userUid).on('child_added',function(snapshot){
 				formattedObj = snapshot.val()
 				formattedObj.key = snapshot.key;
 				readableDate = processTimeStamp(formattedObj.timeStamp);
@@ -55,7 +56,7 @@ Vue.component('post-card',{
 				this.postData.push(formattedObj);
 				this.postData = this.postData.reverse();
 			}.bind(this))
-			
+		//adding handle to own posts ends		
 		}
                      
 })

@@ -31,6 +31,8 @@ Vue.component('sidebar-comp', {
                // store.commit('assignToggleForMobile', false);
                 store.commit('assignCommentList', []);
                 store.commit('assignCurrentPostKey', '');
+				store.commit('assignFriends', [])
+				
             }.bind(this));
 
         }

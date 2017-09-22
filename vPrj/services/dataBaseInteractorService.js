@@ -37,7 +37,7 @@ function pushPostIntoDatabase(postBody,isChopped, user, photoURL) {
         timeStamp: Date.now(),
 		
     }
-    return firebase.database().ref("posts/").push(postObj).then(function (result) {
+    return firebase.database().ref("posts/").child(user.uid).push(postObj).then(function (result) {
         return result;
     }).catch(function (error) {
         return error;

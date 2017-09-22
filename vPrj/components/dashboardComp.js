@@ -7,7 +7,7 @@ var dashboardComp = Vue.component('dash-comp', {
                     <div v-if="data!== undefined" >
                         <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<create-post :userinfo=data></create-post>
-						<post-card :userUid=data.uid  v-on:add-friend = "addFriend($event)"></post-card>
+						<post-card :userUid=data.uid :friends = friendList  v-on:add-friend = "addFriend($event)"></post-card>
 				    </div>
                 </div>
             </div>`,
