@@ -69,7 +69,11 @@ Vue.component('post-card',{
 			if(localDatakeys.length === this.friendList.length){
 				for(var x =0 ;x<this.friendList.length;x++){
 					firebase.database().ref('posts/').child(this.friendList[x].friendId).on('child_added',function(snap){
-						this.postData.push(snap.val())
+						formattedObj = snap.val()
+						formattedObj.key = snap.key;
+						readableDate = processTimeStamp(formattedObj.timeStamp);
+						formattedObj.timeStamp = readableDate
+						this.postData.push(formattedObj);
 					}.bind(this))
 				}
 			}

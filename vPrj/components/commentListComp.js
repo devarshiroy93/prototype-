@@ -52,17 +52,14 @@ Vue.component('comment-list', {
     created: function () {
         var users = firebase.database().ref().child('users')
         var commentRef = firebase.database().ref().child('comments/' + this.postKey);
-        console.log(this.postKey);
         if (this.postKey !== store.getters.getCurrentPostKey) {
             users = firebase.database().ref().child('users')
             commentRef = firebase.database().ref().child('comments/' + this.postKey);
             commentRef.on('child_added', function (snap) {
-                console.log(snap.val());
                 this.commentList.push(snap.val());
                 users.child(snap.val().author).once('value', function (author) {
                     this.authors.push(author.val());
-                    this.commentList.length === this.authors.length ? this.mergeAuthorsAndComments(this.commentList, this.authors) : '';
-                    console.log(author.val());
+                    this.commentList.length === this.authors.length ? this.mergeAuthorsAndComments(this.commentList, this.authors) : '';   
                 }.bind(this))
             }.bind(this))
         } else {
