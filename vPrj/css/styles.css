@@ -336,11 +336,11 @@ ul.sidebar-comp li a:hover {
 }
 
 .dashboard-card-block {
-    /*background: #fff;*/
     background: #f8f8ff;
     padding: 15px;
     margin-top: 24px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .dashboard-card-title {
@@ -547,7 +547,11 @@ label{
     right: 0;
     top: 12px;
     cursor: pointer;
+    color: #31708f;
 }
+/*.dashboard-card-block:hover >.postSetting {
+    display: block;
+}*/
 .postSettingOptions{
     display:none;
 }
@@ -638,13 +642,35 @@ label{
     background: rgba(0,0,0,0.5);float: left;
     width: 100%;margin-top: 0px;
 }
-.custom-form{float: left;width:100%;border-radius: 20px;box-shadow: 0 0 16px #fff;overflow: hidden;
-background: #eee;
+.custom-form{
+    float: left;
+    width:100%;
+    border-radius: 20px;
+    box-shadow: 0 0 16px #fff;
+    overflow: hidden;
+    background: #eee;
+    margin: 16px 0;
 }
 .img-section{
-    float: left;width: 100%;padding-top: 15px;padding-bottom: 15px;background: #31708f;position: relative;
+    float: left;
+    height: 10em;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #31708f;
+    position: relative;
 }
-.img-section h4{color:#fff;}
+.changeProfilePic span{
+    font-size: 35px !important;
+    position: absolute;
+    bottom: -20px;
+    z-index: 999;
+    margin-left: 35px;
+    cursor: pointer;
+}
+.img-section h4{
+    color:#fff;
+}
 #PicUpload{
     color: #ffffff;
     width: 180px;
@@ -697,7 +723,7 @@ background: #eee;
 }
 .editProfilePicture{
     position: relative;
-    top: 6em;
+    top: 2em;
 }
 .editSection{
     margin-top: 40px;
@@ -713,12 +739,14 @@ background: #eee;
 }
 .recentPostHeading span i {
     float: right;
+    cursor: pointer;
 }     
 .recentPost{
     background: #FFFFFF;
     margin-top: 0;
     padding: 0;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     width: 48%;
 }
 .recentPostHeadingText{
@@ -726,6 +754,11 @@ background: #eee;
 }
 .recentPostBody{
     margin-top: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #31708f;
+}
+.recentPostBody .dashboard-card-text{
+    margin: 0;
 }
 .editInfo{
     position: absolute;
@@ -741,6 +774,7 @@ background: #eee;
 }
 .editInfoPanel .material-icons{
     font-size: 20px;
+    color: #31708f;
 }
 .personalInfoPanel{
     border-left: 1px solid #ccc;
@@ -749,9 +783,9 @@ background: #eee;
     margin-top: 16px;
     text-align: center;
 }
-.personalInfoInput{
+/*.personalInfoInput{
     padding: 0;
-}
+}*/
 
 /*CSS for Edit Profile ends*/
 .friendRequestPanel,.friendsPanel{
@@ -768,6 +802,9 @@ hr.divider{
     height: 1px;
     background-image: -webkit-linear-gradient(left, rgba(49, 112, 143,1), rgba(49, 112, 143,1), rgba(49, 112, 143, .2));
     margin: 5px 0;
+}
+.editSection .cardUserName{
+    margin-bottom: 0;
 }
 
 /*CSS for customised Snackbar starts*/
@@ -840,6 +877,23 @@ However, delay the fade out process for 2.5 seconds */
 
 
 /*CSS for customised Scrollbar ends*/
+@media screen and (max-width: 992px) {
+    .editInfo{
+        bottom: 15px;
+    }
+    .personalInfoPanel{
+        border-left: none;
+    }
+    .editSection .commentBody{
+        padding-left: 8px;
+    }
+    .editSection .recentPostBody{
+        padding: 4px;
+    }
+    .editSection{
+        padding: 8px;
+    }
+}
 
 @media screen and (max-width: 767px) {
     body{
@@ -881,8 +935,8 @@ However, delay the fade out process for 2.5 seconds */
     .otherUserComment{
         padding: 5px;
     }
-    .material-icons{
-        font-size: 16px !important;
+    .likeSection .material-icons{
+        font-size: 16px;
     }    
     #google-img {
         margin: 0 auto;
@@ -930,10 +984,17 @@ However, delay the fade out process for 2.5 seconds */
         border-left: none; 
     }
 	.friendRequestPanel, .friendsPanel {
-		margin: 8px;
+		margin: 8px 0;
 		padding: 12px;
 		border-radius: 4px;
-}
+    }
+    .recentPost{
+        width: 100%;
+
+    }
+    .editInfoPanel{
+        margin: 12px 0;
+    }
 }
 
 @media only screen and (max-width:568px) {
@@ -977,6 +1038,12 @@ However, delay the fade out process for 2.5 seconds */
         font-family: Roboto-Medium;
         font-size: .875em;
         transition: all .5s ease;
+    }
+    .recentPostBody{
+        margin-top: 0;
+    }
+    .editSection{
+        padding: 4px;
     }
     
 }
