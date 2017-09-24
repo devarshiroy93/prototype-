@@ -1,12 +1,12 @@
 var friendListComp = Vue.component('friend-list',{
 'props' : ['userUid'],
 'template' : `<div>
-				<div class="col-md-1"></div>
-				<div class="col-md-5 col-lg-5 col-sm-6 col-xs-12 friendRequestPanel" v-if ="showRequestSection"><span class="friendRequestText subheader">Friend Requests</span>
+				<div class="col-lg-1 col-md-1 col-sm-1"></div>
+				<div class="col-md-5 col-lg-5 col-sm-5 col-xs-12 friendRequestPanel" v-if ="showRequestSection"><span class="friendRequestText subheader">Friend Requests</span>
 				<hr class="divider">
 					<ul class = "list-group">
 					<div v-if="showRequestSection">
-						<div v-for = "request in friendRequests" class="col-md-8 col-lg-8 col-sm-12 col-xs-12 otherUserComment friendRequest" >
+						<div v-for = "request in friendRequests" class="col-md-12 col-lg-12 col-sm-12 col-xs-12 otherUserComment friendRequest" >
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage"><img :src="request.photoURL" alt="Card image cap" class="img-responsive">
 							</div>
 							<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
@@ -18,11 +18,11 @@ var friendListComp = Vue.component('friend-list',{
 						</div>
 				</ul>
 				</div>
-				<div class="col-md-5 col-lg-5 col-sm-6 col-xs-12 friendsPanel" v-if ="showFriendsSection"><span class="friendRequestText subheader">Friends</span>
+				<div class="col-md-5 col-lg-5 col-sm-5 col-xs-12 friendsPanel" v-if ="showFriendsSection"><span class="friendRequestText subheader">Friends</span>
 				<hr class="divider">
 					<ul class = "list-group">
 					<div v-if="showFriendsSection">
-						<div v-for = "friend in friends" class="col-md-8 col-lg-8 col-sm-12 col-xs-12 otherUserComment friendRequest" >
+						<div v-for = "friend in friends" class="col-md-12 col-lg-12 col-sm-12 col-xs-12 otherUserComment friendRequest">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage"><img :src="friend.photoURL" alt="Card image cap" class="img-responsive">
 							</div>
 							<div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
@@ -33,7 +33,7 @@ var friendListComp = Vue.component('friend-list',{
 					</div>	
 				</ul>
 				</div>
-				<div class="col-md-1"></div>
+				<div class="col-lg-1 col-md-1 col-sm-1"></div>
 			</div>`,
  data: function () {
         return {
