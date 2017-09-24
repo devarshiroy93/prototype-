@@ -1,16 +1,15 @@
 var newComp = Vue.component('edit-profile',{
 	'template' :`<div>
 		<div class="full-width">
-            <h1 class="editProfileHeading">Your Profile</h1>
+            <!--<h1 class="editProfileHeading">Your Profile</h1>-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="custom-form">
                 <div class="text-center bg-form">
                     <div class="img-section">
+                    <div class="changeProfilePic"><span class="material-icons" title="Change Profile Picture">photo_camera</span></div>
                         <img src="https://lh3.googleusercontent.com/-hh0FaEc01vk/AAAAAAAAAAI/AAAAAAAAAAc/SOQUQZcP0Q8/photo.jpg" alt="Profile Picture" class="editProfilePicture card-img-top sideBarImgClass">
-                        <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"><span class="glyphicon glyphicon-camera camera"></span></span>
                     <div class="col-lg-12">
-                        <h4 class="text-right col-lg-12"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
-                        <input type="checkbox" class="form-control" id="checker">
+                        <!--<h4 class="text-right col-lg-12"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>-->
                     </div>
                     </div>
                 </div>
