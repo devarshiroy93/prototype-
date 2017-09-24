@@ -1,8 +1,8 @@
 var dashboardComp = Vue.component('dash-comp', {
 
     template: `<div class="container dashboard">
-                <div class ="col-md-3 col-sm-3 col-xs-12 col-lg-3  sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0] :userUid = data.uid></sidebar-comp></div>
-                <div class="col-md-7 col-sm-8 col-xs-12 user-posts">
+                <div class ="col-lg-3 col-md-3 col-sm-3 col-xs-12 sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0] :userUid = data.uid></sidebar-comp></div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 user-posts">
 				<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
                     <div v-if="data!== undefined" >
                         <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
