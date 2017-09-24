@@ -3,7 +3,7 @@ Vue.component('create-post', {
     template: `<div>
 					<div v-if  = '!createdClicked'><button type="button" class="btn btn-xs primary-btn subheader create-btn inEffect"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
 					<div v-if  = 'createdClicked' class="createPost">
-						<div class="form-group body2">
+						<div class="form-group body3">
 							<label for="PostBody"></label>
 							<textarea class="form-control PostBody scrollbar-customised" rows="3" id="PostBody" v-model ="bodyContent" placeholder="What's cooking in your mind?"></textarea>
 						</div>
