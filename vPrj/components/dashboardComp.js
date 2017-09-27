@@ -5,6 +5,7 @@ var dashboardComp = Vue.component('dash-comp', {
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 user-posts">
 				<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
                     <div v-if="data!== undefined" >
+					<search-comp></search-comp>
                         <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<create-post :userinfo=data></create-post>
 						<post-card :userUid=data.uid   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData"></post-card>
