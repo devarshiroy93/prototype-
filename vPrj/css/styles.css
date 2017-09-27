@@ -338,7 +338,7 @@ ul.sidebar-comp li a:hover {
 .dashboard-card-block {
     background: #f8f8ff;
     padding: 15px;
-    margin-top: 24px;
+    margin-top: 16px;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -877,6 +877,30 @@ However, delay the fade out process for 2.5 seconds */
 
 
 /*CSS for customised Scrollbar ends*/
+
+/*CSS for Search Component starts*/
+
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+    padding: 0;
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+.searchComp{
+    margin-bottom: 16px;
+}
+.searchContainer{
+    box-shadow: 2px 2px 3px #999;
+}
+
+/*CSS for Search Component ends*/
 @media screen and (max-width: 992px) {
     .editInfo{
         bottom: 15px;
