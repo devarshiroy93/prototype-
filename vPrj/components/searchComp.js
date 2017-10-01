@@ -24,7 +24,6 @@ Vue.component('search-comp',{
 	},
 	methods : {
 		searchFunction : function(searchText){
-			console.log(searchText)
 			this.$emit('search-click',searchText)
 		}
 	}
