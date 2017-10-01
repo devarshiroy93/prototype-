@@ -15,22 +15,28 @@ function processTimeStamp(data){
 				if(postDate.getDate() === today.getDate()){
 					processedDate = calculateMinutesAndHours(data)
 				}else{
-					processedDate = processMonth(data);
+					processedDate = processDays(data);
 				}
 				
 			}else{
-				processedDate = processMonth(data);
+				processedDate = processDays(data);
 			}
 	}else{
 		processedDate = convertToReadableDate(data);
 	}
 	return processedDate
 }
-function processMonth(date){
+function processDays(date){
+	function calculateMonths(days){
+		var months; 
+		months = Math.floor(days/30);
+		months === 1 ? months += ' month ago' : months += ' months ago' 
+	}
 	var postDate =  new Date(date);
 	var today =new Date(Date.now());
 	var difference 
-	today.getDate()-postDate.getDate() === 1?  difference = today.getDate()-postDate.getDate()+' day ago': difference = today.getDate()-postDate.getDate()+' days ago';
+	Math.abs(today.getDate()-postDate.getDate() >30)? difference = calculateMonths(Math.abs(today.getDate()-postDate.getDate())) : difference = Math.abs(today.getDate()-postDate.getDate()) + ' days ago';
+	
 	return difference
 }
 
