@@ -6,7 +6,7 @@ var dashboardComp = Vue.component('dash-comp', {
 				<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
                     <div v-if="data!== undefined" >
                      <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
-						<search-comp></search-comp>
+						<search-comp v-on:search-click = "navigateToSearchResultsPage($event)"></search-comp>
                         <create-post :userinfo=data></create-post>
 						<post-card :userUid=data.uid   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData"></post-card>
 				    </div>
@@ -36,6 +36,9 @@ var dashboardComp = Vue.component('dash-comp', {
 		},
         passData : function(){
             console.log('caught')
+        },
+        navigateToSearchResultsPage : function(searchText){
+           router.push({ name: 'searchResultsComp', params: { searchString: searchText }})
         }
 	},
 

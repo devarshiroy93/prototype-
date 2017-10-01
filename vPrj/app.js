@@ -197,6 +197,12 @@ const routes = [
         name: 'friendList',
         component: friendListComp,
         props: true
+    },
+    {
+        path: '/searchResults',
+        name: 'searchResultsComp',
+        component: searchResults,
+        props: true
     }
 
 ]
