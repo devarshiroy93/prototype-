@@ -801,7 +801,7 @@ label{
 hr.divider{
     height: 1px;
     background-image: -webkit-linear-gradient(left, rgba(49, 112, 143,1), rgba(49, 112, 143,1), rgba(49, 112, 143, .2));
-    margin: 5px 0;
+    margin: 10px 0;
 }
 .editSection .cardUserName{
     margin-bottom: 0;
@@ -899,6 +899,16 @@ However, delay the fade out process for 2.5 seconds */
 .searchContainer{
     box-shadow: 2px 2px 3px #999;
 }
+.recentSearchResult{
+    padding: 0;
+}
+.searchFriendRequest i.material-icons{
+    position: absolute;
+    right: 0;
+    font-size: 28px;
+    color: #31708f;
+    cursor: pointer;
+}
 
 /*CSS for Search Component ends*/
 @media screen and (max-width: 992px) {
@@ -920,9 +930,6 @@ However, delay the fade out process for 2.5 seconds */
 }
 
 @media screen and (max-width: 767px) {
-    body{
-        padding: 8px;
-    }
     .navbar .navbar-collapse .navbar-right>li:last-child {
         padding-left: 15px;
         padding-right: 15px;
