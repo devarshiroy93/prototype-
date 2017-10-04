@@ -1,12 +1,13 @@
 var searchResults = Vue.component('searchresults-comp',{
 	props : ['userId','searchString'],
 	template : `<div>
+					<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
 					<div class="col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10 col-sm-offset-2 col-sm-10 col-xs-12">
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
 							<p class="subheader">Results</p>
 							<hr class="divider">
 							<div v-for="user in searchResults">
-								<div><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid></easy-friend></div>
+								<div><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid v-on:add-friend = "addFriend($event)" ></easy-friend></div>
 							</div>	
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
@@ -20,7 +21,9 @@ var searchResults = Vue.component('searchresults-comp',{
 				</div>`,
 data: function () {
         return {
-			searchResults : []
+			searchResults : [],
+			snackbarTriggered : false,
+			snackBarAction : '',
         }
     },
 	methods :{
@@ -29,7 +32,17 @@ data: function () {
 				console.log(user.displayName)
 				this.searchResults.push(user)
 			}
-		}
+		},
+		addFriend : function($event){
+			
+			var freindRequestSatus = sendFriendRequest($event);
+			freindRequestSatus.then(function(status){
+				if (status.database){
+					this.snackBarAction = 'addFriend';
+					this.snackbarTriggered = true ;
+				}
+			}.bind(this))
+		},
 	},
 	created : function(){
 		firebase.database().ref('users').on('child_added',function(snapshot){

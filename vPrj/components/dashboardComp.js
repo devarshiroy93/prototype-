@@ -3,7 +3,6 @@ var dashboardComp = Vue.component('dash-comp', {
     template: `<div class="container dashboard">
                 <div class ="col-lg-3 col-md-3 col-sm-3 col-xs-12 sidebar-content" :class = 'mobile'><sidebar-comp :userData = data.providerData[0] :userUid = data.uid></sidebar-comp></div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 user-posts">
-				<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
                     <div v-if="data!== undefined" >
                      <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<search-comp v-on:search-click = "navigateToSearchResultsPage($event)"></search-comp>
@@ -18,22 +17,10 @@ var dashboardComp = Vue.component('dash-comp', {
             data: store.getters.getCurrentUser,
             isMobileView: store.getters.getCurrentView,
             mobile: '',
-			snackbarTriggered : false,
-			snackBarAction : '',
 			friendList : [],
         }
     },
 	methods :{
-		addFriend : function($event){
-			
-			var freindRequestSatus = sendFriendRequest($event);
-			freindRequestSatus.then(function(status){
-				if (status.database){
-					this.snackBarAction = 'addFriend';
-					this.snackbarTriggered = true ;
-				}
-			}.bind(this))
-		},
         passData : function(){
             console.log('caught')
         },

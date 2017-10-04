@@ -41,9 +41,6 @@ Vue.component('post-card',{
 				post.currentUser = this.userUid;
                 router.push({ name: 'singularpage', params: {postData: post}});
             },
-            addFriend : function($event){
-            	this.$emit('add-friend',$event);
-            }
 		},
 		created :function(){ 
 		var readableDate = '';
