@@ -24,7 +24,10 @@ Vue.component('search-comp',{
 	},
 	methods : {
 		searchFunction : function(searchText){
-			this.$emit('search-click',searchText)
+			if(searchText !== "" ||searchText.length !== 0){
+				this.$emit('search-click',searchText)
+			}
+			
 		}
 	}
 })
