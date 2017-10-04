@@ -38,7 +38,7 @@ var dashboardComp = Vue.component('dash-comp', {
             console.log('caught')
         },
         navigateToSearchResultsPage : function(searchText){
-           router.push({ name: 'searchResultsComp', params: { searchString: searchText }})
+           router.push({ name: 'searchResultsComp', params: { userId : this.data.uid,searchString: searchText }})
         }
 	},
 

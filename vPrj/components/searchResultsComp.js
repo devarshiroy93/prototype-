@@ -1,11 +1,13 @@
 var searchResults = Vue.component('searchresults-comp',{
-	props : ['searchString'],
+	props : ['userId','searchString'],
 	template : `<div>
 					<div class="col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10 col-sm-offset-2 col-sm-10 col-xs-12">
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
 							<p class="subheader">Results</p>
 							<hr class="divider">
-								<user-cards :userItems = "searchResults"></user-Cards>
+							<div v-for="user in searchResults">
+								<div><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid></easyfriend></div>
+							</div>	
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
 							<div class = "col-lg-12 col-md-12 col-sm-12 recentSearchResult">

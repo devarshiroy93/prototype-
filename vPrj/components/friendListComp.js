@@ -22,7 +22,9 @@ var friendListComp = Vue.component('friend-list',{
 				<hr class="divider">
 					<ul class = "list-group">
 					<div v-if="showFriendsSection">
-						<user-cards :userItems = "friends"></user-Cards>
+						<div v-for="user in friends">
+								<div><user-cards :friend = "user"></user-Cards></div>
+							</div>
 					</div>
 				</ul>
 				</div>
