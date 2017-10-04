@@ -6,7 +6,7 @@ var searchResults = Vue.component('searchresults-comp',{
 							<p class="subheader">Results</p>
 							<hr class="divider">
 							<div v-for="user in searchResults">
-								<div><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid></easyfriend></div>
+								<div><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid></easy-friend></div>
 							</div>	
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
