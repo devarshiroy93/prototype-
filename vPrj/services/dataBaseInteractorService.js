@@ -33,6 +33,7 @@ function pushPostIntoDatabase(postBody,isChopped, user, photoURL) {
         authorPic: user.providerData[0].photoURL,
         authorName: user.providerData[0].displayName,
         commentCount : 0,
+		likeCount : 0,
 		isChopped :isChopped,
         timeStamp: Date.now(),
 		
@@ -63,7 +64,16 @@ function pushCommentsIntoDataBase(commentData, id) {
     })
 }
 
-
+function pushLikesIntoDataBase(textId,userId){
+	return firebase.database().ref('likes').child(textId).push({
+		'likedBy' :userId,
+	}).then(function(result){
+		return result
+	}).catch (function(error){
+		return error
+	})
+	
+}
 
 function sendFriendRequest(concernedPeople){
 	var fromUser = concernedPeople.userId
@@ -89,6 +99,7 @@ function addFriend(friendId,userId){
         return error
     })
 }
+
 function deletefromDatabase(table,ref){
 	firebase.database().ref('friendRequests').child(table +'/' + ref).remove()
 }

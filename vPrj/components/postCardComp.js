@@ -1,9 +1,9 @@
 Vue.component('post-card',{
-	props :['userUid'],
+	props :['post','userUid'],
 	template : `<div>
 				<!-- Card Starts-->
-				<div v-if='postData' >
-				<div class="dashboard-card-block col-md-12 col-sm-12 col-xs-12 col-lg-12" v-for='post in postData' >
+				<div v-if='post' >
+				<div class="dashboard-card-block col-md-12 col-sm-12 col-xs-12 col-lg-12"  >
 				<div class="postSetting" title="Edit Post">
 					<i class="material-icons">more_vert</i>
 					<div class="postSettingOptions">
@@ -20,7 +20,7 @@ Vue.component('post-card',{
 						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="subheader userName dashboard-card-title">{{post.authorName}}</span><span></span><span class="post-time caption">{{post.timeStamp}}</span></div>
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}<span v-if="post.isChopped">...<readmore-comp v-on:redirect="goToIndividualPage($event)":postData = post ></readmore-comp></span></p>
                            <div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
-                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>
+                            <like-comp :textId = "post.key" :currentUserId = "userUid" v-on:like-success = "increaseLikeCountOfPost($event)"></like-comp>
                             <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3 comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i><span v-if="post.commentCount>0" class="commentCount"><strong>{{post.commentCount}} </strong></span>Comment<span v-if ="post.commentCount>1">s</span></a>
                             <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">share</i>Share</a></div>
                            </div>
@@ -32,49 +32,16 @@ Vue.component('post-card',{
 				</div>`,
 		data : function(){
 			return {
-					postData : [],
-					friendList :[]
 				   }; 
 		},
 		methods:{
 			goToIndividualPage : function(post){
 				post.currentUser = this.userUid;
                 router.push({ name: 'singularpage', params: {postData: post}});
-            },
+            }
 		},
 		created :function(){ 
-		var readableDate = '';
-		var formattedObj ={} ;
-		//adding handle to own posts
-			firebase.database().ref('posts/'+this.userUid).on('child_added',function(snapshot){
-				formattedObj = snapshot.val()
-				formattedObj.key = snapshot.key;
-				readableDate = processTimeStamp(formattedObj.timeStamp);
-				formattedObj.timeStamp = readableDate
-				this.postData.push(formattedObj);
-				this.postData = this.postData.reverse();
-			}.bind(this))
-		//adding handle to own posts end
-
-		//this.$emit('postcard-created');	// to incidate to parent that child component has been created
-
-		firebase.database().ref('friends/').child(this.userUid).once('value').then(function(snapshot){
-			var localDatakeys = Object.keys(snapshot.val());
-			for(var  i= 0;i<localDatakeys.length;i++){
-				this.friendList.push(snapshot.val()[localDatakeys[i]]);
-			}
-			if(localDatakeys.length === this.friendList.length){
-				for(var x =0 ;x<this.friendList.length;x++){
-					firebase.database().ref('posts/').child(this.friendList[x].friendId).on('child_added',function(snap){
-						formattedObj = snap.val()
-						formattedObj.key = snap.key;
-						readableDate = processTimeStamp(formattedObj.timeStamp);
-						formattedObj.timeStamp = readableDate
-						this.postData.push(formattedObj);
-					}.bind(this))
-				}
-			}
-		}.bind(this))
+		
 	}
 		
 

@@ -7,7 +7,8 @@ var dashboardComp = Vue.component('dash-comp', {
                      <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<search-comp v-on:search-click = "navigateToSearchResultsPage($event)"></search-comp>
                         <create-post :userinfo=data></create-post>
-						<post-card :userUid=data.uid   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData"></post-card>
+						<div v-for = "partiCularPost in postData">
+						<post-card :userUid=data.uid  :post = partiCularPost   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData"></post-card></div>
 				    </div>
                 </div>
             </div>`,
@@ -17,7 +18,8 @@ var dashboardComp = Vue.component('dash-comp', {
             data: store.getters.getCurrentUser,
             isMobileView: store.getters.getCurrentView,
             mobile: '',
-			friendList : [],
+			postData : [],
+			friendList :[]
         }
     },
 	methods :{
@@ -51,6 +53,43 @@ var dashboardComp = Vue.component('dash-comp', {
             console.log(data)
             data ? this.mobile = '' : this.mobile = 'hidden-xs'
         }.bind(this))
+		
+		//database fetch for postCard
+		
+		var readableDate = '';
+		var formattedObj ={} ;
+		//adding handle to own posts
+			firebase.database().ref('posts/'+this.data.uid).on('child_added',function(snapshot){
+				formattedObj = snapshot.val()
+				formattedObj.key = snapshot.key;
+				readableDate = processTimeStamp(formattedObj.timeStamp);
+				formattedObj.timeStamp = readableDate
+				this.postData.push(formattedObj);
+				this.postData = this.postData.reverse();
+			}.bind(this))
+		//adding handle to own posts end
+
+		//this.$emit('postcard-created');	// to incidate to parent that child component has been created
+
+		
+			var localDatakeys = Object.keys(this.friendList)
+			// this.friendList = [];
+			// for(var  i= 0;i<localDatakeys.length;i++){
+				// this.friendList.push(snapshot.val()[localDatakeys[i]]);
+			// }
+			// if(localDatakeys.length === this.friendList.length){
+				for(var x =0 ;x<this.friendList.length;x++){
+					firebase.database().ref('posts/').child(this.friendList[x].friendId).on('child_added',function(snap){
+						formattedObj = snap.val()
+						formattedObj.key = snap.key;
+						readableDate = processTimeStamp(formattedObj.timeStamp);
+						formattedObj.timeStamp = readableDate
+						this.postData.push(formattedObj);
+					}.bind(this))
+				}
+			//}
+		
+		
     }
 
 })
