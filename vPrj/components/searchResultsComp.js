@@ -6,6 +6,7 @@ var searchResults = Vue.component('searchresults-comp',{
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
 							<p class="subheader">Results</p>
 							<hr class="divider">
+							<p v-if= "this.searchResults.length == 0" class="body2">There are no records found.</p>
 							<div v-for="user in searchResults">
 								<div><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid v-on:add-friend = "addFriend($event)" ></easy-friend></div>
 							</div>	
