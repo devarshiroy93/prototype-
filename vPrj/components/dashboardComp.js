@@ -67,6 +67,8 @@ var dashboardComp = Vue.component('dash-comp', {
 				for(var  i= 0;i<localDatakeys.length;i++){
 					this.friendList.push(response.val()[localDatakeys[i]]);
 					this.fetchPostsOfFriends(response.val()[localDatakeys[i]])
+					store.commit('assignFriends' ,this.friendList)
+					
 				}	
 			}
 		}.bind(this))
