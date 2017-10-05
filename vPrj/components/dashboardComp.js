@@ -28,7 +28,25 @@ var dashboardComp = Vue.component('dash-comp', {
         },
         navigateToSearchResultsPage : function(searchText){
            router.push({ name: 'searchResultsComp', params: { userId : this.data.uid,searchString: searchText }})
-        }
+        },
+		fetchFriendList : function(){
+			return firebase.database().ref('friends/'+this.data.uid).once('value').then(function(result){
+				return result
+			}).catch(function(error){
+				return error
+			})
+		},
+		fetchPostsOfFriends : function(friend){// fetched posts Data of friends
+			firebase.database().ref('posts/'+friend.friendId).on('child_added',function(snap){
+						var formattedObj = {}
+						formattedObj = snap.val()
+						formattedObj.key = snap.key;
+						readableDate = processTimeStamp(formattedObj.timeStamp);
+						formattedObj.timeStamp = readableDate
+						this.postData.push(formattedObj);
+					}.bind(this))
+		
+		}
 	},
 
     created: function () {
@@ -41,10 +59,17 @@ var dashboardComp = Vue.component('dash-comp', {
 
 		//code for loading friends
 		
-		firebase.database().ref('friends/'+this.data.uid).on('child_added',function(snapshot){
-			this.friendList.push(snapshot.val());
-			store.commit('assignFriends', this.friendList)
-			}.bind(this))
+		this.fetchFriendList().then(function(response){
+			var localDatakeys;
+			if(response.val()){
+				localDatakeys = Object.keys(response.val())
+				this.friendList = [];
+				for(var  i= 0;i<localDatakeys.length;i++){
+					this.friendList.push(response.val()[localDatakeys[i]]);
+					this.fetchPostsOfFriends(response.val()[localDatakeys[i]])
+				}	
+			}
+		}.bind(this))
 		
 		//code for loading friends ends
         store.watch(function (state) {
@@ -58,7 +83,7 @@ var dashboardComp = Vue.component('dash-comp', {
 		
 		var readableDate = '';
 		var formattedObj ={} ;
-		//adding handle to own posts
+			//adding handle to own posts
 			firebase.database().ref('posts/'+this.data.uid).on('child_added',function(snapshot){
 				formattedObj = snapshot.val()
 				formattedObj.key = snapshot.key;
@@ -67,28 +92,7 @@ var dashboardComp = Vue.component('dash-comp', {
 				this.postData.push(formattedObj);
 				this.postData = this.postData.reverse();
 			}.bind(this))
-		//adding handle to own posts end
-
-		//this.$emit('postcard-created');	// to incidate to parent that child component has been created
-
-		
-			var localDatakeys = Object.keys(this.friendList)
-			// this.friendList = [];
-			// for(var  i= 0;i<localDatakeys.length;i++){
-				// this.friendList.push(snapshot.val()[localDatakeys[i]]);
-			// }
-			// if(localDatakeys.length === this.friendList.length){
-				for(var x =0 ;x<this.friendList.length;x++){
-					firebase.database().ref('posts/').child(this.friendList[x].friendId).on('child_added',function(snap){
-						formattedObj = snap.val()
-						formattedObj.key = snap.key;
-						readableDate = processTimeStamp(formattedObj.timeStamp);
-						formattedObj.timeStamp = readableDate
-						this.postData.push(formattedObj);
-					}.bind(this))
-				}
-			//}
-		
+			//adding handle to own posts end
 		
     }
 
