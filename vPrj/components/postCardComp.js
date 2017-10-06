@@ -18,7 +18,7 @@ Vue.component('post-card',{
                      </div>
                          <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10 commentBody">
 						 <div class="col-md-12 col-sm-12 col-xs-12 cardUserName"><span class="subheader userName dashboard-card-title">{{post.authorName}}</span><span></span><span class="post-time caption">{{post.timeStamp}}</span></div>
-                            <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}<span v-if="post.isChopped">...<readmore-comp v-on:redirect="goToIndividualPage($event)":postData = post ></readmore-comp></span></p>
+                            <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}<span v-if="determineIfReadMoreNeeded()">...<readmore-comp v-on:redirect="goToIndividualPage($event)":postData = post ></readmore-comp></span></p>
                            <div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
                             <like-comp :textId = "post.key" :currentUserId = "userUid" v-on:like-success = "increaseLikeCountOfPost($event)"></like-comp>
                             <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3 comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i><span v-if="post.commentCount>0" class="commentCount"><strong>{{post.commentCount}} </strong></span>Comment<span v-if ="post.commentCount>1">s</span></a>
@@ -32,17 +32,23 @@ Vue.component('post-card',{
 				</div>`,
 		data : function(){
 			return {
+				isChopped : this.determineIfReadMoreNeeded()
 				   }; 
 		},
 		methods:{
 			goToIndividualPage : function(post){
 				post.currentUser = this.userUid;
                 router.push({ name: 'singularpage', params: {postData: post}});
-            }
+            },
+			determineIfReadMoreNeeded : function(){
+				if(this.post.isChopped && this.$route.path == "/dashboard"){
+					return true
+				}
+			}
 		},
 		created :function(){ 
-		
-	}
+			this.isChopped = this.determineIfReadMoreNeeded()
+		}
 		
 
                      
