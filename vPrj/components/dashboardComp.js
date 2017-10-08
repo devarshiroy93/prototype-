@@ -61,7 +61,7 @@ var dashboardComp = Vue.component('dash-comp', {
 		
 		this.fetchFriendList().then(function(response){
 			var localDatakeys;
-			if(response.val()){
+			if(response){
 				localDatakeys = Object.keys(response.val())
 				this.friendList = [];
 				for(var  i= 0;i<localDatakeys.length;i++){

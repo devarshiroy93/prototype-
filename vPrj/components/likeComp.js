@@ -8,9 +8,14 @@ Vue.component('like-comp',{
 	},
 	'methods' :{
 		getNumberOfLikes : function(){
-			console.log('called')
+			firebase.database().ref('likes/likesCount').child(this.textId).on('child_added',function(snapshot){
+				console.log('likecount,'+snapshot.val())
+				this.likeCount = snapshot.exportVal()
+
+			}.bind(this))
 		},
 		likeUnlikeActivity : function(){
+			
 			pushLikesIntoDataBase(this.textId,this.currentUserId).then(function(result){
 				if(result.database){
 					this.increaseLikeCountOfPost({'textId':this.textId,'userId' :this.currentUserId})

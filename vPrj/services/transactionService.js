@@ -8,7 +8,7 @@ transactionServiceFunction = function(ref,postKey,action){
 				})
 			}
 	else if(action === "like"){
-			return firebase.database().ref(ref).child(postKey).child(actions[action]).transaction(function(count){
+			return firebase.database().ref(ref).child('likesCount').child(postKey).child(actions[action]).transaction(function(count){
 					return count+1
 			})
 		}
