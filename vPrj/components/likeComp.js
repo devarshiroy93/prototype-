@@ -3,7 +3,8 @@ Vue.component('like-comp',{
 	'template' : `<div><span class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons" v-on:click="likeUnlikeActivity">thumb_up</i> <a>{{likeCount}} Likes</a></span></div>`,
 	data : function(){
 		return {
-			likeCount : this.getNumberOfLikes()
+			likeCount : this.getNumberOfLikes(),
+			likeAllowed : true
 		}
 	},
 	'methods' :{
@@ -14,12 +15,31 @@ Vue.component('like-comp',{
 
 			}.bind(this))
 		},
-		likeUnlikeActivity : function(){
-			
-			pushLikesIntoDataBase(this.textId,this.currentUserId).then(function(result){
+		pushLikes : function(){
+			if(this.likeAllowed){
+				pushLikesIntoDataBase(this.textId,this.currentUserId).then(function(result){
 				if(result.database){
 					this.increaseLikeCountOfPost({'textId':this.textId,'userId' :this.currentUserId})
 				}
+			}.bind(this))
+			}
+			
+		},
+		setLikeAllowed : function(pushkeys,likeData){
+			for(var i = 0 ; i<pushkeys.length; i++){
+					if(likeData[pushkeys[i]].likedBy === this.currentUserId){
+						this.likeAllowed = false
+					}
+				}
+		},
+		likeUnlikeActivity : function(){
+			var pushKeys = [];
+			firebase.database().ref('likes/').child(this.textId).once('value').then(function(snap){
+				if(snap.val() !== null){
+					pushKeys = Object.keys(snap.val());
+					this.setLikeAllowed(pushKeys,snap.val());
+				}
+				this.pushLikes();
 			}.bind(this))
 		},
 		increaseLikeCountOfPost : function(likeSpecificData){
