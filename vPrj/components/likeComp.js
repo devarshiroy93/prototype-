@@ -3,7 +3,7 @@ Vue.component('like-comp',{
 	'template' : `<div><span class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons" v-on:click="likeUnlikeActivity">thumb_up</i> <a>{{likeCount}} Likes</a></span></div>`,
 	data : function(){
 		return {
-			likeCount : this.getNumberOfLikes(),
+			likeCount : 0,
 			likeAllowed : true
 		}
 	},
@@ -49,4 +49,8 @@ Vue.component('like-comp',{
             }.bind(this))
 			}
 	} ,
+	
+	created : function(){
+		this.getNumberOfLikes();
+	}
 });
