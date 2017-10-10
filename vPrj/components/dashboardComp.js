@@ -22,7 +22,7 @@ var dashboardComp = Vue.component('dash-comp', {
 			postData : [],
 			friendList :[],
 			showCustModal : false,
-			modalContent : {}
+			modalContent : "",
         }
     },
 	methods :{
