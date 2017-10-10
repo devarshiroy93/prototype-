@@ -7,8 +7,9 @@ var dashboardComp = Vue.component('dash-comp', {
                      <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
 						<search-comp v-on:search-click = "navigateToSearchResultsPage($event)"></search-comp>
                         <create-post :userinfo=data></create-post>
+						<modal-comp :showModal = showCustModal v-on:close-modal = "closeModal" :modalContent = modalContent></modal-comp>
 						<div v-for = "partiCularPost in postData">
-						<post-card :userUid=data.uid  :post = partiCularPost   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData"></post-card></div>
+						<post-card :userUid=data.uid  :post = partiCularPost   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData" v-on:show-likes = "showLikes($event)" ></post-card></div>
 				    </div>
                 </div>
             </div>`,
@@ -19,7 +20,9 @@ var dashboardComp = Vue.component('dash-comp', {
             isMobileView: store.getters.getCurrentView,
             mobile: '',
 			postData : [],
-			friendList :[]
+			friendList :[],
+			showCustModal : false,
+			modalContent : {}
         }
     },
 	methods :{
@@ -46,6 +49,13 @@ var dashboardComp = Vue.component('dash-comp', {
 						this.postData.push(formattedObj);
 					}.bind(this))
 		
+		},
+		showLikes : function(data){
+			this.modalContent = data;
+			this.showCustModal = true
+		},
+		closeModal : function(){
+			this.showCustModal = false;
 		}
 	},
 
