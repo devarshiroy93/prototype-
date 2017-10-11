@@ -587,7 +587,7 @@ label{
     font-size: 28px;
 }
 .searchFriendResult{
-    border-bottom: 1px solid #31708f;
+   padding: 0;
 }
 .editProfileButton{
 	text-align:right;
