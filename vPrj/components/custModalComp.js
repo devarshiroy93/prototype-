@@ -1,7 +1,7 @@
 Vue.component('modal-comp', {
 	'props': ['showModal', 'modalContent'],
 	'template': `<div>
-					<div id="myModal" class="modal" v-if= "showModal">
+					<div id="myModal" class="modal" v-if= "showModal" v-heightwidth-manage>
 					<!-- Modal content -->
 					<div class="modal-content">
 					<span class="close" v-on:click ="closeCustModal">&times;</span>
