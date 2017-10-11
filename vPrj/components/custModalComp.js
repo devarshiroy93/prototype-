@@ -4,6 +4,7 @@ Vue.component('modal-comp', {
 					<div id="myModal" class="modal" v-if= "showModal" v-heightwidth-manage>
 					<!-- Modal content -->
 					<div class="modal-content">
+					
 					<span class="close" v-on:click ="closeCustModal">&times;</span>
 					<div v-if='likeUsers.length>0' >
 					<div v-for='likeUser in likeUsers'>
