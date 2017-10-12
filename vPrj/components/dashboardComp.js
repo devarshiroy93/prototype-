@@ -27,7 +27,6 @@ var dashboardComp = Vue.component('dash-comp', {
     },
 	methods :{
         passData : function(){
-            console.log('caught')
         },
         navigateToSearchResultsPage : function(searchText){
            router.push({ name: 'searchResultsComp', params: { userId : this.data.uid,searchString: searchText }})
@@ -84,6 +83,7 @@ var dashboardComp = Vue.component('dash-comp', {
 		}.bind(this))
 		
 		//code for loading friends ends
+		
         store.watch(function (state) {
             return state.toggleView
         }, function (data) {

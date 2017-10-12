@@ -5,7 +5,8 @@ var individualPostcomp = Vue.component('singular-page', {
                     <div class="col-md-8 col-sm-12 col-xs-12">                                
                     <div>
 				<!-- Card Starts-->
-				 <post-card :post = "postDataTemp"></post-card>
+				 <post-card :post = "postDataTemp" v-on:show-likes = "showLikes($event)"></post-card>
+                 <modal-comp :showModal = showCustModal v-on:close-modal = "closeModal" :modalContent = modalContent></modal-comp>
                 <!-- Card Ends-->
 				</div>
                 <comment-list :postKey = postDataTemp.key></comment-list>
@@ -18,7 +19,8 @@ var individualPostcomp = Vue.component('singular-page', {
         return {
             comments: {},
 			postDataTemp : '',// this data property added for bug fixing as prop property coming as undefined in callback block 
-
+            modalContent : null,
+            showCustModal : false
         }
 
     },
@@ -39,7 +41,14 @@ var individualPostcomp = Vue.component('singular-page', {
                 console.log(response)
                 this.postData.commentCount = response.snapshot.exportVal()
             }.bind(this))
-        }
+        },
+        showLikes : function(data){
+            this.modalContent = data;
+            this.showCustModal = true
+        },
+        closeModal : function(){
+			this.showCustModal = false;
+		}
 
     },
     created: function () {
