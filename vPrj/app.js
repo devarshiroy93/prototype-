@@ -196,7 +196,6 @@ const routes = [
         path: '/friends/:id',
         name: 'friendList',
         component: friendListComp,
-        props: true
     },
     {
         path: '/searchResults',
