@@ -5,18 +5,19 @@ var individualPostcomp = Vue.component('singular-page', {
                     <div class="col-md-8 col-sm-12 col-xs-12">                                
                     <div>
 				<!-- Card Starts-->
-				 <post-card :post = "postData"></post-card>
+				 <post-card :post = "postDataTemp"></post-card>
                 <!-- Card Ends-->
 				</div>
-                <comment-list :postKey = postData.key></comment-list>
-				<comment-comp v-on:do-comment ="postComment($event)" :data = postData ></comment-comp>
+                <comment-list :postKey = postDataTemp.key></comment-list>
+				<comment-comp v-on:do-comment ="postComment($event)" :data = postDataTemp ></comment-comp>
 				
 				    </div>
                 </div><div class="col-md-2"></div>
                 </div></div>`,
     data: function () {
         return {
-            comments: {}
+            comments: {},
+			postDataTemp : '',// this data property added for bug fixing as prop property coming as undefined in callback block 
 
         }
 
@@ -42,9 +43,10 @@ var individualPostcomp = Vue.component('singular-page', {
 
     },
     created: function () {
+        this.postDataTemp = this.postData
         if (this.postData.isChopped) {
-            firebase.database().ref('longPostTexts/' + this.postData.key).once('value').then(function (response) {
-                this.postData.body += response.val().body;
+            firebase.database().ref('longPostTexts/' + this.postData.key).on('child_added',function (response) {
+                this.postDataTemp.body += response.val();
             }.bind(this))
         }
     }
