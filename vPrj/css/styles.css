@@ -794,7 +794,30 @@ label{
 /*.personalInfoInput{
     padding: 0;
 }*/
-
+.notificationComp{
+    border-radius:4px;
+    border-top: 1px solid #31708f;
+    border-right: 1px solid #31708f;
+    border-left: 1px solid #31708f;
+    margin-bottom: 16px;
+    padding: 0;
+}
+.notificationHeader{
+    background: #fff;
+}
+.notificationHeader p{
+    padding: 12px 12px 12px 0;
+    margin: 0 12px;
+    border-bottom: 1px solid #31708f;
+}
+.notificationBody p{
+    margin: 0;
+}
+.notificationBody{
+    padding: 12px;
+    background: rgb(238, 238, 238);
+    border-bottom: 1px solid #31708f;
+}
 /*CSS for Edit Profile ends*/
 .friendRequestPanel,.friendsPanel{
     padding: 12px;
