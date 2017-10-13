@@ -18,3 +18,8 @@ var transactionforFriendRequest = function(requestReceiver){
 					return count+1
 			})
 }
+var negativeTransactionForLikeCount = function(id){
+	return firebase.database().ref('friendRequests').child('friendRequestsCount').child(id).transaction(function(count){
+		return count-1
+})
+}

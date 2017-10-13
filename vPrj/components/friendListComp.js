@@ -1,5 +1,4 @@
 var friendListComp = Vue.component('friend-list',{
-'props' : ['userUid'],
 'template' : `<div>
 				<div class="col-lg-1 col-md-1 col-sm-1"></div>
 				<div class="col-md-5 col-lg-5 col-sm-5 col-xs-12 friendRequestPanel" v-if ="showRequestSection"><span class="friendRequestText subheader">Friend Requests</span>
@@ -62,9 +61,9 @@ var friendListComp = Vue.component('friend-list',{
 					addFriend(this.$route.params.id,uid).then(function(result){
 						if(result.database){
 							this.removeFriendRequest(key,obj);
+							this.decreaseFriendRequestCount(this.userUid);
 						}
-					}.bind(this))
-					
+					}.bind(this))	
 				}		
 			}.bind(this))
 		},
@@ -73,9 +72,13 @@ var friendListComp = Vue.component('friend-list',{
 			var ref = key ;
 			deletefromDatabase(tableName,ref);
 			this.friendRequests.splice(this.friendRequests.indexOf(obj),1);
+		},
+		decreaseFriendRequestCount : function(id){
+			negativeTransactionForLikeCount(id)
 		}
 	},
 	created : function(){
+		this.userUid = this.$route.params.id ;
 		this.$route.params.id
 		firebase.database().ref('friendRequests/'+this.$route.params.id).on('child_added',function(snapshot){
 			this.fetchUsersInfo(snapshot.val().from,snapshot.key,"friendRequests");
