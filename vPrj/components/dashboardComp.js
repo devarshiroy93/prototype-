@@ -9,8 +9,12 @@ var dashboardComp = Vue.component('dash-comp', {
 						<search-comp v-on:search-click = "navigateToSearchResultsPage($event)"></search-comp>
                         <create-post :userinfo=data></create-post>
 						<modal-comp :showModal = showCustModal v-on:close-modal = "closeModal" :modalContent = modalContent></modal-comp>
-						<div v-for = "partiCularPost in postData">
-						<post-card :userUid=data.uid  :post = partiCularPost   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData" v-on:show-likes = "showLikes($event)" ></post-card></div>
+						<!--postCard Comp starts-->
+						<div v-if="postData.length>0">
+						<div  v-for = "partiCularPost in postData">
+						<post-card :userUid=data.uid  :post = partiCularPost   v-on:add-friend = "addFriend($event)" v-on:postcard-created = "passData" v-on:show-likes = "showLikes($event)" ></post-card>
+						</div>
+						</div>
 				    </div>
                 </div>
             </div>`,
