@@ -1,6 +1,6 @@
-var searchResults = Vue.component('searchresults-comp',{
-	props : ['userId','searchString'],
-	template : `<div>
+var searchResults = Vue.component('searchresults-comp', {
+	props: ['userId', 'searchString'],
+	template: `<div>
 					<snackbar-comp :triggered = snackbarTriggered :action=snackBarAction></snackbar-comp>
 					<div class="col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10 col-sm-offset-2 col-sm-10 col-xs-12">
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
@@ -8,7 +8,7 @@ var searchResults = Vue.component('searchresults-comp',{
 							<hr class="divider">
 							<p v-if= "this.searchResults.length == 0" class="body2">There are no records found.</p>
 							<div v-for="user in searchResults">
-								<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 searchFriendResult"><user-cards :friend = "user"></user-Cards><easy-friend :userId = userId :postAuthor = user.uid v-on:add-friend = "addFriend($event)" ></easy-friend></div>
+								<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 searchFriendResult"><user-cards :friend = "user"></user-Cards><easy-friend :userId = userIdTemp :postAuthor = user.uid v-on:add-friend = "addFriend($event)" ></easy-friend></div>
 							</div>	
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
@@ -20,33 +20,36 @@ var searchResults = Vue.component('searchresults-comp',{
 						</div>
 					</div>
 				</div>`,
-data: function () {
-        return {
-			searchResults : [],
-			snackbarTriggered : false,
-			snackBarAction : '',
-        }
-    },
-	methods :{
-		compareQuery : function(user){
-			if(user.displayName.toLowerCase().indexOf(this.searchString.toLowerCase()) !== -1){
+	data: function () {
+		return {
+			searchResults: [],
+			snackbarTriggered: false,
+			snackBarAction: '',
+			userIdTemp : '' // path for prop value coming as undefined
+		}
+	},
+	methods: {
+		compareQuery: function (user) {
+			if (user.displayName.toLowerCase().indexOf(this.searchStringTemp.toLowerCase()) !== -1) {
 				console.log(user.displayName)
 				this.searchResults.push(user)
 			}
 		},
-		addFriend : function($event){
-			
+		addFriend: function ($event) {
+
 			var freindRequestSatus = sendFriendRequest($event);
-			freindRequestSatus.then(function(status){
-				if (status.database){
+			freindRequestSatus.then(function (status) {
+				if (status.database) {
 					this.snackBarAction = 'addFriend';
-					this.snackbarTriggered = true ;
+					this.snackbarTriggered = true;
 				}
 			}.bind(this))
 		},
 	},
-	created : function(){
-		firebase.database().ref('users').on('child_added',function(snapshot){
+	created: function () {
+		this.userIdTemp = this.userId; // patch for prop value coming undefined
+		this.searchStringTemp = this.searchString; // patch for prop value coming undefined
+		firebase.database().ref('users').on('child_added', function (snapshot) {
 			this.compareQuery(snapshot.val())
 		}.bind(this))
 	}

@@ -17,28 +17,30 @@ Vue.component('easy-friend',{
 		}
 	},
 	created: function(){
-		firebase.database().ref('friendRequests/'+this.postAuthor).on('child_added',function(snapshot){
+		this.userIdTemp = this.userId;
+		this.postAuthorTemp = this.postAuthor;
+		firebase.database().ref('friendRequests/'+this.postAuthorTemp).on('child_added',function(snapshot){
 			console.log(snapshot.val());
 			if(snapshot.val().from === this.userId){
 				this.friendButtonDisable = false
 			}
-			firebase.database().ref('friendRequests/'+this.postAuthor).off()
+			firebase.database().ref('friendRequests/'+this.postAuthorTemp).off()
 		}.bind(this))
 		
 		
-			firebase.database().ref('friends/'+this.userId).on('child_added',function(snapshot){
+			firebase.database().ref('friends/'+this.userIdTemp).on('child_added',function(snapshot){
 			console.log(snapshot.val());
 			if(snapshot.val().friendId === this.postAuthor){
 				this.friendButtonDisable = false
 			}
-			firebase.database().ref('friends/'+this.userId).off()
+			firebase.database().ref('friends/'+this.userIdTemp).off()
 			}.bind(this))
 			
-			firebase.database().ref('friendRequests/'+this.userId).on('child_added',function(snapshot){
+			firebase.database().ref('friendRequests/'+this.userIdTemp).on('child_added',function(snapshot){
 				if(snapshot.val().from === this.postAuthor){
 					this.friendButtonDisable = false
 				}
-				firebase.database().ref('friendRequests/'+this.userId).off()
+				firebase.database().ref('friendRequests/'+this.userIdTemp).off()
 			}.bind(this))
 		
 		
