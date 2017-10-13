@@ -5,6 +5,7 @@ var dashboardComp = Vue.component('dash-comp', {
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 user-posts">
                     <div v-if="data!== undefined" >
                      <div v-if ="data.emailVerified"><alert-comp :visibility = data.emailVerified :state = "state" :userName = data.providerData[0].displayName></alert-comp></div>
+					 	<notification-comp></notification-comp>
 						<search-comp v-on:search-click = "navigateToSearchResultsPage($event)"></search-comp>
                         <create-post :userinfo=data></create-post>
 						<modal-comp :showModal = showCustModal v-on:close-modal = "closeModal" :modalContent = modalContent></modal-comp>
