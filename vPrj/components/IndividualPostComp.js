@@ -39,7 +39,7 @@ var individualPostcomp = Vue.component('singular-page', {
             var countPromise = transactionServiceFunction(commentData.createdby,commentData.key,'comment');
             countPromise.then(function (response) {
                 console.log(response)
-                this.postData.commentCount = response.snapshot.exportVal()
+               this.postDataTemp.commentCount = response.snapshot.exportVal()
             }.bind(this))
         },
         showLikes : function(data){
@@ -54,7 +54,7 @@ var individualPostcomp = Vue.component('singular-page', {
     created: function () {
         this.postDataTemp = this.postData
         if (this.postData.isChopped) {
-            firebase.database().ref('longPostTexts/' + this.postData.key).on('child_added',function (response) {
+            firebase.database().ref('longPostTexts/' + this.postDataTemp.key).on('child_added',function (response) {
                 this.postDataTemp.body += response.val();
             }.bind(this))
         }
