@@ -25,7 +25,9 @@ const store = new Vuex.Store({
         },
 		assignFriends(state,friendList){
 			state.friendList = friendList;
-		}
+		},
+        
+
 
     },
     getters: {
@@ -47,7 +49,6 @@ const store = new Vuex.Store({
 		getFriends (state){
 			return state.friendList;
 		}
-		
     }
 
 })

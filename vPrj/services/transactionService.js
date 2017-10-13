@@ -13,3 +13,8 @@ transactionServiceFunction = function(ref,postKey,action){
 			})
 		}
 }
+var transactionforFriendRequest = function(requestReceiver){
+	return firebase.database().ref('friendRequests').child('friendRequestsCount').child(requestReceiver).transaction(function(count){
+					return count+1
+			})
+}

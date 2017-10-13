@@ -25,7 +25,8 @@ var searchResults = Vue.component('searchresults-comp', {
 			searchResults: [],
 			snackbarTriggered: false,
 			snackBarAction: '',
-			userIdTemp : '' // path for prop value coming as undefined
+			userIdTemp : '', // path for prop value coming as undefined
+			addFriendDetails : {}
 		}
 	},
 	methods: {
@@ -36,10 +37,11 @@ var searchResults = Vue.component('searchresults-comp', {
 			}
 		},
 		addFriend: function ($event) {
-
-			var freindRequestSatus = sendFriendRequest($event);
-			freindRequestSatus.then(function (status) {
+			var friendRequestSatus = sendFriendRequest($event);
+			this.addFriendDetails = $event
+			friendRequestSatus.then(function (status) {
 				if (status.database) {
+					transactionforFriendRequest(this.addFriendDetails.postAuthor);
 					this.snackBarAction = 'addFriend';
 					this.snackbarTriggered = true;
 				}
