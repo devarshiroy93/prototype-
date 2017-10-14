@@ -5,9 +5,9 @@ Vue.component('search-comp',{
 							<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
 								<div class="searchContainer"> 
 									<div class="input-group stylish-input-group">
-										<input type="text" class="form-control" v-model="searchString"  placeholder="Search Proto" >
+										<input type="text" class="form-control" v-model="searchString" v-on:keydown="searchFunction(searchString,$event)" placeholder="Search Proto" >
 										<span class="input-group-addon">
-											<button type="submit" v-on:click = searchFunction(searchString)>
+											<button type="submit" v-on:click = searchFunction(searchString,$event)>
 												<span class="material-icons">search</span>
 											</button>  
 										</span>
@@ -23,9 +23,11 @@ Vue.component('search-comp',{
 		}
 	},
 	methods : {
-		searchFunction : function(searchText){
+		searchFunction : function(searchText,event){
 			if(searchText !== "" ||searchText.length !== 0){
+				if(event.key === "Enter" || event.type === "click"){
 				this.$emit('search-click',searchText)
+				}
 			}
 			
 		}

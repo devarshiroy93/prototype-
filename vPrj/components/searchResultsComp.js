@@ -6,10 +6,12 @@ var searchResults = Vue.component('searchresults-comp', {
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
 							<p class="subheader">Results</p>
 							<hr class="divider">
-							<p v-if= "this.searchResults.length == 0" class="body2">There are no records found.</p>
-							<div v-for="user in searchResults">
+							<p v-if= "searchResults.length == 0" class="body2">There are no records found.</p>
+							<div v-else-if='searchResults.length !== 0'>
+							<div v-for="user in searchResults"  >
 								<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 searchFriendResult"><user-cards :friend = "user"></user-Cards><easy-friend :userId = userIdTemp :postAuthor = user.uid v-on:add-friend = "addFriend($event)" ></easy-friend></div>
 							</div>	
+							</div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 otherUserComment friendRequest">
 							<div class = "col-lg-12 col-md-12 col-sm-12 recentSearchResult">
@@ -25,7 +27,7 @@ var searchResults = Vue.component('searchresults-comp', {
 			searchResults: [],
 			snackbarTriggered: false,
 			snackBarAction: '',
-			userIdTemp : '', // path for prop value coming as undefined
+			userIdTemp : '', // patch for prop value coming as undefined
 			addFriendDetails : {}
 		}
 	},
