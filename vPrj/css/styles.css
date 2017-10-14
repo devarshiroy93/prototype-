@@ -767,7 +767,6 @@ label{
 .recentPostBody{
     margin-top: 0;
     border-radius: 0;
-    border-bottom: 1px solid #31708f;
 }
 .recentPostBody .dashboard-card-text{
     margin: 0;
@@ -795,9 +794,6 @@ label{
     margin-top: 16px;
     text-align: center;
 }
-/*.personalInfoInput{
-    padding: 0;
-}*/
 .notificationComp{
     border-radius:4px;
     margin-bottom: 16px;
@@ -817,11 +813,21 @@ label{
     
 }
 /*CSS for Edit Profile ends*/
+
 .friendRequestPanel,.friendsPanel{
     padding: 12px;
     border-radius: 4px;
-    margin-top: : 12px;
     background: #f5f5f5;
+    margin-top: 12px;
+}
+.friendListComp{
+    padding: 12px;
+}
+.friendListComp .otherUserComment{
+    background: transparent;
+}
+.friendListComp .otherUserComment:hover{
+    box-shadow: 0px 3px 16px rgba(153, 153, 153, 0.3);
 }
 .friendRequestText {
     color: #31708f;
@@ -1010,7 +1016,7 @@ However, delay the fade out process for 2.5 seconds */
     }
 	.user-posts{
 		margin:16px 0 0 0;
-		padding:5px;
+		padding:8px;
 	}
 	.dashboard-card-block{
 		margin-top:16px;
