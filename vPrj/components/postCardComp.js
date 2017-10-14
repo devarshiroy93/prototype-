@@ -21,9 +21,9 @@ Vue.component('post-card',{
                             <p class="dashboard-card-text col-md-12 col-sm-12 col-xs-12 body1">{{post.body}}<span v-if="determineIfReadMoreNeeded()">...<readmore-comp v-on:redirect="goToIndividualPage($event)":postData = post ></readmore-comp></span></p>
                            <div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
                             <like-comp :textId = "post.key" :currentUserId = "userUid" v-on:like-success = "increaseLikeCountOfPost($event)" v-on:show-likes = "showLikes($event)"></like-comp>
-                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3 comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i><span v-if="post.commentCount>0" class="commentCount"><strong>{{post.commentCount}} </strong></span>Comment<span v-if ="post.commentCount>1">s</span></a>
-                            <a  class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons">share</i>Share</a></div>
-                           </div>
+                            <span class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><a class="comments" v-on:click=goToIndividualPage(post)><i class="material-icons">chat_bubble_outline</i><span v-if="post.commentCount>0" class="commentCount"><strong>{{post.commentCount}} </strong></span>Comment<span v-if ="post.commentCount>1">s</span></a></span>
+                            <span class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><a><i class="material-icons">share</i>Share</a></span></div>
+                          </div>
 
                         </div>
                         <!-- Card Ends-->
