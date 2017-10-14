@@ -1,6 +1,6 @@
 Vue.component('like-comp',{
 	'props' : ['textId','currentUserId'],
-	'template' : `<div><span class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons" v-on:click="likeUnlikeActivity">thumb_up</i> <a><span  v-on:click= "showLikedBy">{{likeCount}} Likes</span></a></span></div>`,
+	'template' : `<div><span class="col-md-3 col-xs-4 col-sm-4 col-lg-3"><i class="material-icons" v-on:click="likeUnlikeActivity">thumb_up</i> <a v-if= "likeCount>0"><span  v-on:click= "showLikedBy">{{likeCount}} Likes</span></a></span></div>`,
 	data : function(){
 		return {
 			likeCount : 0,
