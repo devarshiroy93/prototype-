@@ -12,8 +12,8 @@ Vue.component('comment-list', {
 								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{com.authorName}}<span class="post-time caption">{{com.timeStamp}}</span></h5>
 								<p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{com.body}}</p>
 								<div class="row caption col-md-12 col-sm-12 col-xs-12 likeSection">
-									<a class="col-md-3 col-xs-6 col-sm-3 col-lg-3"><i class="material-icons">thumb_up</i>Likes</a>
-									<a class="col-md-3 col-xs-6 col-sm-3 col-lg-3 comments"><i class="material-icons">reply</i>Reply</a>
+									<span class="col-md-3 col-xs-6 col-sm-3 col-lg-3"> <a><i class="material-icons">thumb_up</i>Likes</a></span> 
+									<span class="col-md-3 col-xs-6 col-sm-3 col-lg-3"> <a class="comments"><i class="material-icons">reply</i>Reply</a></span> 
 								</div>
 						</div>		
 							</div>
