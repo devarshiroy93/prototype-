@@ -41,7 +41,7 @@ var friendListComp = Vue.component('friend-list',{
 		fetchUsersInfo : function(from,key,purpose){
 			var friendLister = {};
 			firebase.database().ref('users').child(from).once('value').then(function(snapshot){
-				this.showRequestSection = true;
+				
 				friendLister = snapshot.val();
 				friendLister.key = key;
 				if(purpose === "friendRequests")
@@ -66,6 +66,7 @@ var friendListComp = Vue.component('friend-list',{
 					}.bind(this))	
 				}		
 			}.bind(this))
+			//pushNotificationsforUser(uid,obj.displayName) to be uncommented later
 		},
 		removeFriendRequest : function(key,obj){
 			var tableName = this.$route.params.id;
@@ -81,6 +82,7 @@ var friendListComp = Vue.component('friend-list',{
 		this.userUid = this.$route.params.id ;
 		this.$route.params.id
 		firebase.database().ref('friendRequests/'+this.$route.params.id).on('child_added',function(snapshot){
+			snapshot.val() !== null ? this.showRequestSection = true :  this.showRequestSection = false 
 			this.fetchUsersInfo(snapshot.val().from,snapshot.key,"friendRequests");
 			}.bind(this))
 			

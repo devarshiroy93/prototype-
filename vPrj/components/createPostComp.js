@@ -1,7 +1,7 @@
 Vue.component('create-post', {
     props: ['userinfo'],
     template: `<div>
-					<div v-if  = '!createdClicked'><button type="button" class="btn btn-xs primary-btn subheader create-btn inEffect"   v-on:click = createClick()><i class="material-icons">add_circle_outline</i>Create</button></div>
+					<div v-if  = '!createdClicked'><button type="button" class="btn btn-xs primary-btn subheader create-btn inEffect"   v-on:click = createClick()><i class="material-icons">mode_edit</i><span v-if="!currentView">Create</span></button></div>
 					<div v-if  = 'createdClicked' class="createPost">
 						<div class="form-group body3">
 							<label for="PostBody"></label>
@@ -15,7 +15,8 @@ Vue.component('create-post', {
         return {
             bodyContent: '',
             createdClicked: false,
-			remainingContent :''
+			remainingContent :'',
+            currentView : store.getters.getCurrentView
         }
     },
     methods: {

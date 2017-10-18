@@ -5,7 +5,7 @@ Vue.component('notification-comp', {//will show notifications for friend request
                          <div class="notificationBody body2">
                          <div v-if="friendRequestCount>0">
                          <p>
-                         <router-link :to='"/friends/"+userId' ><i class="material-icons">priority_high</i></span>You have {{friendRequestCount}} friend request<span v-if='friendRequestCount>1'>s</span></router-link>
+                         <router-link :to='"/friends/"+userId' ><i class="material-icons">notifications</i></span>You have {{friendRequestCount}} friend request<span v-if='friendRequestCount>1'>s</span></router-link>
                          </p>
                          </div>
                         </div>

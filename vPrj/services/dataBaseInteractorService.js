@@ -103,3 +103,11 @@ function addFriend(friendId,userId){
 function deletefromDatabase(table,ref){
 	firebase.database().ref('friendRequests').child(table +'/' + ref).remove()
 }
+function pushNotificationsforUser(ref,acceptorName){
+    var message = acceptorName +" "+messageComposer.notificationMessages.requestAcceptanceMessageTail 
+    return firebase.database().ref('notifications/'+ref).child('friendRequestAcceptance').push({'message' : message}).then(function(result){
+        return result
+    }).catch(function(error){
+    return error
+    })
+}
