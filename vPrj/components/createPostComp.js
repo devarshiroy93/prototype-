@@ -22,6 +22,7 @@ Vue.component('create-post', {
     methods: {
         createClick: function () {
             this.createdClicked = true;
+            window.scrollTo(0,0);
         },
         cancelPost: function () {
             this.createdClicked = false;
