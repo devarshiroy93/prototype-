@@ -104,10 +104,17 @@ function deletefromDatabase(table,ref){
 	firebase.database().ref('friendRequests').child(table +'/' + ref).remove()
 }
 function pushNotificationsforUser(ref,acceptorName){
-    var message = acceptorName +" "+messageComposer.notificationMessages.requestAcceptanceMessageTail 
-    return firebase.database().ref('notifications/'+ref).child('friendRequestAcceptance').push({'message' : message}).then(function(result){
+    return firebase.database().ref('notifications/'+ref).child('friendRequestAcceptance').push({'friendName' : acceptorName}).then(function(result){
         return result
     }).catch(function(error){
     return error
     })
+}
+function fetchDatafromTable(tableName,user,subChild){
+  return  firebase.database().ref(tableName).child(user).child(subChild).once('value').then(function(value){
+      return value
+  }).catch(function(error){
+      return error
+  })
+
 }

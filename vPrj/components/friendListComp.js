@@ -62,11 +62,12 @@ var friendListComp = Vue.component('friend-list',{
 						if(result.database){
 							this.removeFriendRequest(key,obj);
 							this.decreaseFriendRequestCount(this.userUid);
+							pushNotificationsforUser(uid,obj.displayName)
 						}
 					}.bind(this))	
 				}		
 			}.bind(this))
-			//pushNotificationsforUser(uid,obj.displayName) to be uncommented later
+			
 		},
 		removeFriendRequest : function(key,obj){
 			var tableName = this.$route.params.id;
