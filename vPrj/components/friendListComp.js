@@ -89,7 +89,9 @@ var friendListComp = Vue.component('friend-list',{
 			
 		firebase.database().ref('friends/'+this.$route.params.id).on('child_added',function(snapshot){
 			this.fetchUsersInfo(snapshot.val().friendId,snapshot.key,"friends");
-			}.bind(this))
+		}.bind(this))
+		
+		firebase.database().ref('notifications/'+this.userUid+'/friendRequestAcceptance').remove();
 	}
 }
 )
