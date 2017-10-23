@@ -12,7 +12,7 @@ Vue.component('sidebar-comp', {
                                     <li><router-link to="/editProfile"><i class="material-icons" aria-hidden="true">create</i>Edit Profile</router-link></li>
                                     <li><i class="material-icons" aria-hidden="true">local_post_office</i>Posts</li>
                                     <li><router-link :to='"/friends/"+userUid' ><i class="material-icons" aria-hidden="true">group</i>Friends</router-link></li>
-                                     <li><i class="material-icons">message</i>Messages</li>
+                                    <li><router-link :to='"/message/"+userUid' ><i class="material-icons">message</i>Messages</router-link></li>
                                 </ul>
                             </div>
                     </div>

@@ -202,6 +202,12 @@ const routes = [
         name: 'searchResultsComp',
         component: searchResults,
         props: true
+    },
+    {
+        path: '/message/:id',
+        name: 'messaging-comp',
+        component: messenger,
+       
     }
 
 ]
