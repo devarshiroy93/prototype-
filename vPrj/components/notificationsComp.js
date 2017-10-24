@@ -6,6 +6,8 @@ Vue.component('notification-comp', {//will show notifications for friend request
                          <p v-for = "notification in notificationsArray">
                          <router-link :to='"/friends/"+userId' ><i class="material-icons">notifications</i></span>{{notification.message}}</router-link>
                          </p>
+                         <p  v-if="postActivityNotifications.length>0" v-for = "notification in notificationsArray" >
+                         </p>
                         </div>
                         </div>
                        
@@ -16,7 +18,8 @@ Vue.component('notification-comp', {//will show notifications for friend request
             userId: '',
             friendRequestCount: 0,
             friendRequestAccepted: [],
-            notificationsArray: []
+            notificationsArray: [],
+            postActivityNotifications : []
         }
     },
     methods: {
@@ -72,12 +75,18 @@ Vue.component('notification-comp', {//will show notifications for friend request
                 }
 
             }.bind(this));
-        }
-
+        },
+    fetchPostActivitynotifications : function(){
+        firebase.database().ref().on('child_added',function(){
+            
+        })
+    }
     },
     created: function () {
         this.userId = store.getters.getCurrentUser.uid;
         this.fetchFriendRequestcount();
+        
         this.fetchFriendReqestAcceptance();
+        //this.fetchPostActivitynotifications();
     }
 })

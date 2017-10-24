@@ -1,5 +1,5 @@
-var friendListComp = Vue.component('friend-list',{
-'template' : `	<div>
+var friendListComp = Vue.component('friend-list', {
+	'template': `	<div>
 					<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 friendListComp">
 						<div class="col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6 col-sm-offset-3 col-sm-6 col-xs-12 friendRequestPanel" v-if ="showRequestSection"><span class="friendRequestText subheader">Friend Requests</span>
 						<hr class="divider">
@@ -29,69 +29,70 @@ var friendListComp = Vue.component('friend-list',{
 						</div>
 					</div>
 				</div>`,
- data: function () {
-        return {
-			showRequestSection : false,
-			friendRequests : [],
-			showFriendsSection : false,
-			friends : []
-        }
-    },
-	methods : {
-		fetchUsersInfo : function(from,key,purpose){
+	data: function () {
+		return {
+			showRequestSection: false,
+			friendRequests: [],
+			showFriendsSection: false,
+			friends: []
+		}
+	},
+	methods: {
+		fetchUsersInfo: function (from, key, purpose) {
 			var friendLister = {};
-			firebase.database().ref('users').child(from).once('value').then(function(snapshot){
-				
+			firebase.database().ref('users').child(from).once('value').then(function (snapshot) {
+
 				friendLister = snapshot.val();
 				friendLister.key = key;
-				if(purpose === "friendRequests")
-					{ this.friendRequests.push(friendLister) ; 
-					  this.showRequestSection = true}
-				else{ 
+				if (purpose === "friendRequests") {
+					this.friendRequests.push(friendLister);
+					this.showRequestSection = true
+				}
+				else {
 					this.friends.push(friendLister);
 					this.showFriendsSection = true;
 				}
-				
+
 			}.bind(this))
 		},
-		acceptRequest : function(uid,key,obj){
-			var promise = addFriend(uid,this.$route.params.id);
-			promise.then(function(result){
-				if(result.database){
-					addFriend(this.$route.params.id,uid).then(function(result){
-						if(result.database){
-							this.removeFriendRequest(key,obj);
+		acceptRequest: function (uid, key, obj) {
+			var promise = addFriend(uid, this.$route.params.id);
+			promise.then(function (result) {
+				if (result.database) {
+					addFriend(this.$route.params.id, uid).then(function (result) {
+						if (result.database) {
+							this.removeFriendRequest(key, obj);
 							this.decreaseFriendRequestCount(this.userUid);
-							pushNotificationsforUser(uid,obj.displayName)
+							pushNotificationsforUser(uid, store.getters.getCurrentUser.displayName)
 						}
-					}.bind(this))	
-				}		
+					}.bind(this))
+				}
 			}.bind(this))
-			
+
 		},
-		removeFriendRequest : function(key,obj){
+		removeFriendRequest: function (key, obj) {
 			var tableName = this.$route.params.id;
-			var ref = key ;
-			deletefromDatabase(tableName,ref);
-			this.friendRequests.splice(this.friendRequests.indexOf(obj),1);
+			var ref = key;
+			deletefromDatabase(tableName, ref);
+			this.friendRequests.splice(this.friendRequests.indexOf(obj), 1);
 		},
-		decreaseFriendRequestCount : function(id){
+		decreaseFriendRequestCount: function (id) {
 			negativeTransactionForLikeCount(id)
 		}
 	},
-	created : function(){
-		this.userUid = this.$route.params.id ;
+	created: function () {
+		this.userUid = this.$route.params.id;
 		this.$route.params.id
-		firebase.database().ref('friendRequests/'+this.$route.params.id).on('child_added',function(snapshot){
-			snapshot.val() !== null ? this.showRequestSection = true :  this.showRequestSection = false 
-			this.fetchUsersInfo(snapshot.val().from,snapshot.key,"friendRequests");
-			}.bind(this))
-			
-		firebase.database().ref('friends/'+this.$route.params.id).on('child_added',function(snapshot){
-			this.fetchUsersInfo(snapshot.val().friendId,snapshot.key,"friends");
+		firebase.database().ref('friendRequests/' + this.$route.params.id).on('child_added', function (snapshot) {
+			snapshot.val() !== null ? this.showRequestSection = true : this.showRequestSection = false
+			this.fetchUsersInfo(snapshot.val().from, snapshot.key, "friendRequests");
 		}.bind(this))
-		
-		firebase.database().ref('notifications/'+this.userUid+'/friendRequestAcceptance').remove();
+
+		firebase.database().ref('friends/' + this.$route.params.id).on('child_added', function (snapshot) {
+			this.fetchUsersInfo(snapshot.val().friendId, snapshot.key, "friends");
+		}.bind(this))
+
+		firebase.database().ref('notifications/' + this.userUid + '/friendRequestAcceptance').remove();
 	}
 }
 )

@@ -5,7 +5,9 @@ const store = new Vuex.Store({
         toggleView: false,
         commentList: [],
         currentPostKey: '',
-		friendList : []
+        friendList: [],
+        friendsNotifications: [],
+        postNotifications: []
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -23,10 +25,16 @@ const store = new Vuex.Store({
         assignCurrentPostKey(state, key) {
             state.currentPostKey = key;
         },
-		assignFriends(state,friendList){
-			state.friendList = friendList;
-		},
-        
+        assignFriends(state, friendList) {
+            state.friendList = friendList;
+        },
+        assignFriendsNotifications(state, friendsNotifications) {
+            state.friendsNotifications = friendsNotifications
+        },
+        assignPostNotifications(state, postNotifications) {
+            state.postNotifications = postNotifications
+        }
+
 
 
     },
@@ -46,9 +54,15 @@ const store = new Vuex.Store({
         getCurrentPostKey(state) {
             return state.currentPostKey
         },
-		getFriends (state){
-			return state.friendList;
-		}
+        getFriends(state) {
+            return state.friendList;
+        },
+        getFriendsNotifications(state) {
+            return state.friendsNotifications
+        },
+        getPostNotifications(state) {
+            return state.PostNotifications
+        },
     }
 
 })
