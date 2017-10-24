@@ -19,7 +19,7 @@ Vue.component('notification-comp', {//will show notifications for friend request
             friendRequestCount: 0,
             friendRequestAccepted: [],
             notificationsArray: [],
-            postActivityNotifications : []
+            postActivityNotifications: []
         }
     },
     methods: {
@@ -28,7 +28,7 @@ Vue.component('notification-comp', {//will show notifications for friend request
             if (source === "friendRequestAcceptance") {
                 if (this.friendRequestAccepted.length === 1) {
                     message = this.friendRequestAccepted[0].friendName;
-                } else if (his.friendRequestAccepted.length === 2) {
+                } else if (this.friendRequestAccepted.length === 2) {
                     for (var i = 0; i < 2; i++) {
                         message = this.friendRequestAccepted[0].friendName + ' ' + this.friendRequestAccepted[1].friendName;
                     }
@@ -40,7 +40,7 @@ Vue.component('notification-comp', {//will show notifications for friend request
                     message += ' and' + remCountOfAcceptance + ' others';
                 }
                 message += ' ' + messagesObject.notificationMessages.requestAcceptanceMessageTail;
-               
+
                 this.notificationsArray.push({ 'message': message });
             } else if (source === "friendRequestReceival") {
                 if (this.friendRequestCount > 0) {
@@ -58,7 +58,7 @@ Vue.component('notification-comp', {//will show notifications for friend request
                 this.friendRequestCount = snap.exportVal();
                 if (this.friendRequestCount !== null) {
                     this.notificationsComposer('friendRequestReceival');
-                    
+
                 }
             }.bind(this))
         },
@@ -70,23 +70,30 @@ Vue.component('notification-comp', {//will show notifications for friend request
                     var keys = Object.keys(data.val());
                     for (var i = 0; i < keys.length; i++) {
                         this.friendRequestAccepted.push(data.val()[keys[i]]);
+                        store.commit('assignFriendsNotifications',this.friendRequestAccepted)
                         this.notificationsComposer('friendRequestAcceptance')
                     }
                 }
 
             }.bind(this));
         },
-    fetchPostActivitynotifications : function(){
-        firebase.database().ref().on('child_added',function(){
-            
-        })
-    }
+        fetchPostActivitynotifications: function () {
+            firebase.database().ref().on('child_added', function () {
+
+            })
+        },
+
     },
     created: function () {
         this.userId = store.getters.getCurrentUser.uid;
         this.fetchFriendRequestcount();
-        
-        this.fetchFriendReqestAcceptance();
+        if (store.getters.getFriendsNotifications.length === 0) {
+            this.fetchFriendReqestAcceptance();
+        } else {
+            this.friendRequestAccepted = store.getters.getFriendsNotifications;
+            this.notificationsComposer('friendRequestAcceptance');
+        }
+
         //this.fetchPostActivitynotifications();
     }
 })
