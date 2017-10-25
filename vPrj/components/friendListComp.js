@@ -93,6 +93,7 @@ var friendListComp = Vue.component('friend-list', {
 		}.bind(this))
 
 		firebase.database().ref('notifications/' + this.userUid + '/friendRequestAcceptance').remove();
+		store.commit('assignFriendsNotifications',[]);// making friend noifictaions blank in store
 	}
 }
 )

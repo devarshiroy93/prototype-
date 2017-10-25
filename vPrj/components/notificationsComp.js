@@ -1,13 +1,18 @@
 Vue.component('notification-comp', {//will show notifications for friend requests and post activity (Eg Like,Comment)
     template: `<div>
-                    <div class="notificationComp notificationHeader col-md-12 col-lg-12 col-sm-12 col-xs-12" v-if="notificationsArray.length>0">
+                    <div class="notificationComp notificationHeader col-md-12 col-lg-12 col-sm-12 col-xs-12" v-if="notificationsArray.length>0 || postActivityNotifications.length>0 ">
                         <div class="notificationHeader subheader">
-                         <div class="notificationBody body2">
-                         <p v-for = "notification in notificationsArray">
-                         <router-link :to='"/friends/"+userId' ><i class="material-icons">notifications</i></span>{{notification.message}}</router-link>
+                         <div class="notificationBody body2" >
+                         <div v-if="notificationsArray.length>0">
+                           <div v-for = "notification in notificationsArray">
+                            <router-link :to='"/friends/"+userId'><i class="material-icons">notifications</i></span>{{notification.message}}</router-link>
+                            </div>
+                         </div>
+                       <div v-if="postActivityNotifications.length>0">
+                         <p   v-for = "notification in postActivityNotifications" >
+                            <span v-on:click="navigateToPost(notification.postKey)"><i class="material-icons">notifications</i>{{notification.message}}</span>
                          </p>
-                         <p  v-if="postActivityNotifications.length>0" v-for = "notification in notificationsArray" >
-                         </p>
+                        </div> 
                         </div>
                         </div>
                        
@@ -23,7 +28,8 @@ Vue.component('notification-comp', {//will show notifications for friend request
         }
     },
     methods: {
-        notificationsComposer: function (source) {
+        notificationsComposer: function (source, postKey, commentator) {
+            var message = '';
             var messagesObject = messageComposer;
             if (source === "friendRequestAcceptance") {
                 if (this.friendRequestAccepted.length === 1) {
@@ -49,6 +55,17 @@ Vue.component('notification-comp', {//will show notifications for friend request
                     this.notificationsArray.push({ 'message': message });
                 }
 
+            } else {
+                var msgBucket = {};
+                message = commentator.friendName;
+                if (commentator.count > 1) {
+                    message = message + " " + messagesObject.postNotificationMessages.commentNotification.midMessage + " " + (commentator.count-1).toString() + " " + messagesObject.postNotificationMessages.commentNotification.others;
+                } else {
+                    message = message + " " 
+                }
+                message = message+ " " +  messagesObject.postNotificationMessages.commentNotification.messageTail;
+                msgBucket = { 'message': message, 'postKey': postKey }
+                this.postActivityNotifications.push(msgBucket);
             }
 
         },
@@ -70,18 +87,21 @@ Vue.component('notification-comp', {//will show notifications for friend request
                     var keys = Object.keys(data.val());
                     for (var i = 0; i < keys.length; i++) {
                         this.friendRequestAccepted.push(data.val()[keys[i]]);
-                        store.commit('assignFriendsNotifications',this.friendRequestAccepted)
+                        store.commit('assignFriendsNotifications', this.friendRequestAccepted)
                         this.notificationsComposer('friendRequestAcceptance')
                     }
                 }
 
             }.bind(this));
         },
-        fetchPostActivitynotifications: function () {
-            firebase.database().ref().on('child_added', function () {
-
-            })
+        fetchPostActivitynotifications: function (user) {
+            firebase.database().ref('notifications/postActivityNotifications/' + user).on('child_added', function (snap) {
+                this.notificationsComposer('', snap.key, snap.val())
+            }.bind(this))
         },
+        navigateToPost: function (key) {
+            router.push({ name: 'singularpage', params: { postData: key } });
+        }
 
     },
     created: function () {
@@ -94,6 +114,6 @@ Vue.component('notification-comp', {//will show notifications for friend request
             this.notificationsComposer('friendRequestAcceptance');
         }
 
-        //this.fetchPostActivitynotifications();
+        this.fetchPostActivitynotifications(this.userId);
     }
 })

@@ -18,9 +18,10 @@ var individualPostcomp = Vue.component('singular-page', {
     data: function () {
         return {
             comments: {},
-			postDataTemp : '',// this data property added for bug fixing as prop property coming as undefined in callback block 
-            modalContent : null,
-            showCustModal : false
+            postDataTemp: '',// this data property added for bug fixing as prop property coming as undefined in callback block 
+            modalContent: null,
+            showCustModal: false,
+            currentCommentData: {},
         }
 
     },
@@ -28,36 +29,64 @@ var individualPostcomp = Vue.component('singular-page', {
         postComment: function (commentData) {
             var filteredCommentData = {
                 body: commentData.commentbody,
-                author: commentData.currentUser,
+                author: store.getters.getCurrentUser.uid,
                 timeStamp: Date.now(),
 
             };
+            this.currentCommentData = commentData
+
             var promise = pushCommentsIntoDataBase(filteredCommentData, commentData.key)
             promise.then(function (result) {
                 //result ? alert('comment posted') : alert('comment not posted');
-            });
-            var countPromise = transactionServiceFunction(commentData.createdby,commentData.key,'comment');
+                if (store.getters.getCurrentUser.uid !== this.postDataTemp.createdby) {
+                    this.pushCommentActivityNotification(this.currentCommentData.createdby, this.postDataTemp.key, store.getters.getCurrentUser.providerData[0].displayName);
+                }
+
+            }.bind(this));
+            var countPromise = transactionServiceFunction(commentData.createdby, commentData.key, 'comment');
             countPromise.then(function (response) {
                 console.log(response)
-               this.postDataTemp.commentCount = response.snapshot.exportVal()
+                this.postDataTemp.commentCount = response.snapshot.exportVal()
             }.bind(this))
         },
-        showLikes : function(data){
+        showLikes: function (data) {
             this.modalContent = data;
             this.showCustModal = true
         },
-        closeModal : function(){
-			this.showCustModal = false;
-		}
+        closeModal: function () {
+            this.showCustModal = false;
+        },
+        pushCommentActivityNotification: function (user, commentKey, createdBy) {
+            pushPostActivityNotificationsforUser(user, commentKey, createdBy);
+            updateCommentNotifcation(user, commentKey);
+
+        },
+        fetchPostData: function (user, postKey) {
+            firebase.database().ref('posts/' + user + '/' + postKey).on('value', function (snap) {
+                this.postDataTemp = snap.val();
+                this.postDataTemp.key = postKey
+                this.postDataTemp.timeStamp = processTimeStamp(this.postDataTemp.timeStamp)
+            }.bind(this))
+        },
+        checkAndFetchLongPostData: function () {
+            if (this.postData.isChopped) {
+                firebase.database().ref('longPostTexts/' + this.postDataTemp.key).on('child_added', function (response) {
+                    this.postDataTemp.body += response.val();
+                }.bind(this))
+            }
+        }
 
     },
     created: function () {
+
         this.postDataTemp = this.postData
-        if (this.postData.isChopped) {
-            firebase.database().ref('longPostTexts/' + this.postDataTemp.key).on('child_added',function (response) {
-                this.postDataTemp.body += response.val();
-            }.bind(this))
+        if (typeof (this.postDataTemp) === "string") {
+            this.fetchPostData(store.getters.getCurrentUser.uid, this.postDataTemp);
+            this.checkAndFetchLongPostData();
+        } else {
+            this.checkAndFetchLongPostData();
         }
+
     }
 
 })

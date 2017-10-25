@@ -110,6 +110,14 @@ function pushNotificationsforUser(ref,acceptorName){
     return error
     })
 }
+
+function pushPostActivityNotificationsforUser(user,commentKey,createdBy){
+    return firebase.database().ref('notifications/postActivityNotifications/'+user+'/'+commentKey).set({'friendName' : createdBy}).then(function(result){
+        return result
+    }).catch(function(error){
+    return error
+    })
+}
 function fetchDatafromTable(tableName,user,subChild){
   return  firebase.database().ref(tableName).child(user).child(subChild).once('value').then(function(value){
       return value
