@@ -24,7 +24,7 @@ var negativeTransactionForLikeCount = function(id){
 })
 }
 var updateCommentNotifcation = function(user,postKey){
-	return firebase.database().ref('notifications/postActivityNotifications'+'/'+user+'/'+postKey ).child('count').transaction(function(count){
+	return firebase.database().ref('notifications/postActivityNotifications'+'/'+user+'/' ).child('postActivityCount').child(postKey).transaction(function(count){
 		return count+1;
 	})
 }

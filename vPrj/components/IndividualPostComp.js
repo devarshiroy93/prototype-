@@ -86,7 +86,8 @@ var individualPostcomp = Vue.component('singular-page', {
         } else {
             this.checkAndFetchLongPostData();
         }
-
+        firebase.database().ref('notifications/postActivityNotifications/'+store.getters.getCurrentUser.uid + '/' + this.postDataTemp.key ).remove();
+        firebase.database().ref('notifications/postActivityNotifications/'+store.getters.getCurrentUser.uid + '/'+ 'postActivityCount'+ '/' + this.postDataTemp.key ).remove()
     }
 
 })

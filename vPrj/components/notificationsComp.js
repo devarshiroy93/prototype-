@@ -24,11 +24,12 @@ Vue.component('notification-comp', {//will show notifications for friend request
             friendRequestCount: 0,
             friendRequestAccepted: [],
             notificationsArray: [],
-            postActivityNotifications: []
+            postActivityNotifications: [],
+            tempArray: []
         }
     },
     methods: {
-        notificationsComposer: function (source, postKey, commentator) {
+        notificationsComposer: function (source, friendName, activityCount,postKey) {
             var message = '';
             var messagesObject = messageComposer;
             if (source === "friendRequestAcceptance") {
@@ -57,15 +58,18 @@ Vue.component('notification-comp', {//will show notifications for friend request
 
             } else {
                 var msgBucket = {};
-                message = commentator.friendName;
-                if (commentator.count > 1) {
-                    message = message + " " + messagesObject.postNotificationMessages.commentNotification.midMessage + " " + (commentator.count-1).toString() + " " + messagesObject.postNotificationMessages.commentNotification.others;
-                } else {
-                    message = message + " " 
-                }
-                message = message+ " " +  messagesObject.postNotificationMessages.commentNotification.messageTail;
-                msgBucket = { 'message': message, 'postKey': postKey }
-                this.postActivityNotifications.push(msgBucket);
+                message = friendName;
+               
+                    if (activityCount > 1) {
+                        message = message + " " + messagesObject.postNotificationMessages.commentNotification.midMessage + " " + (activityCount) + " " + messagesObject.postNotificationMessages.commentNotification.others;
+                    } else {
+                        message = message + " "
+                    }
+                    message = message + " " + messagesObject.postNotificationMessages.commentNotification.messageTail;
+                    msgBucket = { 'message': message, 'postKey': postKey }
+                    this.postActivityNotifications.push(msgBucket);
+                
+
             }
 
         },
@@ -95,9 +99,19 @@ Vue.component('notification-comp', {//will show notifications for friend request
             }.bind(this));
         },
         fetchPostActivitynotifications: function (user) {
-            firebase.database().ref('notifications/postActivityNotifications/' + user).on('child_added', function (snap) {
-                this.notificationsComposer('', snap.key, snap.val())
-            }.bind(this))
+             return firebase.database().ref('notifications/postActivityNotifications/' + user).once('value',function(snap){
+                return snap;
+            }).catch(function(error){
+                return error
+            })
+        },
+        processPostActivityNotification : function(val){
+           var keys = Object.keys(val);
+           for(var i = 0 ; i< keys.length-1 ;i++){
+               console.log(val[keys[i]].friendName);
+               console.log(val.postActivityCount[keys[i]])
+               this.notificationsComposer('',val[keys[i]].friendName,val.postActivityCount[keys[i]],keys[i])
+           }
         },
         navigateToPost: function (key) {
             router.push({ name: 'singularpage', params: { postData: key } });
@@ -114,6 +128,12 @@ Vue.component('notification-comp', {//will show notifications for friend request
             this.notificationsComposer('friendRequestAcceptance');
         }
 
-        this.fetchPostActivitynotifications(this.userId);
+        this.fetchPostActivitynotifications(this.userId).then(function(result){
+            if(result.ref.database){
+                this.processPostActivityNotification(result.val())
+            }else{
+                alert('connection broken')
+            }
+        }.bind(this));
     }
 })
