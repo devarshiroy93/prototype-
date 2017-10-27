@@ -25,7 +25,6 @@ Vue.component('notification-comp', {//will show notifications for friend request
             friendRequestAccepted: [],
             notificationsArray: [],
             postActivityNotifications: [],
-            tempArray: []
         }
     },
     methods: {
