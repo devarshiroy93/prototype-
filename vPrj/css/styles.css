@@ -1140,3 +1140,11 @@ However, delay the fade out process for 2.5 seconds */
      margin-right: 0px; 
 }
 }
+/*CSS for messaging Component starts*/
+.messageContainer{
+    background: #f8f8ff;
+    margin-top: 16px;
+    border-radius: 4px;
+    padding: 6px;
+}
+/*CSS for messaging Component ends*/
