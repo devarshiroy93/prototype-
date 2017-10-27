@@ -8,7 +8,7 @@ Vue.component('modal-comp', {
 					<span class="close" v-on:click ="closeCustModal">&times;</span>
 					<div v-if='likeUsers.length>0' >
 					<div v-for='likeUser in likeUsers'>
-					<user-cards :friend = likeUser ></user-cards>
+					<user-cards :friend = likeUser v-on:selected-user = "getSelectedUser($event)"></user-cards>
 					</div>
 					</div>
 					<div>
@@ -30,11 +30,19 @@ Vue.component('modal-comp', {
 	watch: {
 		'showModal': function () {
 			if (this.showModal) {
-				if (typeof (this.modalContent) === "string") {
-					this.contentType['uidtype']();
-				} else if (this.modalContent.length === 0) {
-					this.contentType['arrayType']();
+				if (this.modalContent !== undefined) {
+					if (typeof (this.modalContent) === "string") {
+						if (this.modalContent === "getFriends") {
+							this.getFriends();
+						} else {
+							this.contentType['uidtype']();
+						}
+
+					} else if (this.modalContent.length === 0) {
+						this.contentType['arrayType']();
+					}
 				}
+
 			}
 		}
 	},
@@ -53,7 +61,7 @@ Vue.component('modal-comp', {
 			})
 				.catch(function (error) {
 					return error;
-			})
+				})
 
 
 		},
@@ -79,7 +87,18 @@ Vue.component('modal-comp', {
 			}).catch(function (error) {
 				return error;
 			})
-		}
+		},
+		getFriends : function(){
+			firebase.database().ref('friends/' + this.$route.params.id).on('child_added', function (snapshot) {
+			this.fetchUsersInfo(snapshot.val().friendId).then(function(response){
+				this.likeUsers.push(response.val());
+			}.bind(this));
+		}.bind(this))
+	},
+	getSelectedUser : function(user){
+		this.$emit('get-user',user);
+		this.closeCustModal()
+	}
 	},
 	created: function () {
 
