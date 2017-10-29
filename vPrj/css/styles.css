@@ -1147,4 +1147,7 @@ However, delay the fade out process for 2.5 seconds */
     border-radius: 4px;
     padding: 6px;
 }
+.messageContainer .panel-body{
+    min-height : 31em;
+}
 /*CSS for messaging Component ends*/
