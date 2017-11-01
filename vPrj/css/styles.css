@@ -1150,4 +1150,26 @@ However, delay the fade out process for 2.5 seconds */
 .messageContainer .panel-body{
     min-height : 31em;
 }
+.newMessageCount{
+    position: absolute;
+    text-align: center;
+    right: 0;
+    height: 2em;
+    width: 2em;
+    line-height: 2;
+    border-radius: 50%;
+    background: #dc3b3b;
+    color: #fff;
+}
+.messageSearch{
+    float: right;
+}
+.messagePanel{
+    padding: 8px;
+}
+.messageContent{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 /*CSS for messaging Component ends*/
