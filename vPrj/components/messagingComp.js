@@ -13,6 +13,22 @@ var messenger = Vue.component('messaging-comp',{
                         </ul>
                     </div>
                     </div>
+                    <div class="chatWindow">
+                         <div class="col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8 col-sm-offset-2 col-sm-8 col-xs-12 friendRequestPanel">
+                        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 chatWindowImage"><img src="https://lh3.googleusercontent.com/-U8ToaA2kZh4/AAAAAAAAAAI/AAAAAAAAADI/z-Qjz5DJOXY/photo.jpg" alt="Card image cap" class="img-responsive"></div> <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10"><h5 class="commentTitle chatWindowUserName col-md-12 col-sm-12 col-xs-12 subheader">Devarshi Roy</h5></div>
+                        <ul class="list-group">
+                            <div>
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 otherUserComment friendRequest">
+                                    <!__ chat messages will go here __>
+                                </div>
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 sendMessagePanel">
+                                    <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10 writeMessagePanel">asddasd</div>
+                                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 sendButton"><span class="material-icons">send</span></div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                    </div>
                 </div>`,
                 data : function(){
                     return {

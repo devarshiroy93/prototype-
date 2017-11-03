@@ -1172,4 +1172,16 @@ However, delay the fade out process for 2.5 seconds */
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.chatWindowImage{
+    width:3em;
+    padding: 0;   
+}
+.chatWindowImage img{
+     border-radius:50%;
+}
+.chatWindowUserName{
+    padding: 0 0 10px 0;
+    margin: 10px 0 0 0;
+    border-bottom: 1px solid #31708f;
+}
 /*CSS for messaging Component ends*/
