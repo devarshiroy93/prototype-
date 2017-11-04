@@ -1163,6 +1163,7 @@ However, delay the fade out process for 2.5 seconds */
 }
 .messageSearch{
     float: right;
+    cursor: pointer;
 }
 .messagePanel{
     padding: 8px;
@@ -1180,8 +1181,93 @@ However, delay the fade out process for 2.5 seconds */
      border-radius:50%;
 }
 .chatWindowUserName{
-    padding: 0 0 10px 0;
-    margin: 10px 0 0 0;
     border-bottom: 1px solid #31708f;
+    color: #FFFFFF;
+}
+.chatWindow{
+    padding: 0px;
+    background: #FFFFFF;
+    margin-top: 12px;
+}
+.writeMessagePanel{
+    resize: none;
+    border-radius: 4px;
+}
+.sendMessagePanel{
+   padding: 12px;
+   background: #31708f;
+   border-bottom-right-radius: 4px;
+   border-bottom-left-radius: 4px;
+}
+.chatWindowMessageChain{
+    height: 25em;
+    overflow: auto;
+    padding-top: 8px;
+}
+.chatWindowHeader{
+    padding: 12px;
+    background: #31708f;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.profileSetting{
+    float: right;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.backTobutton{
+    cursor: pointer;
+    margin: 10px 8px 0 0;
+    float: left;
+    color: #FFFFFF;
+}
+.profileSetting{
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    float:right;
+    color: #FFFFFF;
+}
+.sendButtonPanel{
+    padding-right: 0;
+}
+.sendButton{
+    cursor: pointer;
+    float:right;
+    margin: 10px 0 0 0;
+    color: #FFFFFF;
+}
+.lastSeen{
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0
+}
+.messagingComp{
+    padding: 8px;
+}
+.receiverPanel{
+    /*margin-top: 8px;*/
+    border-radius: 4px;
+}
+.senderPanel{
+    float: right;
+    margin: 8px 0; 
+    border-radius: 4px;
+}
+.receiverPanelMsg{
+    padding: 8px; 
+    background: #eee;
+    display: inline-block;
+    max-width: 85%;
+}
+.senderPanelMsg{
+    padding: 8px;
+    background: ghostwhite;
+    max-width: 85%;
+    display: inline-block;
+    float: right;
+}
+.receiverMsgTime,.senderMsgTime{
+    float: right;
+    color: #212121;
 }
 /*CSS for messaging Component ends*/
