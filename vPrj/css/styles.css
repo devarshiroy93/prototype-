@@ -1139,6 +1139,9 @@ However, delay the fade out process for 2.5 seconds */
 .dashboard-card-block a i,.create-btn i {
      margin-right: 0px; 
 }
+.chatWindowMessageChain{
+    border-left: none !important;
+}
 }
 /*CSS for messaging Component starts*/
 .messageContainer{
@@ -1167,11 +1170,25 @@ However, delay the fade out process for 2.5 seconds */
 }
 .messagePanel{
     padding: 8px;
+    margin-top: 0;
+    border-radius: 0px;
+    overflow: auto;
+
+}
+.messageList{
+    margin-top: 0;
+    height: 92vh;
+    background: ghostwhite;
 }
 .messageContent{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.individualMessage{
+    border-bottom: 1px solid #31708f;
+    background: ghostwhite;
+    padding: 4px 0;
 }
 .chatWindowImage{
     width:3em;
@@ -1184,10 +1201,22 @@ However, delay the fade out process for 2.5 seconds */
     border-bottom: 1px solid #31708f;
     color: #FFFFFF;
 }
+.searchMessage{
+    padding: 0;
+    border: 0;
+    margin: 0 0 10px 0;
+    display: none;
+}
+.searchMessage input{
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 4px;
+    border: 1px solid dashed;
+}
 .chatWindow{
     padding: 0px;
     background: #FFFFFF;
-    margin-top: 12px;
+    /*margin-top: 12px;*/
 }
 .writeMessagePanel{
     resize: none;
@@ -1196,19 +1225,20 @@ However, delay the fade out process for 2.5 seconds */
 .sendMessagePanel{
    padding: 12px;
    background: #31708f;
-   border-bottom-right-radius: 4px;
-   border-bottom-left-radius: 4px;
+   /*border-bottom-right-radius: 4px;
+   border-bottom-left-radius: 4px;*/
 }
 .chatWindowMessageChain{
-    height: 25em;
+    height: 34em;
     overflow: auto;
     padding-top: 8px;
+    border-left: 1px solid #31708f;
 }
 .chatWindowHeader{
     padding: 12px;
     background: #31708f;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
+    /*border-top-right-radius: 4px;
+    border-top-left-radius: 4px;*/
 }
 .profileSetting{
     float: right;
@@ -1220,6 +1250,7 @@ However, delay the fade out process for 2.5 seconds */
     margin: 10px 8px 0 0;
     float: left;
     color: #FFFFFF;
+    display: none !important;
 }
 .profileSetting{
     cursor: pointer;
@@ -1242,7 +1273,7 @@ However, delay the fade out process for 2.5 seconds */
     padding: 0
 }
 .messagingComp{
-    padding: 8px;
+    padding: 0px;
 }
 .receiverPanel{
     /*margin-top: 8px;*/
