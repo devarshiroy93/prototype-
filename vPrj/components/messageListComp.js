@@ -1,7 +1,7 @@
 Vue.component('message-list',{
     'props':  ['friendList'],
     'template' :`<div>
-                    <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs col-xs-12 friendRequestPanel messageList scrollbar-customised"><div><span class="messageHeader subheader">Messages</span><span class="material-icons messageSearch" title="Search" v-on:click="">search</span></div>
+                    <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs col-xs-12 friendRequestPanel messageList scrollbar-customised"><div><span class="messageHeader subheader">Messages</span></div>
                         <hr class="divider">
                         <div class="md-12 col-lg-12 col-sm-12 col-xs-12 searchMessage"><input type="text" class="body2" placeholder="Search messages"/></div>
                         <ul class="list-group">
@@ -11,10 +11,15 @@ Vue.component('message-list',{
                                 </div>
                             </div>
                             <div>
-                            <button class="btn btn-primary createMsgBtn"><i class="material-icons">message</i></button>
+                            <button class="btn btn-primary createMsgBtn" v-on:click="sendNewMessageAction"><i class="material-icons">message</i></button>
                             </div>
                         </ul>
                     </div>
 				
-			</div>`
+			</div>`,
+	methods : {
+		sendNewMessageAction : function(){
+			this.$emit('newmessagetoggle')
+		}
+	}
 })

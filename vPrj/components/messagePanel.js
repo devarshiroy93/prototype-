@@ -1,8 +1,8 @@
 Vue.component('message-panel',{
-    props :[],
+    props :['showComp'],
     template :`<div>
     
-      <div class="col-md-8 col-lg-9 col-sm-8 col-xs-12 chatWindow">
+      <div class="col-md-8 col-lg-9 col-sm-8 col-xs-12 chatWindow" v-if="showComp">
                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 chatWindowHeader"><span class="material-icons backTobutton" title="Back">keyboard_backspace</span><div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 chatWindowImage"><img src="https://lh3.googleusercontent.com/-hU5QCbUp_lU/AAAAAAAAAAI/AAAAAAAAAb8/-XvzN_1BBVU/photo.jpg" alt="Card image cap" class="img-responsive"></div> <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8"><h5 class="commentTitle chatWindowUserName col-md-12 col-sm-12 col-xs-12 subheader">Devarshi Roy</h5><p class="lastSeen body3">last seen today at 12:30 PM</p></div><span class="material-icons profileSetting" title="Settings">settings</span></div>
                             <ul class="list-group">
                                 <div>
