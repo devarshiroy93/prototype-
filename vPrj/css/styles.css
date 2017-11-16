@@ -1301,4 +1301,14 @@ However, delay the fade out process for 2.5 seconds */
     float: right;
     color: #212121;
 }
+.createMsgBtn{
+    float: right;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 0 0px;
+    z-index: 1;
+    bottom: 2em;
+    margin-top: 1em;
+}
 /*CSS for messaging Component ends*/
