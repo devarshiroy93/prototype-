@@ -16,8 +16,9 @@ Vue.component('create-message',{
                                 </div>
                             </form>
                             <ul class="list-group" v-if="searchResults.length>0">
-                                <div v-for="user in searchResults"><user-cards :friend="user"></user-cards></div>
+                                <div v-for="user in searchResults"><user-cards :friend="user" @selected-user = "emitSelectedUser($event)"></user-cards></div>
                             </ul>
+
                     </div>
                 </div>`,
     methods : {
@@ -36,13 +37,15 @@ Vue.component('create-message',{
             }
             else{
                 if (user.displayName.toLowerCase().indexOf(userString.toLowerCase()) !== -1) {
-				console.log(user.displayName)
                 if(store.getters.getCurrentUser.uid !== undefined && store.getters.getCurrentUser.uid !== user.uid){
                     this.searchResults.push(user);
                 }
 			}
             }
 			
-		}
+		},
+        emitSelectedUser : function(user){
+            this.$emit('recipient-user',user)
+        }
     }
 })
