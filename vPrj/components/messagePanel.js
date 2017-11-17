@@ -23,7 +23,7 @@ Vue.component('message-panel',{
                                                  </div>
                                               </form>
                                         </div>
-                                        <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 sendButtonPanel"><span class="material-icons sendButton" title="Send Message">send</span></div>
+                                        <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 sendButtonPanel"><i class="material-icons">send</i></div>
                                     </div>
                                 </div>
                             </ul>
