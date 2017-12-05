@@ -3,7 +3,7 @@ var messenger = Vue.component('messaging-comp',{
     template : `<div>
                     <div class="messagingComp col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div><message-list v-on:newmessagetoggle = "showCreateMessageComp"></message-list></div>
-                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser"></message-panel></div>
+                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" @send-click = sendMessage($event)></message-panel></div>
                         <div><create-message :showComp= "showCreateComp" @recipient-user="passToMessagePanel($event)"></create-message></div>
                     </div>   
                 </div>`,
@@ -20,6 +20,10 @@ var messenger = Vue.component('messaging-comp',{
                     passToMessagePanel : function(user){
                         user !== undefined? this.recipientUser = user : '';
                         this.showCreateComp = false;
+                    },
+                    sendMessage : function(payload){
+                        console.log(payload);
+                        messagingService.sendMessage(payload);
                     }
 
                 }

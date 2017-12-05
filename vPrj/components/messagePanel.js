@@ -1,5 +1,11 @@
 Vue.component('message-panel',{
     props :['showComp','recipient'],
+    data : function(){
+        return {
+            messageText : ''
+        }
+
+    },
     template :`<div>
     
       <div class="col-md-8 col-lg-9 col-sm-8 col-xs-12 chatWindow" v-if="showComp">
@@ -17,14 +23,29 @@ Vue.component('message-panel',{
                                         <div class="col-md-11 col-lg-11 col-sm-11 col-xs-11  ">
                                             <div class="form-group">
                                                 <label for="chatInput"></label>
-                                                <input type="text" class="form-control " id="chatInput"/>
+                                                <input type="text" class="form-control " id="chatInput" v-model="messageText"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 sendButtonPanel"><i class="material-icons">send</i></div>
+                                        <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 sendButtonPanel" @click="sendClick(messageText)"><i class="material-icons">send</i></div>
                                     </div>
                                 </div>
                             </ul>
                         </div>
                     </div>
-    </div>`
+    </div>`,
+    methods : {
+        sendClick : function(text){
+            var messageInfoObject;
+            messageInfoObject = {};
+            messageInfoObject={
+                'userSenderId' : store.getters.getCurrentUser.uid,
+                'recipient' : this.recipient.uid,
+                'text' : text
+            };
+            if(messageInfoObject.recipient && messageInfoObject.userSenderId){
+                this.$emit('send-click', messageInfoObject);
+            }
+            
+        }
+    }
 })
