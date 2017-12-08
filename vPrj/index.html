@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel ="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="preload" href = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js" as="script">
+    <!--<link rel="preload" href = "https://www.gstatic.com/firebasejs/4.2.0/firebase.js" as="script">-->
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
 	<link rel="preload" href = "config/fbaseConnect.js" as="script">
     
     <script src="vue.js"></script>
@@ -65,7 +67,7 @@
 </div>
 
 <!-- config scripts add here-->
-<script src='https://www.gstatic.com/firebasejs/4.2.0/firebase.js'></script>
+<!--<script src='https://www.gstatic.com/firebasejs/4.2.0/firebase.js'></script>-->
 <script src='config/fbaseConnect.js'></script>
 <script src='config/messageComposer.js'></script>
 <!-- components scripts add here-->
@@ -94,6 +96,7 @@
 <script src='components/commentListComp.js'></script>
 <script src='components/ReadMoreComp.js'></script>
 <script src='components/snackbarComp.js'></script>
+<script src="components/unreadMessageComp.js"></script>
 
 <!-- directive js scripts ends here-->
 <script src='directives/heightWidthManagerDirective.js'></script>
