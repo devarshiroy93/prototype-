@@ -1,5 +1,5 @@
 messagingService = {
-    getMessages: function () {
+    getMessages: function (userId) {
 
     },
     pushMessage: function (messageObj) {
@@ -24,11 +24,14 @@ messagingService = {
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
         text = messageObj.text;
-        firebase.database().ref('convByUsers'+'/'+recipientId).set({'key' : key}).then(function(result){
-          
-        });
-        firebase.database().ref('convByUsers'+'/'+senderId).set({'key' : key}).then(function(result){
-            
-        });
+        firebase.database().ref('convByUsers'+'/'+recipientId).set({'key' : key});
+        firebase.database().ref('convByUsers'+'/'+senderId).set({'key' : key});
+        messagingService.incrementUnreadMessageCount(messageObj,key);
+    },
+
+    incrementUnreadMessageCount : function(messageObj,key){
+             firebase.database().ref('convByUsers'+'/'+messageObj.recipientId).child('unreadMessageCount').transaction(function(count){
+                 count+1;
+             });
     }
 }
