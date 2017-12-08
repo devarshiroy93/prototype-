@@ -9,14 +9,6 @@ var config = {
 };
 
 firebase.initializeApp(config);
-var db = firebase.firestore();
 
 
-//var citiesRef = db.collection("cities");
 
-db.collection('conversations').doc('converstaionId')
-                .collection('messages').doc('message1').set({
-                    messageContent: 'hi',
-                    attachment : 'none',
-                    from : 'sender'
-                });

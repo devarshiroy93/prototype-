@@ -2,22 +2,33 @@ messagingService = {
     getMessages: function () {
 
     },
-    sendMessage: function (messageObj) {
+    pushMessage: function (messageObj) {
         var parent;
         var recipient;
         var senderId;
         var unreadMessage
         parent = "conversations";
-        unreadMessage = "unreadMessage";
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
         text = messageObj.text;
-        firebase.database().ref(parent).child(recipientId).child(senderId).child(unreadMessage).push({
-            'message': text
-        }).then(function (result) {
-            firebase.database().ref(parent).child(recipientId).child('unreadMsgCount').transaction(function (count) {
-                return count + 1;
-            })
-        }.bind(this))
+        firebase.database().ref(parent+'/'+recipientId+'__'+senderId).push(messageObj).then(function(result){
+            if(result.database){
+                messagingService.pushConvIdIntoDatabase(messageObj,result.key)
+            }
+        });
+    },
+    pushConvIdIntoDatabase : function(messageObj,key){
+        var recipient;
+        var senderId;
+        var unreadMessag;
+        recipientId = messageObj.recipient;
+        senderId = messageObj.userSenderId;
+        text = messageObj.text;
+        firebase.database().ref('convByUsers'+'/'+recipientId).set({'key' : key}).then(function(result){
+          
+        });
+        firebase.database().ref('convByUsers'+'/'+senderId).set({'key' : key}).then(function(result){
+            
+        });
     }
 }

@@ -23,7 +23,7 @@ var messenger = Vue.component('messaging-comp',{
                     },
                     sendMessage : function(payload){
                         console.log(payload);
-                        messagingService.sendMessage(payload);
+                        messagingService.pushMessage(payload);
                     }
 
                 },
