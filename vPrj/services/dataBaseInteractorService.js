@@ -126,3 +126,10 @@ function fetchDatafromTable(tableName,user,subChild){
   })
 
 }
+function fetchUserData(userId){
+    return firebase.database().ref('users').child(userId).once('value').then(function(data){
+        return data.val();
+    }).catch(function(error){
+        console.log(error);
+    })
+}

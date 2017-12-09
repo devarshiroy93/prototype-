@@ -26,8 +26,19 @@ messagingService = {
         return firebase.database().ref(parent).once('value').then(function(data){
             return {'data' :data.val(),'key' :data.key};
         })
+    },
 
-
+    structureMessageUserData : function(messageData,senderData,currentUser){
+    var key ;
+       for(var i = 0 ;i<messageData.length;i++){
+        currentUser === messageData[i].userSenderId ? key = 'recipient':key = 'userSenderId';
+           for(var x =0 ;x<senderData.length;x++){
+            if(messageData[i][key] === senderData[x].uid) {
+                messageData[i].displayDetails = senderData[x];
+            }
+        }
+       }
+       return messageData;
     },
     pushMessage: function (messageObj) {
         var parent;
