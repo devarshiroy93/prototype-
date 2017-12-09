@@ -75,3 +75,14 @@ function calculateMinutesAndHours(date){
 	
 	return difference
 }
+
+
+function simplifyFirebaseArray(fireBaseArray){
+	var resultantArray = [];
+	var keys =  Object.keys(fireBaseArray);
+	for(var i =0 ;i<keys.length;i++){
+
+	 	resultantArray.push(fireBaseArray[keys[i]]);
+	}
+	return resultantArray;
+} 
