@@ -10,7 +10,7 @@ Vue.component('message-panel',{
     
       <div class="col-md-8 col-lg-9 col-sm-8 col-xs-12 chatWindow" v-if="showComp">
                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 chatWindowHeader"><span class="material-icons backTobutton" title="Back">keyboard_backspace</span>
-                            <user-cards :friend = "recipient"></user-cards>
+                            <user-cards :friend = "recipient.displayDetails === undefined ? recipient : recipient.displayDetails"></user-cards>
                             </div>
                             <ul class="list-group">
                                 <div>

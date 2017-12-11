@@ -77,12 +77,17 @@ function calculateMinutesAndHours(date){
 }
 
 
-function simplifyFirebaseArray(fireBaseArray){
+function simplifyFirebaseArray(fireBaseArray) {
 	var resultantArray = [];
-	var keys =  Object.keys(fireBaseArray);
-	for(var i =0 ;i<keys.length;i++){
+	if (fireBaseArray !== null ) {
+		var keys = Object.keys(fireBaseArray);
+		for (var i = 0; i < keys.length; i++) {
 
-	 	resultantArray.push(fireBaseArray[keys[i]]);
+			resultantArray.push(fireBaseArray[keys[i]]);
+		}
+		return resultantArray;
+	}else{
+		return [];
 	}
-	return resultantArray;
+
 } 
