@@ -18,7 +18,7 @@ Vue.component('message-panel',{
                                         <!__ chat messages will go here __>
                                         <div v-if="convMsgList.length>0">
                                             <div  v-for="text in convMsgList">
-                                                <div class="receiverPanel"><span class="receiverPanelMsg">{{text.text}}<span class="receiverMsgTime body3">11:58 AM</span></span></div>
+                                                <chat-chip :msg = "text"></chat-chip>
                                             </div>
                                         </div>
                                     </div>
@@ -37,6 +37,13 @@ Vue.component('message-panel',{
                     </div>
     </div>`,
     methods : {
+        determinePanelClass : function(){
+            if(text.userSenderId !== store.getters.getCurrentUser.uid){
+                return {class1 :'receiverPanel',class2 : 'receiverPanelMsg'}
+            }else{
+                return {class1 :'senderPanel',class2 : 'senderPanelMsg'}
+            }
+        },
         sendClick : function(text){
             var messageInfoObject;
             messageInfoObject = {};
@@ -45,9 +52,10 @@ Vue.component('message-panel',{
                 'recipient' : this.recipient.uid ,
                 'text' : text,
                 'timeStamp' : Date.now(),
+                'key' : this.recipient.convKey
             };
             if(messageInfoObject.recipient && messageInfoObject.userSenderId){
-                this.$emit('send-click', messageInfoObject,this.recipient.convKey);
+                this.$emit('send-click', messageInfoObject);
             }
             else{
                 alert('please define a recipient');

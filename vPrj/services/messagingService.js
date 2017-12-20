@@ -57,16 +57,16 @@ messagingService = {
         if(key !== ""){
             parent = parent + '/' + key
         }else{
-            parent =   parent+'/'+recipientId+'__'+senderId;
+            parent =  parent+'/'+recipientId+'__'+senderId;
         } 
         firebase.database().ref(parent).push(messageObj).then(function(result){
             if(result.database){
-                messagingService.pushConvIdIntoDatabase(messageObj,result.key);
+               key ? '': messagingService.pushConvIdIntoDatabase(messageObj,result.key);
                 messagingService.setLastMessage(messageObj,key)
             }
         });
     },
-    setLastMessage : function(messageOb,key){
+    setLastMessage : function(messageObj,key){
         var parent;
         var recipient;
         var senderId;

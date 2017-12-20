@@ -24,8 +24,10 @@ var messenger = Vue.component('messaging-comp', {
             this.showCreateComp = false;
             this.fetchMessageListOfConversation(user)
         },
-        sendMessage: function (payload,key) {
-              key?messagingService.pushMessageintoExistingConversation(payload) : messagingService.pushMessageintoExistingConversation(payload,key);
+        sendMessage: function (payload) {
+            var key = payload.key? payload.key : '';
+            delete payload.key;
+            messagingService.pushMessage(payload,key);
         },
         fetchMessageListOfConversation : function(userObj){
            console.log(userObj);
@@ -37,8 +39,7 @@ var messenger = Vue.component('messaging-comp', {
         },
         fetchMessageList : function(){
             firebase.database().ref('convByUsers/' + store.getters.getCurrentUser.uid).on('child_added', function (data) {
-                messagingService.fetchLastMessageOfConverstion(data.val().parent).then(function (data) {
-                    
+                messagingService.fetchLastMessageOfConverstion(data.val().parent).then(function (data) {   
                     this.messageData.push(data);
                 }.bind(this));
             }.bind(this))
