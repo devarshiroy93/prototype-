@@ -52,7 +52,7 @@ function pushPostIntoDatabase(postBody,isChopped, user, photoURL) {
 
 function pushCommentsIntoDataBase(commentData, id) {
     var id = id;
-    console.log(commentData);
+    
     return firebase.database().ref('comments/' + id).push({
         'author': commentData.author,
         'body': commentData.body,
@@ -130,6 +130,6 @@ function fetchUserData(userId){
     return firebase.database().ref('users').child(userId).once('value').then(function(data){
         return data.val();
     }).catch(function(error){
-        console.log(error);
+       
     })
 }

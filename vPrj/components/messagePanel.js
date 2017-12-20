@@ -1,5 +1,5 @@
 Vue.component('message-panel',{
-    props :['showComp','recipient'],
+    props :['showComp','recipient','convMsgList'],
     data : function(){
         return {
             messageText : ''
@@ -16,8 +16,11 @@ Vue.component('message-panel',{
                                 <div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 chatWindowMessageChain scrollbar-customised">
                                         <!__ chat messages will go here __>
-                                        <div class="receiverPanel"><span class="receiverPanelMsg">Receiver Panel...It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<span class="receiverMsgTime body3">11:55 AM</span></span></div>
-                                        <div class="senderPanel"><span class="senderPanelMsg">Sender Panel...It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).<span class="receiverMsgTime body3">11:58 AM</span></span></div>
+                                        <div v-if="convMsgList.length>0">
+                                            <div  v-for="text in convMsgList">
+                                                <div class="receiverPanel"><span class="receiverPanelMsg">{{text.text}}<span class="receiverMsgTime body3">11:58 AM</span></span></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 sendMessagePanel">
                                         <div class="col-md-11 col-lg-11 col-sm-11 col-xs-11  ">
@@ -39,11 +42,16 @@ Vue.component('message-panel',{
             messageInfoObject = {};
             messageInfoObject={
                 'userSenderId' : store.getters.getCurrentUser.uid,
-                'recipient' : this.recipient.uid,
-                'text' : text
+                'recipient' : this.recipient.uid ,
+                'text' : text,
+                'timeStamp' : Date.now(),
+                'key'  : this.recipient.convKey ? this.recipient.convKey : ''
             };
             if(messageInfoObject.recipient && messageInfoObject.userSenderId){
                 this.$emit('send-click', messageInfoObject);
+            }
+            else{
+                alert('please define a recipient');
             }
             
         }

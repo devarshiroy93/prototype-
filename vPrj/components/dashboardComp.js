@@ -68,7 +68,6 @@ var dashboardComp = Vue.component('dash-comp', {
             router.push('login')
         }
        this.data.uid ? checkIfUserExists(this.data.uid, this.data):''; //this function checks if user exits in database or not .If not then pushes user data into database.
-        console.log(this.isMobileView);
         this.isMobileView ? this.mobile = 'hidden-xs' : this.mobile = '';
 
 		//code for loading friends
@@ -92,7 +91,6 @@ var dashboardComp = Vue.component('dash-comp', {
         store.watch(function (state) {
             return state.toggleView
         }, function (data) {
-            console.log(data)
             data ? this.mobile = '' : this.mobile = 'hidden-xs'
         }.bind(this))
 		

@@ -40,7 +40,7 @@ Vue.component('comment-list', {
                     }
                 }
             }
-            console.log(comments);
+          
             this.commentList = comments;
 			comments =[];
 			this.comments = [];

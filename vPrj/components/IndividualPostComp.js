@@ -45,7 +45,7 @@ var individualPostcomp = Vue.component('singular-page', {
             }.bind(this));
             var countPromise = transactionServiceFunction(commentData.createdby, commentData.key, 'comment');
             countPromise.then(function (response) {
-                console.log(response)
+                
                 this.postDataTemp.commentCount = response.snapshot.exportVal()
             }.bind(this))
         },

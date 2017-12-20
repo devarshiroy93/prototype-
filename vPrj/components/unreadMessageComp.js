@@ -1,5 +1,5 @@
 Vue.component('unreadmsg-comp',{
-    props :['conversation'],
+    props :['convKey'],
      data: function(){
         return {
             unreadMsgCount : 0
@@ -16,7 +16,7 @@ Vue.component('unreadmsg-comp',{
    },
    methods : {
        fetchUnreadData : function(){
-        messagingService.fetchUnreadMessageCountList(this.conversation,store.getters.getCurrentUser.uid).then(function(snap){
+        messagingService.fetchUnreadMessageCountList(this.convKey,store.getters.getCurrentUser.uid).then(function(snap){
             this.unreadMsgCount = snap.data
         }.bind(this));
        }

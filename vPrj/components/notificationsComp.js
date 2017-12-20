@@ -107,8 +107,6 @@ Vue.component('notification-comp', {//will show notifications for friend request
         processPostActivityNotification: function (val) {
             var keys = Object.keys(val);
             for (var i = 0; i < keys.length - 1; i++) {
-                console.log(val[keys[i]].friendName);
-                console.log(val.postActivityCount[keys[i]])
                 this.notificationsComposer('', val[keys[i]].friendName, val.postActivityCount[keys[i]], keys[i])
             }
         },

@@ -34,7 +34,6 @@ var searchResults = Vue.component('searchresults-comp', {
 	methods: {
 		compareQuery: function (user) {
 			if (user.displayName.toLowerCase().indexOf(this.searchStringTemp.toLowerCase()) !== -1) {
-				console.log(user.displayName)
 				this.searchResults.push(user)
 			}
 		},

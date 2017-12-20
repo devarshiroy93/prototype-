@@ -37,7 +37,7 @@ Vue.component('create-post', {
                 choppedContent = this.bodyContent.slice(0, 250);
                 this.remContent = this.bodyContent.slice(250, this.bodyContent.length);
                 isChopped = true
-                console.log(choppedContent);
+              
             } else {
                 choppedContent = this.bodyContent
             }

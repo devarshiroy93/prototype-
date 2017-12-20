@@ -8,23 +8,29 @@ messagingService = {
             alert('data not retrieved')
         })
     },
-    fetchLastMessageOfConverstion : function(item){
-            parent ='conversations/'+item.parent+'/'+item.key;
+    fetchLastMessageOfConverstion : function(key){
+            parent ='lastMessageSet/'+key;
             return firebase.database().ref(parent).once('value').then(function(snap){
-                return snap.val();
+                return {'data' : snap.val(),'key':snap.key};
              }).catch(function(error){
                  alert('data not retrieved1')
              })
     },
-    fetchUnreadMessageCountList : function(messageObj,userId){
+    fetchUnreadMessageCountList : function(key,userId){
+        parent = 'unreadMessageCountList'+'/'+userId+'/'+key;
+        return firebase.database().ref(parent).once('value').then(function(data){
+            return {'data' :data.val(),'key' :data.key};
+        })
+    },
+    fetchConversation : function(messageObject){
         var parent;
         var recipient;
         var senderId;
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
-        parent = 'unreadMessageCountList'+'/'+userId+'/'+recipientId+'__'+senderId;
+        parent = 'conversations'+'/'+recipientId+'__'+senderId;
         return firebase.database().ref(parent).once('value').then(function(data){
-            return {'data' :data.val(),'key' :data.key};
+            return data.val();
         })
     },
 
@@ -48,11 +54,38 @@ messagingService = {
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
         text = messageObj.text;
-        firebase.database().ref(parent+'/'+recipientId+'__'+senderId).push(messageObj).then(function(result){
+        if(messageObj.key !== ""){
+            parent = parent + '/' + messageObj.key
+        }else{
+            parent =   parent+'/'+recipientId+'__'+senderId;
+        } 
+        firebase.database().ref(parent).push(messageObj).then(function(result){
             if(result.database){
-                messagingService.pushConvIdIntoDatabase(messageObj,result.key)
+                messagingService.pushConvIdIntoDatabase(messageObj,result.key);
+                messagingService.setLastMessage(messageObj)
             }
         });
+    },
+    pushMessageintoExistingConversation : function(msgObj){
+        var parent;
+        parent = "conversations/"+msgObj.key;
+
+
+    },
+    setLastMessage : function(messageObj){
+        var parent;
+        var recipient;
+        var senderId;
+        parent = "lastMessageSet";
+        recipientId = messageObj.recipient;
+        senderId = messageObj.userSenderId;
+        text = messageObj.text;
+         if(messageObj.key !== ""){
+            parent = parent + '/' + messageObj.key
+        }else{
+            parent =   parent+'/'+recipientId+'__'+senderId;
+        } 
+        firebase.database().ref(parent).set(messageObj);
     },
     pushConvIdIntoDatabase : function(messageObj,key){
         var recipient;

@@ -20,7 +20,7 @@ Vue.component('easy-friend',{
 		this.userIdTemp = this.userId;
 		this.postAuthorTemp = this.postAuthor;
 		firebase.database().ref('friendRequests/'+this.postAuthorTemp).on('child_added',function(snapshot){
-			console.log(snapshot.val());
+			
 			if(snapshot.val().from === this.userId){
 				this.friendButtonDisable = false
 			}
@@ -29,7 +29,7 @@ Vue.component('easy-friend',{
 		
 		
 			firebase.database().ref('friends/'+this.userIdTemp).on('child_added',function(snapshot){
-			console.log(snapshot.val());
+			
 			if(snapshot.val().friendId === this.postAuthor){
 				this.friendButtonDisable = false
 			}
