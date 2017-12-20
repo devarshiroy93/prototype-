@@ -24,8 +24,8 @@ var messenger = Vue.component('messaging-comp', {
             this.showCreateComp = false;
             this.fetchMessageListOfConversation(user)
         },
-        sendMessage: function (payload) {
-              messagingService.pushMessageintoExistingConversation(payload);
+        sendMessage: function (payload,key) {
+              key?messagingService.pushMessageintoExistingConversation(payload) : messagingService.pushMessageintoExistingConversation(payload,key);
         },
         fetchMessageListOfConversation : function(userObj){
            console.log(userObj);

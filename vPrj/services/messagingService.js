@@ -46,7 +46,7 @@ messagingService = {
        }
        return messageData;
     },
-    pushMessage: function (messageObj) {
+    pushMessage: function (messageObj,key) {
         var parent;
         var recipient;
         var senderId;
@@ -54,25 +54,19 @@ messagingService = {
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
         text = messageObj.text;
-        if(messageObj.key !== ""){
-            parent = parent + '/' + messageObj.key
+        if(key !== ""){
+            parent = parent + '/' + key
         }else{
             parent =   parent+'/'+recipientId+'__'+senderId;
         } 
         firebase.database().ref(parent).push(messageObj).then(function(result){
             if(result.database){
                 messagingService.pushConvIdIntoDatabase(messageObj,result.key);
-                messagingService.setLastMessage(messageObj)
+                messagingService.setLastMessage(messageObj,key)
             }
         });
     },
-    pushMessageintoExistingConversation : function(msgObj){
-        var parent;
-        parent = "conversations/"+msgObj.key;
-
-
-    },
-    setLastMessage : function(messageObj){
+    setLastMessage : function(messageOb,key){
         var parent;
         var recipient;
         var senderId;
@@ -80,8 +74,8 @@ messagingService = {
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
         text = messageObj.text;
-         if(messageObj.key !== ""){
-            parent = parent + '/' + messageObj.key
+         if(key !== ""){
+            parent = parent + '/' + key
         }else{
             parent =   parent+'/'+recipientId+'__'+senderId;
         } 
