@@ -1283,12 +1283,12 @@ However, delay the fade out process for 2.5 seconds */
     float: right;
     margin: 8px 0; 
     border-radius: 4px;
+    width: 100%
 }
 .receiverPanelMsg{
     padding: 8px; 
     background: #eee;
     display: inline-block;
-    max-width: 85%;
 }
 .senderPanelMsg{
     padding: 8px;
@@ -1298,7 +1298,6 @@ However, delay the fade out process for 2.5 seconds */
     float: right;
 }
 .receiverMsgTime,.senderMsgTime{
-    float: right;
     color: #212121;
 }
 .createMsgBtn{
