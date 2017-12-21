@@ -1,5 +1,8 @@
 Vue.component('message-list',{
     'props':  ['messageData'],
+    'data' :  function(){
+        return {'count' : 0}
+    },
     'template' :`<div>
                     <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs col-xs-12 friendRequestPanel messageList scrollbar-customised"><div><span class="messageHeader subheader">Messages</span></div>
                         <hr class="divider">
@@ -19,7 +22,10 @@ Vue.component('message-list',{
 			this.$emit('newmessagetoggle')
 		},
         getSelectedConversation : function(data){
-           this.$emit('selected-user',data);
+           if(this.count === 0 || data.type === "userSelected" ){
+                this.$emit('selected-user',data);
+                this.count+=1;
+           }
         }
     }, 
     created : function(){
@@ -43,11 +49,12 @@ Vue.component('messagecontactcard',{
                     timeStamp : '',
                     userSenderId : '',
                     email : ''
-                }
+                },
+                
             }
     } ,
     'template' : `<div>
-                        <div  class="col-md-12 col-lg-12 col-sm-12 col-xs-12 otherUserComment friendRequest" v-if="userData.show" @click= "selectConversation(userData)">
+                        <div  class="col-md-12 col-lg-12 col-sm-12 col-xs-12 otherUserComment friendRequest" v-if="userData.show" @click= "selectConversation(userData,'click')">
 							<div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 commentImage"><img :src="userData.photoURL" alt="Card image cap" class="img-responsive">
 							</div>
 							<div class="col-md-10 col-sm-10 col-xs-8 col-lg-10">
@@ -90,8 +97,10 @@ Vue.component('messagecontactcard',{
             this.userData.uid = data.uid;
             this.userData.convKey = this.rawData.key
             this.userData.show = true;
+            this.$emit('selected-conv',this.userData);
         },
         selectConversation : function(convData){
+            convData.type = 'userSelected'
             this.$emit('selected-conv',convData);
         }
     }
