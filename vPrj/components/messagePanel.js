@@ -50,14 +50,13 @@ Vue.component('message-panel',{
             messageInfoObject={
                 'userSenderId' : store.getters.getCurrentUser.uid,
                 'recipient' : this.recipient.uid ,
-                'text' : text,
+                'text' : text.toString(),
                 'timeStamp' : Date.now(),
                 'key' : this.recipient.convKey,
                 'index' : this.recipient.index, 
             };
             if(messageInfoObject.recipient && messageInfoObject.userSenderId){
-               // this.$emit('send-click', messageInfoObject);
-               console.log(messageInfoObject);
+               this.$emit('send-click', messageInfoObject);
             }
             else{
                 alert('please define a recipient');

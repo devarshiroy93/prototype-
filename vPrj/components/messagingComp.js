@@ -52,7 +52,6 @@ var messenger = Vue.component('messaging-comp', {
         var senderData = [];
         var unreadMessageCount = [];
         var key;
-        this.fetchMessageList();
-               
+        this.fetchMessageList();      
     }
 })
