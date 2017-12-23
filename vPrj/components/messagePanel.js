@@ -8,13 +8,13 @@ Vue.component('message-panel',{
     },
     template :`<div>
     
-      <div class="col-md-8 col-lg-9 col-sm-8 col-xs-12 chatWindow" v-if="showComp">
+      <div class="col-md-8 col-lg-9 col-sm-8 col-xs-12 chatWindow" v-if="showComp" v-scrolling = "'chatWindowMessageChain'">
                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 chatWindowHeader"><span class="material-icons backTobutton" title="Back">keyboard_backspace</span>
                             <user-cards :friend = "recipient.displayDetails === undefined ? recipient : recipient.displayDetails"></user-cards>
                             </div>
                             <ul class="list-group">
                                 <div>
-                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 chatWindowMessageChain scrollbar-customised">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 chatWindowMessageChain  scrollbar-customised">
                                         <!__ chat messages will go here __>
                                         <div v-if="convMsgList.length>0">
                                             <div  v-for="text in convMsgList">
@@ -52,8 +52,7 @@ Vue.component('message-panel',{
                 'recipient' : this.recipient.uid ,
                 'text' : text.toString(),
                 'timeStamp' : Date.now(),
-                'key' : this.recipient.convKey,
-                'index' : this.recipient.index, 
+                'key' : this.recipient.convKey
             };
             if(messageInfoObject.recipient && messageInfoObject.userSenderId){
                this.$emit('send-click', messageInfoObject);

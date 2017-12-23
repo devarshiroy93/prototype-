@@ -30,7 +30,6 @@ var messenger = Vue.component('messaging-comp', {
             messagingService.pushMessage(payload,key);
         },
         fetchMessageListOfConversation : function(userObj){
-           console.log(userObj);
            parent = 'conversations'+'/'+userObj.convKey;
            this.conversationMsgs = [];
            firebase.database().ref(parent).on('child_added',function(snap){

@@ -70,10 +70,9 @@ Vue.component('messagecontactcard',{
             convData.type = 'userSelected'
             this.$emit('selected-conv',convData);
         },
-        lastMessageSetUpdateBind : function(key){
+        lastMessageSetUpdateBind : function(key){// this method is used here to the update the child message card component .
           this.databaseRef === "" ?  '' :ref.off('value', this.databaseRef);
           this.databaseRef =   firebase.database().ref('lastMessageSet/'+key).on('child_changed',function(snap){
-                console.log(snap.val());
                 snap.key === "text" ? this.userData.text = snap.val():'';
             }.bind(this))
         }
