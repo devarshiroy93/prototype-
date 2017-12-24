@@ -65,7 +65,7 @@ Vue.component('messagecontactcard',{
             
             this.lastMessageSetUpdateBind(this.userData.convKey);
         },
-        selectConversation : function(convData,index){
+        selectConversation : function(convData,index){ //this method selects the contact card selected  
             convData.index = index;
             convData.type = 'userSelected'
             this.$emit('selected-conv',convData);

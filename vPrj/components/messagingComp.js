@@ -22,7 +22,8 @@ var messenger = Vue.component('messaging-comp', {
         passToMessagePanel: function (user) {
             user !== undefined ? this.recipientUser = user : '';
             this.showCreateComp = false;
-            this.fetchMessageListOfConversation(user)
+            this.fetchMessageListOfConversation(user);
+            user.type === 'userSelected' ? messagingService.resetUnReadMessageCountOfaParticularConversation(store.getters.getCurrentUser.uid,user.convKey) : '';
         },
         sendMessage: function (payload) {
             var key = payload.key? payload.key : '';
@@ -30,7 +31,12 @@ var messenger = Vue.component('messaging-comp', {
             messagingService.pushMessage(payload,key);
         },
         fetchMessageListOfConversation : function(userObj){
-           parent = 'conversations'+'/'+userObj.convKey;
+           var parent ;
+           var recipient;
+           var senderId;
+           recipientId = userObj.uid;
+           senderId = store.getters.getCurrentUser.uid;
+           userObj.convKey ? parent = 'conversations'+'/'+userObj.convKey :  parent = 'conversations'+'/'+recipientId+'__'+senderId ;
            this.conversationMsgs = [];
            firebase.database().ref(parent).on('child_added',function(snap){
             this.conversationMsgs.push(snap.val());
@@ -40,6 +46,7 @@ var messenger = Vue.component('messaging-comp', {
             firebase.database().ref('convByUsers/' + store.getters.getCurrentUser.uid).on('child_added', function (data) {
                 messagingService.fetchLastMessageOfConverstion(data.val().parent).then(function (data) {   
                     this.messageData.push(data);
+                    this.recipientUser.convKey = data.key
                 }.bind(this));
             }.bind(this))
         }
