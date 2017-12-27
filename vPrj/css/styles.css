@@ -1224,16 +1224,16 @@ However, delay the fade out process for 2.5 seconds */
 }
 .sendMessagePanel{
    padding: 12px;
-    border-top: 1px solid #31708f;
-    border-left: 1px solid #31708f
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc
    /*border-bottom-right-radius: 4px;
    border-bottom-left-radius: 4px;*/
 }
 .chatWindowMessageChain{
-    height: 34em;
+    height: 32em;
     overflow: auto;
     padding-top: 8px;
-    border-left: 1px solid #31708f;
+    border-left: 1px solid #ccc;
 }
 .chatWindowHeader{
     background: #31708f;
@@ -1261,6 +1261,7 @@ However, delay the fade out process for 2.5 seconds */
 .sendButtonPanel{
     padding-right: 0;
     cursor: pointer;
+    top: 10px;
 }
 .sendButtonPanel:hover{
     color: #31708f;
@@ -1296,12 +1297,12 @@ However, delay the fade out process for 2.5 seconds */
     background: #eee;
     display: inline-block;
     min-width: 10em;
-    margin: 8px 0;
+    margin: 0 0 8px 8px;;
     border: 1px solid #ccc;
     border-radius: 4px;
     
 }
-.receiverPanelMsg:after{
+/*.receiverPanelMsg:after{
     content: '';
     position: absolute;
     left: -5px;
@@ -1317,11 +1318,11 @@ However, delay the fade out process for 2.5 seconds */
     border: 7px solid #f5f5f5;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
-}
+}*/
 
-.receiverMsgTime span{
+/*.receiverMsgTime span{
     float: right;
-}
+}*/
 .senderMsgTime span{
     float: right;
 }
@@ -1335,7 +1336,7 @@ However, delay the fade out process for 2.5 seconds */
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.senderPanelMsg:after{
+/*.senderPanelMsg:after{
     content: '';
     position: absolute;
     right: -5px;
@@ -1351,20 +1352,22 @@ However, delay the fade out process for 2.5 seconds */
     border: 7px solid #f5f5f5;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
-}
+}*/
 .receiverMsgTime,.senderMsgTime{
     color: #212121;
     display: block;
 }
+.senderMsgTime{
+    color: #212121;
+    display: block;
+    clear: both;
+    float: right;
+    margin: 8px 0;
+}
 .createMsgBtn{
     float: right;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: 1px 2px 0 0px;
-    z-index: 1;
-    bottom: 2em;
-    margin-top: 1em;
+    background: transparent;
+    border: none;
 }
 .chatWindowHeader .otherUserComment {
     margin : 0px 0px 0px 0px;
@@ -1379,5 +1382,12 @@ However, delay the fade out process for 2.5 seconds */
 }
 .chatWindowHeader .commentImage img {
     border-radius: 50%
+}
+.chatImage{
+    width: 2em;
+    padding: 0;
+}
+.chatImage img{
+    border-radius: 50%;
 }
 /*CSS for messaging Component ends*/

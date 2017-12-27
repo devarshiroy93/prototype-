@@ -4,7 +4,13 @@ Vue.component('message-list',{
         return {'count' : 0}
     },
     'template' :`<div>
-                    <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs col-xs-12 friendRequestPanel messageList scrollbar-customised"><div><span class="messageHeader subheader">Messages</span></div>
+                    <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs col-xs-12 friendRequestPanel messageList scrollbar-customised">
+                    <div>
+                        <span class="messageHeader subheader">Messages</span>
+                        <button class="createMsgBtn" v-on:click="sendNewMessageAction">
+                            <i class="material-icons">message</i>
+                        </button>                        
+                    </div>
                         <hr class="divider">
                         <div v-if="messageData!== undefined ">
                         <div  v-for ="(conv,i) in messageData">
@@ -12,7 +18,6 @@ Vue.component('message-list',{
                         </div>
                         </div>
                         <div>
-                        <button class="btn btn-primary createMsgBtn" v-on:click="sendNewMessageAction"><i class="material-icons">message</i></button>
                         </div>
                     </div>
 				
