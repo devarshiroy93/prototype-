@@ -23,7 +23,7 @@ var messenger = Vue.component('messaging-comp', {
         passToMessagePanel: function (user) {
             user !== undefined ? this.recipientUser = user : '';
             this.showCreateComp = false;
-            user.index!==0? this.fetchMessageListOfConversation(user) : '';
+            this.fetchMessageListOfConversation(user) ;
             user.type === 'userSelected' ? messagingService.resetUnReadMessageCountOfaParticularConversation(store.getters.getCurrentUser.uid,user.convKey) : '';
         },
         sendMessage: function (payload) {
@@ -40,7 +40,11 @@ var messenger = Vue.component('messaging-comp', {
            var senderId;
            recipientId = userObj.uid;
            senderId = store.getters.getCurrentUser.uid;
+           if(store.getters.getSelectedConversation){
+               firebase.database().ref(store.getters.getSelectedConversation).off();
+           }
            userObj.convKey ? parent = 'conversations'+'/'+userObj.convKey :  parent = 'conversations'+'/'+recipientId+'__'+senderId ;
+           store.commit('assignSelectedConversation',parent);
            this.conversationMsgs = [];
            firebase.database().ref(parent).on('child_added',function(snap){
             this.conversationMsgs.push(snap.val());

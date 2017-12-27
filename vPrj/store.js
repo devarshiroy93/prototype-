@@ -7,7 +7,8 @@ const store = new Vuex.Store({
         currentPostKey: '',
         friendList: [],
         friendsNotifications: [],
-        postNotifications: []
+        postNotifications: [],
+        selectedConversation : ''
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -33,6 +34,9 @@ const store = new Vuex.Store({
         },
         assignPostNotifications(state, postNotifications) {
             state.postNotifications = postNotifications
+        },
+        assignSelectedConversation(state,convId){
+            state.selectedConversation = convId;
         }
 
 
@@ -46,23 +50,26 @@ const store = new Vuex.Store({
             return state.isMobile;
         },
         getToggledState(state, view) {
-            return state.toggleView
+            return state.toggleView;
         },
         getCommentlistofPost(state) {
-            return state.commentList
+            return state.commentList;
         },
         getCurrentPostKey(state) {
-            return state.currentPostKey
+            return state.currentPostKey;
         },
         getFriends(state) {
             return state.friendList;
         },
         getFriendsNotifications(state) {
-            return state.friendsNotifications
+            return state.friendsNotifications;
         },
         getPostNotifications(state) {
-            return state.PostNotifications
+            return state.PostNotifications;
         },
+        getSelectedConversation(state){
+            return state.selectedConversation;
+        }
     }
 
 })
