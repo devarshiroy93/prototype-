@@ -24,6 +24,7 @@ Vue.component('unreadmsg-comp',{
        registerUnreadCountChanges : function(){
            firebase.database().ref('unreadMessageCountList').child(store.getters.getCurrentUser.uid).child(this.convKey).on('child_changed',function(snap){
                 this.unreadMsgCount = snap.val();
+                this.$emit('play-notif');
            }.bind(this))
        }
        

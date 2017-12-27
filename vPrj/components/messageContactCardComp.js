@@ -24,7 +24,7 @@ Vue.component('messagecontactcard',{
 							<div class="col-md-10 col-sm-10 col-xs-8 col-lg-10">
 								<h5 class="commentTitle col-md-12 col-sm-12 col-xs-12 body2">{{userData.displayName}}</h5>
 							    <p class="commentText col-md-12 col-sm-12 col-xs-12 body3">{{userData.text}}</p>
-                                <unreadmsg-comp :convKey = rawData.key ></unreadmsg-comp>
+                                <unreadmsg-comp :convKey = rawData.key @play-notif = "playNotifEmit" ></unreadmsg-comp>
 							</div>
 						</div>
                  </div>`,
@@ -75,6 +75,9 @@ Vue.component('messagecontactcard',{
           this.databaseRef =   firebase.database().ref('lastMessageSet/'+key).on('child_changed',function(snap){
                 snap.key === "text" ? this.userData.text = snap.val():'';
             }.bind(this))
+        },
+        playNotifEmit : function(){
+            this.$emit('notif-play');
         }
     }
 })

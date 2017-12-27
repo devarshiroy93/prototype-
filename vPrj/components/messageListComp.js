@@ -8,7 +8,7 @@ Vue.component('message-list',{
                         <hr class="divider">
                         <div v-if="messageData!== undefined ">
                         <div  v-for ="(conv,i) in messageData">
-                        <messagecontactcard  @selected-conv = "getSelectedConversation($event)" :rawData = conv :index= i></messagecontactcard>
+                        <messagecontactcard  @selected-conv = "getSelectedConversation($event)" :rawData = conv :index= i @notif-play = "notifPlayEmit"></messagecontactcard>
                         </div>
                         </div>
                         <div>
@@ -26,6 +26,9 @@ Vue.component('message-list',{
                 this.$emit('selected-user',data);
                 this.count+=1;// code for fetching first message from conversation list 
            }
+        },
+        notifPlayEmit : function(){
+            this.$emit('play-notif');
         }
     }, 
     created : function(){
