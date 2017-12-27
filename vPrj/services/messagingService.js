@@ -103,13 +103,13 @@ messagingService = {
         var convId;
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
-        firebase.database().ref('unreadMessageCountList'+'/'+recipientId).child(key).transaction(function(count){
+        firebase.database().ref('unreadMessageCountList'+'/'+recipientId).child(key).child('count').transaction(function(count){
             return count+1;
         });
 
     },
     resetUnReadMessageCountOfaParticularConversation : function(userUid,convKey){
-        firebase.database().ref('unreadMessageCountList/'+userUid).child(convKey).transaction(function(count){
+        firebase.database().ref('unreadMessageCountList/'+userUid).child(convKey).child('count').transaction(function(count){
             return 0;
         })
 
