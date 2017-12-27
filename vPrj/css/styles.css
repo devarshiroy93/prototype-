@@ -1296,8 +1296,7 @@ However, delay the fade out process for 2.5 seconds */
     background: #eee;
     display: inline-block;
     min-width: 10em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin: 8px 0;
 }
 .receiverPanelMsg:after{
     content: '';

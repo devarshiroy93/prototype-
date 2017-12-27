@@ -18,12 +18,13 @@ Vue.component('unreadmsg-comp',{
    methods : {
        fetchUnreadData : function(){
         messagingService.fetchUnreadMessageCountList(this.convKey,store.getters.getCurrentUser.uid).then(function(snap){
-            this.unreadMsgCount = snap.data
+            snap.data ?  this.unreadMsgCount = snap.data.count : '';
         }.bind(this));
        },
        registerUnreadCountChanges : function(){
            firebase.database().ref('unreadMessageCountList').child(store.getters.getCurrentUser.uid).child(this.convKey).on('child_changed',function(snap){
-                this.unreadMsgCount = snap.data;
+                this.unreadMsgCount = snap.val();
+                this.$emit('play-notif');
            }.bind(this))
        }
        

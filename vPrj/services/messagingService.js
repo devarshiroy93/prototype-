@@ -50,21 +50,24 @@ messagingService = {
         var parent;
         var recipient;
         var senderId;
-        parent = "conversations";
+        parent = "";
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
         text = messageObj.text;
         if(key !== ""){
-            parent = parent + '/' + key
+            parent = parent + key
         }else{
-            parent =  parent+'/'+recipientId+'__'+senderId;
+            parent =  parent +recipientId+'__'+senderId;
         } 
-        firebase.database().ref(parent).push(messageObj).then(function(result){
+        firebase.database().ref('conversations/'+parent).push(messageObj).then(function(result){
             if(result.database){
-               key ? '': messagingService.pushConvIdIntoDatabase(messageObj,result.key);
-                messagingService.setLastMessage(messageObj,key)
+               key!=="" ? '': messagingService.pushConvIdIntoDatabase(messageObj,result.key);
+                messagingService.setLastMessage(messageObj,key);
+                messagingService.incrementUnreadMessageCount(messageObj,parent)
+
             }
         });
+
     },
     setLastMessage : function(messageObj,key){
         var parent;
@@ -90,7 +93,7 @@ messagingService = {
         text = messageObj.text;
         firebase.database().ref('convByUsers'+'/'+recipientId).push({'parent' :recipientId+'__'+senderId ,'key' : key});
         firebase.database().ref('convByUsers'+'/'+senderId).push({'parent' :recipientId+'__'+senderId,'key' : key});
-        messagingService.incrementUnreadMessageCount(messageObj,key);
+        //messagingService.incrementUnreadMessageCount(messageObj,key);
     },
 
     incrementUnreadMessageCount : function(messageObj,key){
@@ -100,10 +103,14 @@ messagingService = {
         var convId;
         recipientId = messageObj.recipient;
         senderId = messageObj.userSenderId;
-        parent = 'unreadMessageCountList/' +recipientId;
-        convId =  recipientId+'__'+senderId;
-        firebase.database().ref(parent).child(convId).transaction(function(count){
-           return count+1;
+        firebase.database().ref('unreadMessageCountList'+'/'+recipientId).child(key).child('count').transaction(function(count){
+            return count+1;
+        });
+
+    },
+    resetUnReadMessageCountOfaParticularConversation : function(userUid,convKey){
+        firebase.database().ref('unreadMessageCountList/'+userUid).child(convKey).child('count').transaction(function(count){
+            return 0;
         })
 
     }
