@@ -1297,13 +1297,16 @@ However, delay the fade out process for 2.5 seconds */
     display: inline-block;
     min-width: 10em;
     margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
 }
 .receiverPanelMsg:after{
     content: '';
     position: absolute;
     left: -5px;
     width: 12.5px;
-    bottom: 15px;
+    bottom: 25px;
     height: 12.5px;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
@@ -1337,7 +1340,7 @@ However, delay the fade out process for 2.5 seconds */
     position: absolute;
     right: -5px;
     width: 12.5px;
-    bottom: 15px;
+    bottom: 20px;
     height: 12.5px;
     transform: rotate(45deg);
     -webkit-transform: rotate(-45deg);
