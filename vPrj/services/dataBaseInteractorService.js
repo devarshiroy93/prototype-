@@ -5,7 +5,8 @@ function checkIfUserExists(uid, userData) {
         snapshot.hasChild(userUid) ? '' : pushUserData(userData);
 
     });
-
+    assignPresenceToUser(uid);
+    
 };
 
 function pushUserData(userData) {
@@ -132,4 +133,12 @@ function fetchUserData(userId){
     }).catch(function(error){
        
     })
+}
+
+function assignPresenceToUser(uid){
+    var parent;
+    var string ;
+    parent= 'userPresence';
+    firebase.database().ref(parent).child(uid).set({online : true,lastOnline:firebase.database.ServerValue.TIMESTAMP})
+   
 }

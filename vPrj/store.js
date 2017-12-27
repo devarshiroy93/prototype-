@@ -8,7 +8,8 @@ const store = new Vuex.Store({
         friendList: [],
         friendsNotifications: [],
         postNotifications: [],
-        selectedConversation : ''
+        selectedConversation : '',
+        conversationList :[]
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -37,9 +38,10 @@ const store = new Vuex.Store({
         },
         assignSelectedConversation(state,convId){
             state.selectedConversation = convId;
+        },
+        assignCoversationList(state,conversation){
+            state.conversationList.push(conversation);
         }
-
-
 
     },
     getters: {
