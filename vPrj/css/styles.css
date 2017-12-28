@@ -1298,7 +1298,6 @@ However, delay the fade out process for 2.5 seconds */
     display: inline-block;
     min-width: 10em;
     margin: 0 0 8px 8px;;
-    border: 1px solid #ccc;
     border-radius: 4px;
     
 }
@@ -1333,7 +1332,6 @@ However, delay the fade out process for 2.5 seconds */
     display: inline-block;
     float: right;
     min-width: 10em;
-    border: 1px solid #ccc;
     border-radius: 4px;
 }
 /*.senderPanelMsg:after{

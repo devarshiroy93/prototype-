@@ -52,7 +52,7 @@ Vue.component('message-panel',{
                 'recipient' : this.recipient.uid ,
                 'text' : text.toString(),
                 'timeStamp' : Date.now(),
-                'key' : this.recipient.convKey
+                'key' : this.assignConvKey()
             };
             if(messageInfoObject.recipient && messageInfoObject.userSenderId){
                this.$emit('send-click', messageInfoObject);
@@ -61,6 +61,15 @@ Vue.component('message-panel',{
                 alert('please define a recipient');
             }
             
+        },
+        assignConvKey : function(){
+            var key;
+            if(this.recipient.convKey){
+                key = this.recipient.convKey;
+            }else{
+                key = this.recipient.key
+            }
+            return key;
         }
     }
 })
