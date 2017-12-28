@@ -56,6 +56,7 @@ Vue.component('message-panel',{
             };
             if(messageInfoObject.recipient && messageInfoObject.userSenderId){
                this.$emit('send-click', messageInfoObject);
+               this.messageText = "";
             }
             else{
                 alert('please define a recipient');

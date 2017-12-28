@@ -13,7 +13,7 @@ var messenger = Vue.component('messaging-comp', {
             showCreateComp: false,
             recipientUser: [],
             messageData: [] ,//the data here will be rendered as message list in message component,
-            conversationMsgs : []//contains the messages in a particular converation
+            conversationMsgs : []//contains the messages in a particular converation,
         }
     },
     methods: {
@@ -24,7 +24,9 @@ var messenger = Vue.component('messaging-comp', {
             this.showCreateComp ? user = this.checkIfConversationExists(user) : '';
             user !== undefined ? this.recipientUser = user : '';
             this.showCreateComp = false;
-            this.fetchMessageListOfConversation(user) ;
+            if(store.getters.getSelectedConversation!== 'conversations/'+user.convKey){
+                this.fetchMessageListOfConversation(user) ;
+            }
             user.type === 'userSelected' ? messagingService.resetUnReadMessageCountOfaParticularConversation(store.getters.getCurrentUser.uid,user.convKey) : '';
         },
         sendMessage: function (payload) {
