@@ -21,6 +21,7 @@ var messenger = Vue.component('messaging-comp', {
             this.showCreateComp = true
         },
         passToMessagePanel: function (user) {
+            this.showCreateComp ? user = this.checkIfConversationExists(user) : '';
             user !== undefined ? this.recipientUser = user : '';
             this.showCreateComp = false;
             this.fetchMessageListOfConversation(user) ;
@@ -57,6 +58,23 @@ var messenger = Vue.component('messaging-comp', {
                     this.recipientUser.convKey = data.key
                 }.bind(this));
             }.bind(this))
+        },
+        checkIfConversationExists : function(user){// checks whether conversation already exits with selected user
+            var userDetails ;
+            userDetails = user;
+            for(var i = 0 ;i<this.messageData.length;i++){
+                if(this.messageData[i].key.toLowerCase().indexOf(user.uid.toLowerCase())!== -1){
+                    userDetails = this.messageData[i];
+                    userDetails.displayName = user.displayName;
+                    userDetails.email = user.email ;
+                    userDetails.phoneNumber = user.phoneNumber
+                    userDetails.photoURL = user.photoURL
+                    userDetails.uid= user.uid
+                }else{
+                    userDetails = user;
+                }  
+            }
+            return userDetails;
         }
 
 

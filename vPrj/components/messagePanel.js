@@ -18,7 +18,7 @@ Vue.component('message-panel',{
                                         <!__ chat messages will go here __>
                                         <div v-if="convMsgList.length>0">
                                             <div  v-for="text in convMsgList">
-                                                <chat-chip :msg = "text"></chat-chip>
+                                                <chat-chip :msg = "text" :recipientImg = "recipient.photoURL"></chat-chip>
                                             </div>
                                         </div>
                                     </div>
