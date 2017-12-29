@@ -1,7 +1,7 @@
 var messenger = Vue.component('messaging-comp', {
     props: [],
     template: `<div>
-                    <div class="messagingComp col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="messagingComp col-md-12 col-lg-12 col-sm-12 col-xs-12" v-heightwidth-manage="'messagingWindowHeight'">
                         <div><message-list v-on:newmessagetoggle = "showCreateMessageComp" :messageData = "messageData" @selected-user = passToMessagePanel($event) @play-notif="playNotification"></message-list></div>
                         <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs"  @send-click = sendMessage($event)></message-panel></div>
                         <div><create-message :showComp= "showCreateComp" @recipient-user="passToMessagePanel($event)"></create-message></div>
