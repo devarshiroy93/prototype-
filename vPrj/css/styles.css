@@ -1230,7 +1230,6 @@ However, delay the fade out process for 2.5 seconds */
    border-bottom-left-radius: 4px;*/
 }
 .chatWindowMessageChain{
-    height: 32em;
     overflow: auto;
     padding-top: 8px;
     border-left: 1px solid #ccc;
