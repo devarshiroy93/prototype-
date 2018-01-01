@@ -3,7 +3,7 @@ var messenger = Vue.component('messaging-comp', {
     template: `<div>
                     <div class="messagingComp col-md-12 col-lg-12 col-sm-12 col-xs-12" v-heightwidth-manage="'messagingWindowHeight'">
                         <div><message-list v-on:newmessagetoggle = "showCreateMessageComp" :messageData = "messageData" @selected-user = passToMessagePanel($event) @play-notif="playNotification"></message-list></div>
-                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs"  @send-click = sendMessage($event)></message-panel></div>
+                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs"  @send-click = sendMessage($event) @typing-indicator ="makeTypingIndicatorChanges($event)"></message-panel></div>
                         <div><create-message :showComp= "showCreateComp" @recipient-user="passToMessagePanel($event)"></create-message></div>
                         <div><audio ref="audioElm" src="asset/msgNoti.mp3"></audio></div>
                     </div>   
@@ -60,6 +60,7 @@ var messenger = Vue.component('messaging-comp', {
                     this.recipientUser.convKey = data.key
                 }.bind(this));
             }.bind(this))
+         
         },
         checkIfConversationExists : function(user){// checks whether conversation already exits with selected user
             var userDetails ;
@@ -77,6 +78,15 @@ var messenger = Vue.component('messaging-comp', {
                 }  
             }
             return userDetails;
+        },
+        makeTypingIndicatorChanges :  function(data){//interacts with services to make changes in database for typing indicators
+            console.log('typingIndicator',data);
+            messagingService.changeTypingStatus(this.recipientUser.convKey,store.getters.getCurrentUser.uid,data);
+        },
+        bindTypingStatusChanges : function(data){
+            firebase.database().ref('typingStatus/'+data.convKey).child(data.uid).on('value',function(snap){
+                console.log('typingStatus',snap.val());
+            })
         }
 
 
@@ -86,6 +96,6 @@ var messenger = Vue.component('messaging-comp', {
         var senderData = [];
         var unreadMessageCount = [];
         var key;
-        this.fetchMessageList();      
+        this.fetchMessageList();
     }
 })

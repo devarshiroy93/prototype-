@@ -64,7 +64,7 @@ messagingService = {
                key!=="" ? '': messagingService.pushConvIdIntoDatabase(messageObj,result.key);
                 messagingService.setLastMessage(messageObj,key);
                 messagingService.incrementUnreadMessageCount(messageObj,parent)
-
+                messagingService.createTypingStatusInDatabase(messageObj,parent);
             }
         });
 
@@ -113,5 +113,16 @@ messagingService = {
             return 0;
         })
 
-    }
+    },
+    createTypingStatusInDatabase : function(messageObj,parent){
+        var recipient;
+        var senderId;
+        recipientId = messageObj.recipient;
+        senderId = messageObj.userSenderId;
+        firebase.database().ref('typingStatus/'+parent).child(recipientId).set(false);
+        firebase.database().ref('typingStatus/'+parent).child(senderId).set(false);
+    },
+    changeTypingStatus : function(convKey,userUid,typingStatus){
+       firebase.database().ref('typingStatus/'+convKey).child(userUid).set(typingStatus);
+    } 
 }
