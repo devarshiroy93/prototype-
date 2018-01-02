@@ -25,9 +25,9 @@ var messenger = Vue.component('messaging-comp', {
             this.showCreateComp ? user = this.checkIfConversationExists(user) : '';
             user !== undefined ? this.recipientUser = user : '';
             this.showCreateComp = false;
-           // if(store.getters.getSelectedConversation!== 'conversations/'+user.convKey){
+           if(store.getters.getSelectedConversation!== 'conversations/'+user.convKey){
                 this.fetchMessageListOfConversation(user) ;
-            //}
+            }
             user.type === 'userSelected' ? messagingService.resetUnReadMessageCountOfaParticularConversation(store.getters.getCurrentUser.uid,user.convKey) : '';
             this.bindTypingStatusChanges(user)
         },
@@ -53,6 +53,16 @@ var messenger = Vue.component('messaging-comp', {
            this.conversationMsgs = [];
            firebase.database().ref(parent).on('child_added',function(snap){
             this.conversationMsgs.push(snap.val());
+
+            var data ={};// part of typing indicator bug fix
+            var uidArr = [];
+            data.convKey = snap.ref.parent.key;// part of typing indicator bug fix
+            uidArr = snap.ref.parent.key.split('__');// part of typing indicator bug fix
+            for(var i =0 ;i<uidArr.length;i++){// part of typing indicator bug fix
+                uidArr[i] !== store.getters.getCurrentUser.uid ?  data.uid = uidArr[i] : '' ;// part of typing indicator bug fix
+            }
+            this.bindTypingStatusChanges(data);// part of typing indicator bug fix
+
            }.bind(this))
         },
         fetchMessageList : function(){
@@ -83,7 +93,7 @@ var messenger = Vue.component('messaging-comp', {
         },
         makeTypingIndicatorChanges :  function(data){//interacts with services to make changes in database for typing indicators
             console.log('typingIndicator',data);
-            messagingService.changeTypingStatus(this.recipientUser.convKey,store.getters.getCurrentUser.uid,data);
+           this.recipientUser.convKey ? messagingService.changeTypingStatus(this.recipientUser.convKey,store.getters.getCurrentUser.uid,data): '';
         },
         bindTypingStatusChanges : function(data){
             firebase.database().ref('typingStatus/'+data.convKey).child(data.uid).on('value',function(snap){
