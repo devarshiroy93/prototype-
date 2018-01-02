@@ -4,7 +4,7 @@ Vue.component('message-list',{
         return {'count' : 0}
     },
     'template' :`<div>
-                    <div class="col-md-4 col-lg-3 col-sm-4 hidden-xs col-xs-12 friendRequestPanel messageList scrollbar-customised">
+                    <div class="col-md-4 col-lg-3 col-sm-4  col-xs-12 friendRequestPanel messageList scrollbar-customised">
                     <div>
                         <span class="messageHeader subheader">Messages</span>
                         <button class="createMsgBtn" v-on:click="sendNewMessageAction">

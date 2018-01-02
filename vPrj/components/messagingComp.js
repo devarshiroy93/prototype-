@@ -3,8 +3,8 @@ var messenger = Vue.component('messaging-comp', {
     template: `<div>
                     <div class="messagingComp col-md-12 col-lg-12 col-sm-12 col-xs-12" v-heightwidth-manage="'messagingWindowHeight'">
                         <div><message-list v-on:newmessagetoggle = "showCreateMessageComp" :messageData = "messageData" @selected-user = passToMessagePanel($event) @play-notif="playNotification"></message-list></div>
-                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs" :typingStatus = "typingStatus"  @send-click = sendMessage($event) @typing-indicator ="makeTypingIndicatorChanges($event)"></message-panel></div>
-                        <div><create-message :showComp= "showCreateComp" @recipient-user="passToMessagePanel($event)"></create-message></div>
+                        <div v-if = "!isMobileView"><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs" :typingStatus = "typingStatus"  @send-click = sendMessage($event) @typing-indicator ="makeTypingIndicatorChanges($event)"></message-panel></div>
+                        <div v-if = "!isMobileView"><create-message :showComp= "showCreateComp" @recipient-user="passToMessagePanel($event)"></create-message></div>
                         <div><audio ref="audioElm" src="asset/msgNoti.mp3"></audio></div>
                     </div>   
                 </div>`,
@@ -14,7 +14,8 @@ var messenger = Vue.component('messaging-comp', {
             recipientUser: [],
             messageData: [] ,//the data here will be rendered as message list in message component,
             conversationMsgs : [],//contains the messages in a particular converation,
-            typingStatus : false
+            typingStatus : false,
+            isMobileView: store.getters.getCurrentView,// determines whether it is mobile view or not
         }
     },
     methods: {
