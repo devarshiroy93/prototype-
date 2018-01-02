@@ -98,7 +98,10 @@ Vue.component('message-panel',{// changes need to be made in recipient prop for 
                 }
             this.$emit('typing-indicator',this.isTyping);
             }.bind(this),2000)
-            this.isTyping = isTyping;            
+            this.isTyping = isTyping;      
+            if(event.which === 13){
+                this.sendClick(this.messageText)
+            }      
         }
         
     }
