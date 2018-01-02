@@ -1,5 +1,5 @@
 Vue.component('message-panel',{// changes need to be made in recipient prop for handling group messaging.
-    props :['showComp','recipient','convMsgList'],
+    props :['showComp','recipient','convMsgList','typingStatus'],
     data : function(){
         return {
             messageText : '',
@@ -24,7 +24,7 @@ Vue.component('message-panel',{// changes need to be made in recipient prop for 
                                                 <chat-chip :msg = "text" :recipientImg = "recipient.photoURL"></chat-chip>
                                             </div>
                                         </div>
-                                        <typing-indicator :user ="recipient.displayName" :isTyping = "isTyping"></typing-indicator>
+                                        <typing-indicator :user ="recipient.displayName" :isTyping = "typingStatus"></typing-indicator>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 sendMessagePanel">
                                         <div class="col-md-11 col-lg-11 col-sm-11 col-xs-11  ">
@@ -96,6 +96,7 @@ Vue.component('message-panel',{// changes need to be made in recipient prop for 
                 if(this.messageTextLength === this.messageText.length ){
                     this.isTyping = false
                 }
+            this.$emit('typing-indicator',this.isTyping);
             }.bind(this),2000)
             this.isTyping = isTyping;            
         }

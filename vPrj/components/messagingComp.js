@@ -3,7 +3,7 @@ var messenger = Vue.component('messaging-comp', {
     template: `<div>
                     <div class="messagingComp col-md-12 col-lg-12 col-sm-12 col-xs-12" v-heightwidth-manage="'messagingWindowHeight'">
                         <div><message-list v-on:newmessagetoggle = "showCreateMessageComp" :messageData = "messageData" @selected-user = passToMessagePanel($event) @play-notif="playNotification"></message-list></div>
-                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs"  @send-click = sendMessage($event) @typing-indicator ="makeTypingIndicatorChanges($event)"></message-panel></div>
+                        <div><message-panel :showComp = "!showCreateComp" :recipient="recipientUser" :convMsgList = "conversationMsgs" :typingStatus = "typingStatus"  @send-click = sendMessage($event) @typing-indicator ="makeTypingIndicatorChanges($event)"></message-panel></div>
                         <div><create-message :showComp= "showCreateComp" @recipient-user="passToMessagePanel($event)"></create-message></div>
                         <div><audio ref="audioElm" src="asset/msgNoti.mp3"></audio></div>
                     </div>   
@@ -13,7 +13,8 @@ var messenger = Vue.component('messaging-comp', {
             showCreateComp: false,
             recipientUser: [],
             messageData: [] ,//the data here will be rendered as message list in message component,
-            conversationMsgs : []//contains the messages in a particular converation,
+            conversationMsgs : [],//contains the messages in a particular converation,
+            typingStatus : false
         }
     },
     methods: {
@@ -24,10 +25,11 @@ var messenger = Vue.component('messaging-comp', {
             this.showCreateComp ? user = this.checkIfConversationExists(user) : '';
             user !== undefined ? this.recipientUser = user : '';
             this.showCreateComp = false;
-            if(store.getters.getSelectedConversation!== 'conversations/'+user.convKey){
+           // if(store.getters.getSelectedConversation!== 'conversations/'+user.convKey){
                 this.fetchMessageListOfConversation(user) ;
-            }
+            //}
             user.type === 'userSelected' ? messagingService.resetUnReadMessageCountOfaParticularConversation(store.getters.getCurrentUser.uid,user.convKey) : '';
+            this.bindTypingStatusChanges(user)
         },
         sendMessage: function (payload) {
             var key = payload.key? payload.key : '';
@@ -86,7 +88,8 @@ var messenger = Vue.component('messaging-comp', {
         bindTypingStatusChanges : function(data){
             firebase.database().ref('typingStatus/'+data.convKey).child(data.uid).on('value',function(snap){
                 console.log('typingStatus',snap.val());
-            })
+                this.typingStatus = snap.val();
+            }.bind(this))
         }
 
 
