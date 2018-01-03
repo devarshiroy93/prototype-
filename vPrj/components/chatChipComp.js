@@ -7,7 +7,7 @@ Vue.component('chat-chip',{
                     <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 chatImage" v-if="class1">
                         <img alt="Card image cap" class="img-responsive" :src="recipientImg"></div><span v-bind:class="{'receiverPanelMsg':class1,'senderPanelMsg' : class2}" v-html="msg.text"></span>
                         <span class="body3"  v-bind:class="{'receiverMsgTime':class1,'senderMsgTime' : class2}">
-                        <span>11:58 AM</span></span>
+                        <span>{{generateTimeStampOfMessage(msg.timeStamp)}}</span></span>
                 </div>`,
     methods :{
         determinePanelClass : function(){
@@ -18,6 +18,9 @@ Vue.component('chat-chip',{
                 this.class1 = false;
                 this.class2 = true;
             }
+        },
+        generateTimeStampOfMessage : function(data){
+            return processTimeStamp(data);
         }
     },
     created : function(){
