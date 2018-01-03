@@ -9,7 +9,8 @@ const store = new Vuex.Store({
         friendsNotifications: [],
         postNotifications: [],
         selectedConversation : '',
-        conversationList :[]
+        conversationList :[],
+        unreadMessageCount : {}
     },
     mutations: {
         assignCurrentUser(state, user) {
@@ -41,6 +42,9 @@ const store = new Vuex.Store({
         },
         assignCoversationList(state,conversation){
             state.conversationList.push(conversation);
+        },
+        assignUnreadMessageCount(state,unreadMessage){
+            state.unreadMessageCount = unreadMessage;
         }
 
     },
@@ -71,6 +75,9 @@ const store = new Vuex.Store({
         },
         getSelectedConversation(state){
             return state.selectedConversation;
+        },
+        getUnreadMessageCount(state){
+            return state.unreadMessageCount;
         }
     }
 

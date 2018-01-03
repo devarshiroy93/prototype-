@@ -10,5 +10,11 @@ var messageComposer = {
             'messageTail': 'commented on your post',
             'others': 'others'
         }
+    },
+    'messagesNotificationsMessages':{
+        'messageArrival' : {
+            head : 'You have',
+            tail : 'new message'
+        }
     }
 }

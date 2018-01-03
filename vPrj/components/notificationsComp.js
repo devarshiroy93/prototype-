@@ -110,6 +110,12 @@ Vue.component('notification-comp', {//will show notifications for friend request
                 this.notificationsComposer('', val[keys[i]].friendName, val.postActivityCount[keys[i]], keys[i])
             }
         },
+        fetchUnreadMesageCountForUser : function(uid){
+            messagingService.getUnreadMessageCountOfUser(uid).then(function(snap){
+                console.log('notifComp',snap.val());
+                store.commit('assignUnreadMessageCount',snap.val());
+            }.bind(this))
+        },
         navigateToPost: function (key) {
             router.push({ name: 'singularpage', params: { postData: key } });
         }
@@ -134,5 +140,6 @@ Vue.component('notification-comp', {//will show notifications for friend request
                 alert('connection broken')
             }
         }.bind(this));
+        this.fetchUnreadMesageCountForUser(store.getters.getCurrentUser.uid);
     }
 })

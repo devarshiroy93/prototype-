@@ -114,6 +114,12 @@ messagingService = {
         })
 
     },
+    getUnreadMessageCountOfUser : function(userUid){
+     return  firebase.database().ref('unreadMessageCountList/'+userUid).once('value').then(function(data){
+            return data;
+        })
+    },
+
     createTypingStatusInDatabase : function(messageObj,parent){
         var recipient;
         var senderId;
