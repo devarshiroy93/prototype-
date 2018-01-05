@@ -1,6 +1,7 @@
 function signingInService() {
 
     var provider = new firebase.auth.GoogleAuthProvider();
+    provider.onAuthStateChanged;
     return firebase.auth()
         .signInWithPopup(provider).then(function (result) {
             return result

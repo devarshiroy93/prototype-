@@ -1,9 +1,9 @@
 Vue.directive('heightwidth-manage',{
-    componentUpdated : function(el,binding){ 
+    update : function(el,binding){ 
          if(binding.value === "messagingWindowHeight"){
              console.log(el.offsetHeight);
              console.log(document.querySelector('.navbar-default').offsetHeight);
-             var chatWindowHeight = window.innerHeight-document.querySelector('.navbar-default').offsetHeight -el.querySelector('.sendMessagePanel').offsetHeight-el.querySelector('.chatWindowHeader').offsetHeight -6;
+             var chatWindowHeight = window.innerHeight-document.querySelector('.navbar-default').offsetHeight -el.querySelector('.sendMessagePanel').offsetHeight-el.querySelector('.chatWindowHeader').offsetHeight;
              console.log("chatwindowheight",chatWindowHeight)
              document.querySelector('.chatWindowMessageChain').style.maxHeight = chatWindowHeight+'px';
              document.querySelector('.chatWindowMessageChain').style.minHeight = chatWindowHeight+'px';

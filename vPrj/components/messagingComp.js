@@ -128,7 +128,16 @@ var messenger = Vue.component('messaging-comp', {
         var senderData = [];
         var unreadMessageCount = [];
         var key;
-        this.fetchMessageList();
-        this.handleViews();
+        //this.fetchMessageList();
+        //this.handleViews();
+        firebase.auth().onAuthStateChanged(function(user){
+                if(user){
+                     store.commit('assignCurrentUser', user);
+                     this.fetchMessageList();
+                     this.handleViews();
+                }else{
+                    alert('logged out');
+                };
+            }.bind(this));
     }
 })

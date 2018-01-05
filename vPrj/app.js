@@ -118,10 +118,23 @@ var firstComponent = Vue.component('login-reg', {
                 this.activeClassLogin = ""
             }
         },
+        bindAuthState : function(){
+            firebase.auth().onAuthStateChanged(function(user){
+                if(user!== null || user){
+                    router.push({
+                        name: 'dashboard'
+                    }) //redirects to login page on successfull login
+                    store.commit('assignCurrentUser', user);
+                }else{
+
+                };
+            });
+        },
         gSignin: function () {
             this.loaderState = 'loading'
             var promise = signingInService(router);
             promise.then(function (result) {
+               
                 if (result.credential) {
                     this.loaderState = ''
                     router.push({
@@ -153,9 +166,11 @@ var firstComponent = Vue.component('login-reg', {
 
     },
     created: function () {
+        this.bindAuthState();
         if (this.$route.params.message) {
             //this.error = false
         }
+         this.bindAuthState();
     }
 
 })
