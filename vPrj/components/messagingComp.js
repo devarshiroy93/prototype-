@@ -136,7 +136,6 @@ var messenger = Vue.component('messaging-comp', {
                      this.fetchMessageList();
                      this.handleViews();
                 }else{
-                    alert('logged out');
                 };
             }.bind(this));
     }

@@ -118,14 +118,14 @@ var firstComponent = Vue.component('login-reg', {
                 this.activeClassLogin = ""
             }
         },
-        bindAuthState : function(){
-            firebase.auth().onAuthStateChanged(function(user){
-                if(user!== null || user){
+        bindAuthState: function () {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user !== null || user) {
                     router.push({
                         name: 'dashboard'
                     }) //redirects to login page on successfull login
                     store.commit('assignCurrentUser', user);
-                }else{
+                } else {
 
                 };
             });
@@ -134,7 +134,7 @@ var firstComponent = Vue.component('login-reg', {
             this.loaderState = 'loading'
             var promise = signingInService(router);
             promise.then(function (result) {
-               
+
                 if (result.credential) {
                     this.loaderState = ''
                     router.push({
@@ -170,7 +170,7 @@ var firstComponent = Vue.component('login-reg', {
         if (this.$route.params.message) {
             //this.error = false
         }
-         this.bindAuthState();
+        this.bindAuthState();
     }
 
 })
@@ -201,13 +201,13 @@ const routes = [
         component: individualPostcomp,
         props: true
     },
-	{
+    {
         path: '/editProfile',
         name: 'editProfilepage',
         component: newComp,
         props: true
     },
-	{
+    {
         path: '/friends/:id',
         name: 'friendList',
         component: friendListComp,
@@ -222,7 +222,7 @@ const routes = [
         path: '/message/:id',
         name: 'messaging-comp',
         component: messenger,
-       
+
     }
 
 ]
@@ -242,35 +242,44 @@ var app = new Vue({
         if (window.innerWidth <= 767) {
             store.commit('assignView', true);
         }
-		
+
     },
-	mounted : function(){
-		//this.loadScriptsAsync("https://www.gstatic.com/firebasejs/4.2.0/firebase.js");
-		//this.loadScriptsAsync("config/fbaseConnect.js");
-		this.loadCssAsync('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-		this.loadCssAsync('css/styles.css');
-		this.loadCssAsync('https://fonts.googleapis.com/icon?family=Material+Icons');
-	},
+    mounted: function () {
+        //this.loadScriptsAsync("https://www.gstatic.com/firebasejs/4.2.0/firebase.js");
+        //this.loadScriptsAsync("config/fbaseConnect.js");
+        this.loadCssAsync('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+        this.loadCssAsync('css/styles.css');
+        this.loadCssAsync('https://fonts.googleapis.com/icon?family=Material+Icons');
+        this.loadServiceWorkerforApp();
+    },
     methods: {
-		loadScriptsAsync : function(url){
-			var s = document.createElement('script');
-			s.type = 'text/javascript';
-			s.async = true;
-			s.src = url;
-			var x = document.getElementsByTagName('head')[0];
-			x.appendChild(s);
-		},
-		loadCssAsync : function(url) {
-			var l = document.createElement('link');
-			l.rel = 'stylesheet';
-			l.href = url
-			var h = document.getElementsByTagName('head')[0];
-			h.parentNode.insertBefore(l, h);
-    },
+        loadScriptsAsync: function (url) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url;
+            var x = document.getElementsByTagName('head')[0];
+            x.appendChild(s);
+        },
+        loadCssAsync: function (url) {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            l.href = url
+            var h = document.getElementsByTagName('head')[0];
+            h.parentNode.insertBefore(l, h);
+        },
         toggleSideBar: function () {
 
             store.commit('assignToggleForMobile', !this.toggleSideBarVar)
             this.toggleSideBarVar = !this.toggleSideBarVar
+        },
+        loadServiceWorkerforApp: function () {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('sw.js');
+                });
+            }
         }
     }
 }).$mount('#app')
+
