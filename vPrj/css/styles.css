@@ -266,6 +266,7 @@
 #google-img {
     cursor: pointer;
     border-radius: 3px;
+    margin: 20px auto;
 }
 #google-img:hover {
     box-shadow: 0px 3px 16px rgba(153, 153, 153, 0.3);
@@ -281,7 +282,8 @@ input[disabled] {
 }
 
 body {
-    background: rgb(238, 238, 238);
+    /*background: rgb(238, 238, 238);*/
+    background: #31708f;
 }
 
 .disabledOpacity {
@@ -322,6 +324,7 @@ ul.sidebar-comp li a:hover {
 .sidebar-content {
 	width:270px;
 	position:fixed;
+    border-right: 1px solid #607D8B;
 	/* left:0; */
     padding: 15px 15px 0 15px;
     background: #31708f;
@@ -1398,3 +1401,23 @@ However, delay the fade out process for 2.5 seconds */
     margin-bottom: 1em;
 }
 /*CSS for messaging Component ends*/
+.profile-img{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;   
+}
+#google-login-form{
+    width: 275px;
+    height: 325px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -138px;
+}
+.loginHeader{
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
